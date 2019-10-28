@@ -1,3 +1,14 @@
-This little lib has been developed by:
+Release no 2.0 heavily uses the prework of Klaus Blum: 
+he published his snippet in the lilypond snippet repository
+(http://lsr.di.unimi.it/LSR/Snippet?id=967). You can find
+his work - in the form we jhave downloaded it - in the 
+directory xtras/blum and you in that directory with the
+command 'make -f ../../Makefile lsr-snippet-967.pdf'. Hence:
 
+Release no 2.0 has been developed by
+Karsten Reincke (k.reincke@fodina.de)
+Hans Blum
+
+
+Release no. 1.0 has been developed by
 Karsten Reincke (k.reincke@fodina.de)

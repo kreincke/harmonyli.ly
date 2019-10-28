@@ -13,7 +13,7 @@ play:
 	@ echo "### `date +'%Y%m%dT%H%M%S'`: converting $< to $@" 
 	@ lilypond --png $< 
 
-.ly.pdf:
+.ly.pdf: clean
 	@ echo "### `date +'%Y%m%dT%H%M%S'`: converting $< to $@" 
 	@ lilypond $< 
 
