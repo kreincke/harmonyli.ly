@@ -5,7 +5,6 @@
 \version "2.18.2"
 
 \header { tagline = "" }
-% the 'lib' must be included
 \include "inc.harmonyli.ly"
   
 \score {
@@ -27,27 +26,31 @@
           < e a >2    
           < a fis>2      
           \bar "||"
+        }
+        \addlyrics {
+          \override LyricText.self-alignment-X = #LEFT
+          \markup \T
+          \markup \T 
         }   
+        
       }
       \new Staff {
         \relative d { 
           \clef "bass"
           \key d \major  
           \stemDown
-          < d a'>2        ^\markup { \hf T }                      
-          < b a'>2        ^\markup { ( \hfOne D "7" ) }           
-          < d g>2         ^\markup { \hfiOne Sp "7" "7" }         
-          < cis g'>2      ^\markup { \hfiTri D "3" "5" "7" 
-                                        \line{"9"{\super{\flat}}"=8"{\super{\sharp}}}
-                                    }                               
+          < d a'>2                              
+          < b a'>2                   
+          < d g>2                
+          < cis g'>2                                    
           |
-          < d fis>2       ^\markup { \hfi Tp "3" }                
-          < b d>2         ^\markup { \hfiOne DD "5" "7" }         
+          < d fis>2                      
+          < b d>2                  
           <<
-            { a2          ^\markup { \hfOne D "4>3" }  }
+            { a2        }
             { d4( cis4) }
           >> 
-          < d, d'>2       ^\markup { \hf T }
+          < d, d'>2       
           \bar "||"
         }   
       }

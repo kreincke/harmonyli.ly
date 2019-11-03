@@ -6,7 +6,7 @@
 
 \header { tagline = "" }
 % the 'lib' must be included
-\include "inc.harmonyli.ly"
+\include "inc.harmonyli-old.ly"
   
 \score {
   \new StaffGroup {

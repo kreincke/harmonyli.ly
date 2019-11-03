@@ -5,7 +5,7 @@
 
 \version "2.18.2"
 
-\include "inc.sn967.ly"
+\include "inc.harmonyli.ly"
 
 %\paper {
 %  indent = 0
@@ -103,47 +103,47 @@ lyr = \lyricmode {
   % FunctionLetter SopranoNote BassNote OptA OptB OptC OptD OptE FillStr
 
   \set stanza = #"C-Dur:"
-  \markup \fSymbol "T" "3" ""  "" "" "" "" ""   ""
+ \markup \rsf "TX" "3" ""  "" "" "" "" ""   ""
   \openbracket
-  \markup \fSymbol \crossout "D" "" "3"  "7" "9>" "" "" ""   ")"
+  \markup \rsf \crossout "D" "" "3"  "7" "9>" "" "" ""   ")"
   \fExtend "     " % call this function BEFORE the lyric event
-  \markup \fSymbol "Sp" "" ""  "9" "" "" "" ""   ""
+  \markup \rsf "Sp" "" ""  "9" "" "" "" ""   ""
   \startTextSpan  % call \startTextSpan AFTER the lyric event
-  \markup \fSymbol "" "" ""  "8" "" "" "" ""   ""
+  \markup \rsf "" "" ""  "8" "" "" "" ""   ""
   \stopTextSpan
-  \markup \fSymbol "S" "" ""  "5" "6" "" "" ""   ""
+  \markup \rsf "S" "" ""  "5" "6" "" "" ""   ""
   \openbracket
-  \markup \fSymbol "D" "" "3"  "7" "" "" "" ""   " )"
+  \markup \rsf "D" "" "3"  "7" "" "" "" ""   " )"
   \fExtend "   "
-  \markup \fSymbol "D" "" ""  "2" "4" "" "" ""   ""
+  \markup \rsf "D" "" ""  "2" "4" "" "" ""   ""
   \startTextSpan
-  \markup \fSymbol "" "" ""  "1" "3" "" "" ""   ""
-  \stopTextSpan
-  \openbracket
-  \fExtend "   "
-  \markup \fSymbol "D" "" "3"  "7" "" "" "" ""   ""
-  \startTextSpan
-  \markup \fSymbol "" "" ""  "8" "" "" "" ""   ""
-  \markup \fSymbol "" "" ""  "7" "" "" "" ""   " )[Tp]"
+  \markup \rsf "" "" ""  "1" "3" "" "" ""   ""
   \stopTextSpan
   \openbracket
-  \markup \fSymbol "D" "" "7"  "" "" "" "" ""   ")"
   \fExtend "   "
-  \markup \fSymbol "S" "" "3"  "" "" "" "" ""   ""
+  \markup \rsf "D" "" "3"  "7" "" "" "" ""   ""
   \startTextSpan
-  \markup \fSymbol " " "" "2"  "" "" "" "" ""   ""
+  \markup \rsf "" "" ""  "8" "" "" "" ""   ""
+  \markup \rsf "" "" ""  "7" "" "" "" ""   " )[Tp]"
+  \stopTextSpan
+  \openbracket
+  \markup \rsf "D" "" "7"  "" "" "" "" ""   ")"
+  \fExtend "   "
+  \markup \rsf "S" "" "3"  "" "" "" "" ""   ""
+  \startTextSpan
+  \markup \rsf " " "" "2"  "" "" "" "" ""   ""
   \stopTextSpan
   \fExtend "    "
-  \markup \fSymbol \double "D" "" "3"  "8" "" "" "" ""   ""
+  \markup \rsf \double "D" "" "3"  "8" "" "" "" ""   ""
   \startTextSpan
-  \markup \fSymbol "" "" ""  "7" "" "" "" ""   ""
+  \markup \rsf "" "" ""  "7" "" "" "" ""   ""
   \stopTextSpan
   \fExtend "   "
-  \markup \fSymbol "D" "" ""  "5" "" "" "" ""   ""
+  \markup \rsf "D" "" ""  "5" "" "" "" ""   ""
   \startTextSpan
-  \markup \fSymbol "" "" ""  "7" "" "" "" ""   ""
+  \markup \rsf "" "" ""  "7" "" "" "" ""   ""
   \stopTextSpan
-  \markup \fSymbol "T" "" ""  "" "" "" "" ""   ""
+  \markup \rsf "T" "" ""  "" "" "" "" ""   ""
 }
 
 
@@ -176,7 +176,7 @@ lyr = \lyricmode {
     }
   }
 }
-
+ 
 \markup \vspace #2
 
 \score {
@@ -184,14 +184,17 @@ lyr = \lyricmode {
   \addlyrics {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
-    \markup \fSymbol "F" "2" "3"  "4" "5" "6" "7" "8"   "9"
-    \markup \fSymbol "Function" "Soprano" "Bass"  "OptA" "OptB" "OptC" "OptD" "OptE"   "FillStr       "
+    \markup \rsf "F" "2" "3"  "4" "5" "6" "7" "8"   "9"
+    \markup \rsf "Function" "Soprano" "Bass"  "OptA" "OptB" "OptC" "OptD" "OptE"   "FillStr       "
     \override LyricText.self-alignment-X = #CENTER
-    \markup \fSymbol "S" "" ""  "" "" "" "" ""   ""
-    \markup \fSymbol "D" "" ""  "" "" "" "" ""   ""
-    \markup \fSymbol \double S "  \double S  " ""  "" "" "" "" ""   ""
-    \markup \fSymbol \double "D" "  \double D  " ""  "" "" "" "" ""   ""
-    \markup \fSymbol \crossout "D" "  \crossout D  " ""  "" "" "" "" ""   ""
-    \markup \fSymbol \crossout \double "D" "  \crossout\double D  " ""  "" "" "" "" ""   ""
+    \markup \rsf "S" "" ""  "" "" "" "" ""   ""
+    \markup \rsf "D" "" ""  "" "" "" "" ""   ""
+    \markup \rsf \double S "  \double S  " ""  "" "" "" "" ""   ""
+    \markup \rsf \double "D" "  \double D  " ""  "" "" "" "" ""   ""
+    \markup \rsf \crossout "D" "  \crossout D  " ""  "" "" "" "" ""   ""
+
+    %\markup \dRSF "D" #'(("S" . "2") ("B"."1") ("a"."3") ("b"."4") ("c"."5") ("d"."6") ("e"."") ("f" . "--") )
+    %\markup \Dseptnone
+    \markup \iRSF "D" #'(("B"."3")("f" . "  ") )
   }
-}
+} 
