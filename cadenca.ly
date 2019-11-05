@@ -28,8 +28,11 @@
           \bar "||"
         }
         \addlyrics {
-          \markup \RSF "T" #'(("f" . "?"))
-          \markup \RSF "T" #'(("f" . "?"))
+          \markup \RSF "T" #'(("f" . ""))
+          \markup \RS "D" 
+          \markup \RSthird "D" 
+          \markup \Dsept 
+          \markup \Dseptnone
         }   
         
       }

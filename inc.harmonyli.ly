@@ -1,7 +1,101 @@
-% http://lsr.di.unimi.it/LSR/Item?id=967
-% http://lists.gnu.org/archive/html/lilypond-user/2014-12/msg00123.html
-% http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html
-% Contributed by Klaus Blum
+% harmonyli.ly :- a library for inserting Riemanm Function 
+% Analysis Symbols into a musical score created by LilyPOnd
+%
+% Copyright (c) 2019 Karsten Reincke, Frankfurt
+%
+% This file is distributed either under the terms of the MIT license or under 
+% the terms of the GPLv3 license. Feel free to choose the distribution method 
+% you prefer by deleting the unsuitable licensing statement (Don't delete both): 
+%
+% (a) If you want to use it under the terms of the MIT license erase the 
+%     following GPLv3 licensing statement:
+% (b) If you want to use harmonyli.ly under the terms of the GPLv2 license
+%      erase the following MIT license text
+%
+% GPLv3-Licensing Statement
+% -------------------------
+
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+% MIT-License and Licensing Statement
+% --------------------------------------
+% Copyright 2019 Karsten Reincke, Frankfurt
+
+% Permission is hereby granted, free of charge, to any person 
+% obtaining a copy of this software and associated documentation 
+% files (the "Software"), to deal in the Software without 
+% restriction, including without limitation the rights to use, 
+% copy, modify, merge, publish, distribute, sublicense, and/or sell 
+% copies of the Software, and to permit persons to whom the 
+% Software is furnished to do so, subject to the following conditions:
+
+% The above copyright notice and this permission notice shall be 
+% included in all copies or substantial portions of the Software.
+
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+% EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+% OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+% NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+% HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+% WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
+% OR OTHER DEALINGS IN THE SOFTWARE.
+%
+% Some Compliance Hints: 
+% ----------------------
+% (A) MIT Usage
+% -------------
+% (1) For using harmonyli.ly compliantly it is sufficient if the
+% MIT license text is part of this file.
+% (2) For modifying harmonyli.ly compliantly or for using part of
+% it, it is sufficient if the MIT license text is included in 
+% all copies or substantial portions
+% (3) Under the terms of the MIT license you may use harmonyli.ly
+% as part of your overarching work and you may distribute this
+% overarching complex as whole under any license you want. But
+% you may not erase the MIT license text in this file or in
+% all derived files - just as the MIT license requires:
+%
+% The above copyright notice and this permission notice shall be 
+% included in all copies or substantial portions of the Software.
+%
+% (B) GPLv3 Usage
+% ---------------
+% If you prefer to distribute harmonyli.ly under the terms of the
+% GPLv3, then you have to fulfill all requirements of the GPLv3,
+% especially those of §4 and §5 (strong copyleft effect and so on)
+% and those of §6 (Conveying Non-Source Forms)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Reference to groundwork
+% -----------------------
+% harmonyli.ly heavily uses ideas and code of Klaus Blum's groundwork which has 
+% been published in the 'Lilypond Snippet Repository':
+% -> http://lsr.di.unimi.it/LSR/Item?id=967
+%
+% In a mail from Nov. the 4th 2019 Klaus Blum explicitly approved that he 
+% a) distributes his code under the terms of the (American) public domain 
+% b) agrees to use his file as groundwork for harmonyli.ly
+% c) to distribute the result under the terms of of a dual-license: the user 
+%    shall be enabled to choose whether he wants to use it under the terms
+%   of the GPLv3 or the MIT
+%
+% Just as Klaus Blum's groundwork, also harmonyli.ly uses some explanations of 
+% Neil Puttock by which he described the use text span engraver.
+% -> http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \version "2.18.2"
 
@@ -37,45 +131,107 @@
 % Some implementation details:
 % We refer to the parts of a RFS by the following identifiers:
 %
-%                                 5 added note number = e | e5
-%                                 4 added note number = d | d4
-%                                 3 added note number = c | c3
-% Sopran-Note-Number = S | SN     2 added note number = b | b2
-% Riemann-Symbol = RS             1 added note number = a | a1  fillstring = fs | FS
+%                              5 added note number = e | e5
+%                              4 added note number = d | d4
+%                              3 added note number = c | c3
+% Sopran-Note-Number = S | SN  2 added note number = b | b2
+% Riemann-Symbol = RS          1 added note number = a | a1  fillstring = fs | FS
 % Bass-Note-Number = B | BN
 % 
 %
-% This harmonyli offers 3 interfaces:
+% This harmonyli.ly offers 3 interfaces:
 %
-% A) The basic method is the lisp function 'rfs'. It expects all elements of
-% an RFS at a specific position and none of them may be forgotten. If any of 
-% the optional elements shall not be used, then the corresponding argument 
+% A) The basic method of harmonyli.ly is 'rfs' (riemann functional symbol). It 
+% expects all elements of an RFS at a specific position and none of them may be 
+% forgotten. If any of elements shall not be used, then the respective argument 
 % must contain a "".
 %
 % Advantage: The analyzer gets the complete freedom to create his own version.
 % Disadvantage: He must respect all details for not getting surprising results
 % 
-% B) The core method is the lisp function 'RFS'. It takes the naked
-% Riemann Symbol (like T, Tp, S, D, ...) and a list of pairs using
-% the  globally defined BNoteKey, SNoteKey, ... as keys and any value
-% string / markup the user wanted to insert into the Riemann Function Symbol
+% B) The core method of harmonyli.ly is the method 'RFS'. It takes the naked 
+% Riemann Symbol (like T, Tp, S, D, ...) and a list of pairs using the values of 
+% BNoteKey, SNoteKey, ... as keys and as value any string / markup the user 
+% wants to insert into the Riemann Function Symbol
 %
-%   There exist 4 variants:
-%   a) the method RFS - as describe above
+% On this level, there exist 4 variants:
+%   a) the method RFS - as described above
 %   b) the method dRFS :- doubling the root RS symbol
 %   c) the method xRFS :- crossing out the root RS symbol
-%   d) the method xdRFS :- crossing out the douled root RS symbol 
+%   d) the method xdRFS :- crossing out the doubled root RS symbol 
 %
 % Advantage: The analyzer may ignore the key value pairs he do not need.
 % Disadvantage: He must know / respect the syntax of an association list
 %
-% c) Some instantiations of RFS which define often used RFS
+% C) Finally harmonyli.ly offers some often used instantiations of RFS
+% as prepared functions
 %
 % Advantage: It is simple to insert such fixed RFS.
 % Disadvantage: Not all RFS are delivered as fixed RFS
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% About some special features
+%
+% (1) intermediary dominant and intermediary sections
+% -----------------------------------------------
+% Sometimes, the musicologist wants to express that in an intermediary section
+% all chords function with respect to an intermediary harmonical focus instead
+% being described with respect to the basic tone. 
+% 
+% The most simple example for such an intermediary section is the 'intermediary 
+% dominant' (in German: 'Zwischendominante): It is not the dominant of the (
+% keynote) tonic, but the dominant of the following chord.
+
+% Moreover, sometimes the chord to which an intermediary section is refered
+% does not close the section but is replaced by a functional equivalent. A
+% famous example is the 'deceptive cadence' as closure of such an intermediary
+% section.
+
+% Hence, sometimes the musicologist does not only want to express that he reads
+% a succession of chords as an intermediary section, he also want to explicitly
+% name the assumed harmonical focus.
+
+% For that purpose harmonyli.ly offers rows of intermediary chords:
+%
+% IntermediarySection ::- 'initIntermediaryAccords' RFS+ closingRFS
+%                 RFS ::- /* see above */
+%          closingRFS ::- RFS with special parameter 'Context'
+%
+%
+% (2) ZoomAnalyses
+% ----------------
+%
+% In theoretical harmonical analyses often each analysis symbol refers to one 
+% chord. In practical harmoncal analyses the analysis symbols refer to rows of 
+% tones which are treated as passing notes.
+
+% But sometimes, the musicologist does not want to ignore some shorter notes.
+% Instead of this, he wants to increase the granularity of his symbols by
+% integrating such 'detail notes' into his symbol. He wants to zoom into the
+% the score.
+%
+% The most known example is the suspended chord as for example
+%   6>5
+%   4>3
+%  D 
+%
+% For enabling musicologists to express such details, harmonyli.ly offers
+% ZoomAreas. ZoomAreas use one pure Riemann Symbol for all chords, and the
+% differences of the cords are described by numbers referring to the base tone
+% of the chord
+%
+% ZoomArea ::- 
+%     'initZoomArea' 
+%     'setZoomRoot' 
+%     'openZoomArea'
+%     'setZoomSuccessor'+
+%     'closeZoomArea'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ---------------------------------------------------------------------
 % Harmonyli Interface No 1: The basic method for inserting all manually
 % ---------------------------------------------------------------------
@@ -266,109 +422,33 @@
 % Harmonyli Interface No 3: Some often used RFS defined as instantiation of method 2
 % ----------------------------------------------------------------------------------
 
-#(define-markup-command (RS layout props rs fs)
-  (markup? string?)
+#(define-markup-command (RS layout props rs)
+  (markup?)
   (interpret-markup layout props
-    #{ \markup \RSF #rs #'(("f" . "???")) #}
+    #{ \markup \RSF #rs #'() #}
    )
  )
 
 
-#(define-markup-command (T layout props)
-  ()
+#(define-markup-command (RSthird layout props rs)
+  (markup?)
   (interpret-markup layout props
-    #{ \markup \RSF "T" #'() #}
-   )
- )
-
-#(define-markup-command (Tthird layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "T" #'(("B"."3")("f" . "  ") ) #}
-   )
- )
-
-#(define-markup-command (t layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "t" #'() #}
-   )
- )
- 
- #(define-markup-command (tthird layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "t" #'(("B"."3")("f" . "  ") ) #}
-   )
- )
- 
-#(define-markup-command (S layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "S" #'() #}
-   )
- )
-
-#(define-markup-command (Sthird layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "S" #'(("B"."3")("f" . "  ") ) #}
+    #{ \markup \RSF #rs #'(("B"."3") ) #}
    )
  ) 
  
-#(define-markup-command (s layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "s" #'() #}
-   )
- )
-
-#(define-markup-command (sthid layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "s" #'(("B"."3")("f" . "  ") ) #}
-   )
- ) 
- 
-#(define-markup-command (D layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "D" #'() #}
-   )
- ) 
-
-#(define-markup-command (Dthird layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "D" #'(("B"."3")("f" . "  ") ) #}
-   )
- )  
- 
-#(define-markup-command (d layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "d" #'() #}
-   )
- ) 
-
-#(define-markup-command (dthird layout props)
-  ()
-  (interpret-markup layout props
-    #{ \markup \RSF "d" #'(("B"."3")("f" . "  ") ) #}
-   )
- ) 
 
 #(define-markup-command (Dsept layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \RSF "D" #'(("a"."7")("f" . "  ") ) #}
+    #{ \markup \RSF "D" #'(("a"."7") ) #}
    )
  )
 
 #(define-markup-command (Dseptnone layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \RSF "D" #'(("a"."7")("b"."9")("f" . "  ") ) #}
+    #{ \markup \RSF "D" #'(("a"."7")("b"."9")) #}
    )
  )
 % ---------------------------------------------------------------
