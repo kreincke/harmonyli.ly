@@ -265,6 +265,15 @@
 % ----------------------------------------------------------------------------------
 % Harmonyli Interface No 3: Some often used RFS defined as instantiation of method 2
 % ----------------------------------------------------------------------------------
+
+#(define-markup-command (RS layout props rs fs)
+  (markup? string?)
+  (interpret-markup layout props
+    #{ \markup \RSF #rs #'(("f" . "???")) #}
+   )
+ )
+
+
 #(define-markup-command (T layout props)
   ()
   (interpret-markup layout props

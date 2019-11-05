@@ -175,7 +175,7 @@ lyr = \lyricmode {
       \consists "Text_spanner_engraver"
     }
   }
-}
+} 
  
 \markup \vspace #2
 

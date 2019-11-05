@@ -28,9 +28,8 @@
           \bar "||"
         }
         \addlyrics {
-          \override LyricText.self-alignment-X = #LEFT
-          \markup \T
-          \markup \T 
+          \markup \RSF "T" #'(("f" . "?"))
+          \markup \RSF "T" #'(("f" . "?"))
         }   
         
       }
