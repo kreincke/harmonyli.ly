@@ -279,6 +279,81 @@
      #}
  )))
   
+  
+#(define-markup-command (flas layout props RSl RSr SN BN aN bN cN dN eN CTl CTr fst)
+  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
+  (let* 
+    ( (lCTl (string-append "[" CTl "]"))  
+      (lCTr (string-append "[" CTr "]"))  
+    )
+    (if (equal? CTl "")(set! lCTl ""))
+    (if (equal? CTr "")(set! lCTr ""))
+    (interpret-markup layout props
+     #{
+       \markup{
+         \concat {
+           \override #'(baseline-skip . 3)
+           \center-column {
+             \override #`(direction . ,UP)
+             \override #'(baseline-skip . 3)
+             \dir-column {
+               \halign #CENTER
+                \override #'(box-padding . 0.4)
+                \box \concat { 
+                   $RSl \tiny {  $lCTl  } " ⇨ " $RSr \tiny {  $lCTr  } 
+                }
+               \tiny
+               \halign #CENTER
+               $SN
+             }
+             \tiny
+             $BN
+           }
+           " "
+           \tiny
+           \override #`(direction . ,UP)
+           \override #'(baseline-skip . 0.8)
+           \dir-column {
+             " "
+             {
+               \override #`(direction . ,UP)
+               \override #'(baseline-skip . 1.3)
+               \dir-column { $aN  $bN $cN $dN $eN }
+             }
+           }
+           $fst
+         }
+       }
+     #}
+ )))
+ 
+ 
+
+#(define-markup-command 
+  (flasx layout props 
+    RSl SNl BNl aNl bNl cNl dNl eNl CTl
+    RSr SNr BNr aNr bNr cNr dNr eNr CTr 
+  fst)
+  ( markup? markup? markup? markup? markup? markup? markup? markup? markup?
+    markup? markup? markup? markup? markup? markup? markup? markup? markup?
+    markup?
+  )
+
+    (interpret-markup layout props
+     #{
+        \markup{
+          \box
+          \concat {
+            \fhas #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl ""
+            " ⇨ "
+            \fhas #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr ""
+          }      
+          $fst 
+        }
+     #}
+ ))
+
+ 
 % ------------------------------------------------------------------------------
 % Harmonyli Interface No 2.A: The core method for inserting only relevant values
 % ------------------------------------------------------------------------------
@@ -291,9 +366,18 @@
 #(define dNoteKey "d")
 #(define eNoteKey "e")
 #(define fsKey "f")
-
 #(define RsSpec "T")
+#(define RsCont "C")
 
+#(define NBNoteKey "nB")
+#(define NSNoteKey "nS")
+#(define NaNoteKey "na")
+#(define NbNoteKey "nb")
+#(define NcNoteKey "nc")
+#(define NdNoteKey "nd")
+#(define NeNoteKey "ne")
+#(define NRsSpec "nT")
+#(define NRsCont "nC")
 
 #(define BNoteDValue "")
 #(define SNoteDValue "")
@@ -303,8 +387,8 @@
 #(define dNoteDValue "")
 #(define eNoteDValue "")
 #(define fsDValue "") 
-
 #(define RsSpecDValue "")
+#(define RsContDValue "")
 
 % The RS can be crossed out and or doubled To express the combinations
 % we invent a parameter RS taking the values [ n (normal) | x | d | xd ]
@@ -335,7 +419,7 @@
       (leN (assign eNoteKey AL eNoteDValue))
       (lFS (assign fsKey AL fsDValue))
       (lRS (assign RsSpec AL RsSpecDValue ))
-      (lCT (assign "CT" AL ""))
+      (lCT (assign RsCont AL RsContDValue))
     )
   
     (interpret-markup layout props
@@ -370,6 +454,81 @@
    )
  )
 
+% INTERFACE 2.A
+% returns the Riemann Function Symbol as markup
+#(define-markup-command (setFLAS layout props RSl RSr AL)
+  (markup? markup? list?)
+  (let*
+    ( (lBNl (assign BNoteKey AL BNoteDValue))
+      (lSNl (assign SNoteKey AL SNoteDValue))
+      (laNl (assign aNoteKey AL aNoteDValue))
+      (lbNl (assign bNoteKey AL bNoteDValue))
+      (lcNl (assign cNoteKey AL cNoteDValue))
+      (ldNl (assign dNoteKey AL dNoteDValue))
+      (leNl (assign eNoteKey AL eNoteDValue))
+      (lRSl (assign RsSpec AL RsSpecDValue ))
+      (lCTl (assign RsCont AL RsContDValue)) 
+           
+      (lBNr (assign NBNoteKey AL BNoteDValue))
+      (lSNr (assign NSNoteKey AL SNoteDValue))
+      (laNr (assign NaNoteKey AL aNoteDValue))
+      (lbNr (assign NbNoteKey AL bNoteDValue))
+      (lcNr (assign NcNoteKey AL cNoteDValue))
+      (ldNr (assign NdNoteKey AL dNoteDValue))
+      (leNr (assign NeNoteKey AL eNoteDValue))
+      (lRSr (assign NRsSpec AL RsSpecDValue ))
+      (lCTr (assign NRsCont AL RsContDValue))      
+      
+      (lFS (assign fsKey AL fsDValue))
+
+    )
+  
+    (interpret-markup layout props
+      (cond
+        ( (and (equal? lRSl "d") (equal? lRSr "d"))
+          #{
+             \markup \flasx  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (equal? lRSl "x")
+          #{
+             \markup \flasx \crossout 
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (equal? lRSl "xd")
+          #{
+             \markup \flasx \crossout \double 
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (equal? lRSl "dx")
+          #{
+             \markup \flasx \crossout \double 
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( else
+          #{
+             \markup \flasx 
+                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+         #}
+        )
+      )
+    )
+   )
+ )
 
 % ------------------------------------------------------------------------------
 % Harmonyli Interface No 2.B: Functions to use intermediary areas
@@ -391,7 +550,7 @@ initIMArea =
       (leN (assign eNoteKey AL eNoteDValue))
       (lFS (assign fsKey AL fsDValue))
       (lRS (assign RsSpec AL RsSpecDValue ))
-      (lCT (assign "CT" AL ""))
+      (lCT (assign RsCont AL RsContDValue))
     )
     (set! lFS (string-append ")" lFS ))
     (interpret-markup layout props
@@ -461,7 +620,7 @@ initTextSpan =
       (leN (assign eNoteKey AL eNoteDValue))
       (lFS (assign fsKey AL fsDValue))
       (lRS (assign RsSpec AL RsSpecDValue ))
-      (lCT (assign "CT" AL ""))
+      (lCT (assign RsCont AL RsContDValue))
     )
  
     (interpret-markup layout props
@@ -537,7 +696,7 @@ initTextSpan =
 % Harmonyli Interface No 3: Some often used RFS (= instantiation of level 2)
 % ------------------------------------------------------------------------------
 
-#(define-markup-command (RS layout props rs)
+#(define-markup-command (FHAS layout props rs)
   (markup?)
   (interpret-markup layout props
     #{ \markup \setFHAS #rs #'() #}
@@ -545,7 +704,7 @@ initTextSpan =
  )
 
 
-#(define-markup-command (RSthird layout props rs)
+#(define-markup-command (FHASth layout props rs)
   (markup?)
   (interpret-markup layout props
     #{ \markup \setFHAS #rs #'(("B"."3") ) #}

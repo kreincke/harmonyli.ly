@@ -126,14 +126,14 @@ lyr = \lyricmode {
   
   \initIMArea
   \initTextSpan "         "
-  \markup \initZoomRow "D" #'(("B"."3")("a" . "7")("CT"."Tp")) 
+  \markup \initZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
   \markup \closeIMZoomRow #'(("a"."7")) 
   \stopTextSpan
   
   \initIMArea
-  \markup \closeIMArea "D" #'(("a" . "7")("CT"."S")) 
+  \markup \closeIMArea "D" #'(("a" . "7")("C"."S")) 
 
   \initTextSpan "   " 
   \markup \initZoomRow "S" #'(("B"."3")("a" . "3"))
@@ -154,7 +154,7 @@ lyr = \lyricmode {
   \stopTextSpan
   
   % symbol on level 3
-  \markup \RS "T" 
+  \markup \FHAS "T" 
 }
 
 
@@ -207,7 +207,17 @@ lyr = \lyricmode {
     \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" ""
 
 
-    \initIMArea
-    \markup \closeIMArea "D" #'(("T"."x")("B"."3")("f" . "")("CT" . "Tp")) 
+    %\initIMArea
+    %\markup \closeIMArea "D" #'(("T"."x")("B"."3")("f" . "")("C" . "Tp")) 
+
+    %\markup \setFLAS "S" "D" #'(("T"."x")("B"."3")("f" . "")("Cl" . "c")("Cr" . "d"))
+    %\markup \twobox "T3" "T4"
+    %\markup \flasx "S" "11" "12" "13" "14" "15" "16" "17" "18" "T" "21" "22" "23" "24" "25" "26" "27" "28" "9"
+    \markup \setFLAS "S" "D" 
+    #'( ("T"."d")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")
+        ("nT"."d")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")
+        ("f" . "")
+    )
+
   }
 } 

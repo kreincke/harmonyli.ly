@@ -29,7 +29,7 @@
           \bar "||"
         }
         \addlyrics {
-          \markup \setFHAS "T" #'(("CT"."C")("f" . ""))
+          \markup \setFHAS "T" #'(("C"."C")("f" . ""))
           \initIMArea
           \markup \closeIMArea "D" #'(("B"."1")("a" . "7"))
           \markup \setFHAS "Sp" #'(("B"."7")("a" . "7"))
