@@ -101,9 +101,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definition using the EBNF to formally describe the structure of a
-% Riemann Functional Symbol ( = part of the functional harmony theory)
+% Functional Harmony Analysis Symbol ( = part of the functional harmony theory)
 % 
-% RFS ::= {x},(cRS|RS),{DV} { BN }, { SN }, {AN, {AN, {AN, {AN, {AN}}}}}, {FS}
+% FHAS ::= {x},(cRS|RS),{DV} { BN }, { SN }, {AN, {AN, {AN, {AN, {AN}}}}}, {CT} {FS}
 %
 % cRS ::= RS,DV /* not separated by a blank */
 %
@@ -116,6 +116,7 @@
 %  BN ::= '1', ... ,'7'
 %  SN ::= AN
 %  AN ::= '1', ... ,'12'
+%  CT ::= 'c', 'cis', ... 'h' | cRS
 %
 % Note: this is a syntactical definition. There is a semantical restriction
 % which cannot easily be expressed by a context free grammar. The condition
@@ -198,7 +199,7 @@
 
 % For that purpose harmonyli.ly offers rows of intermediary chords:
 %
-% IntermediarySection ::- 'initIntermediaryAccords' RFS+ closingRFS
+% IntermediarySection ::- 'initIntermediaryArea' RFS+ closingRFS
 %                 RFS ::- /* see above */
 %          closingRFS ::- RFS with special parameter 'Context'
 %
@@ -232,13 +233,18 @@
 %     'setZoomSuccessor'+
 %     'closeZoomArea'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % ---------------------------------------------------------------------
 % Harmonyli Interface No 1: The basic method for inserting all manually
 % ---------------------------------------------------------------------
 
-#(define-markup-command (rsf layout props FunctionLetter SopranoNote BassNote OptA OptB OptC OptD OptE FillStr)
-   (markup? markup? markup? markup? markup? markup? markup? markup? markup?)
-   (interpret-markup layout props
+
+
+#(define-markup-command (fhas layout props RS SN BN aN bN cN dN eN CT fst)
+  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
+  (let* ((lCT (string-append "[" CT "]")))
+    (if (equal? CT "")(set! lCT ""))
+    (interpret-markup layout props
      #{
        \markup{
          \concat {
@@ -248,13 +254,13 @@
              \override #'(baseline-skip . 2.0)
              \dir-column {
                \halign #CENTER
-               $FunctionLetter
+                \concat { $RS \tiny {  $lCT  } }
                \tiny
                \halign #CENTER
-               $SopranoNote
+               $SN
              }
              \tiny
-             $BassNote
+             $BN
            }
            \tiny
            \override #`(direction . ,UP)
@@ -264,17 +270,17 @@
              {
                \override #`(direction . ,UP)
                \override #'(baseline-skip . 1.3)
-               \dir-column { $OptA  $OptB $OptC $OptD $OptE }
+               \dir-column { $aN  $bN $cN $dN $eN }
              }
            }
-           $FillStr
+           $fst
          }
        }
-     #}))
-
+     #}
+ )))
   
 % ------------------------------------------------------------------------------
-% Harmonyli Interface No 2: The core method for inserting only the needed values
+% Harmonyli Interface No 2.A: The core method for inserting only relevant values
 % ------------------------------------------------------------------------------
 
 #(define BNoteKey "B")
@@ -286,6 +292,9 @@
 #(define eNoteKey "e")
 #(define fsKey "f")
 
+#(define RsSpec "T")
+
+
 #(define BNoteDValue "")
 #(define SNoteDValue "")
 #(define aNoteDValue "")
@@ -293,7 +302,13 @@
 #(define cNoteDValue "")
 #(define dNoteDValue "")
 #(define eNoteDValue "")
-#(define fsDValue "")
+#(define fsDValue "") 
+
+#(define RsSpecDValue "")
+
+% The RS can be crossed out and or doubled To express the combinations
+% we invent a parameter RS taking the values [ n (normal) | x | d | xd ]
+% x
 
 % evaluating the arguments:
 % gets the associatedList and the key of the wanted RFS element
@@ -305,9 +320,10 @@
     (if localPair (cdr localPair) defaultValue)
   )
 )
-% INTERFACE 2.A --------------------------------
+
+% INTERFACE 2.A
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (RSF layout props RS AL)
+#(define-markup-command (setFHAS layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -318,86 +334,52 @@
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
       (lFS (assign fsKey AL fsDValue))
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lCT (assign "CT" AL ""))
     )
-
+  
     (interpret-markup layout props
-      #{
-        \markup \rsf #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lFS
-      #}
-    )
-   )
- )
-% INTERFACE 2.B --------------------------------
-% returns the Riemann Function Symbol with a crossed out root element as markup
-#(define-markup-command (xRSF layout props RS AL)
-  (markup? list?)
-  (let*
-    ( (lBN (assign BNoteKey AL BNoteDValue))
-      (lSN (assign SNoteKey AL SNoteDValue))
-      (laN (assign aNoteKey AL aNoteDValue))
-      (lbN (assign bNoteKey AL bNoteDValue))
-      (lcN (assign cNoteKey AL cNoteDValue))
-      (ldN (assign dNoteKey AL dNoteDValue))
-      (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
-    )
-
-    (interpret-markup layout props
-      #{
-        \markup \rsf \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lFS
-      #}
-    )
-   )
- )
-% INTERFACE 2.C --------------------------------  
-% returns the Riemann Function Symbol with a doubled root element as markup
-#(define-markup-command (dRSF layout props RS AL)
-  (markup? list?)
-  (let*
-    ( (lBN (assign BNoteKey AL BNoteDValue))
-      (lSN (assign SNoteKey AL SNoteDValue))
-      (laN (assign aNoteKey AL aNoteDValue))
-      (lbN (assign bNoteKey AL bNoteDValue))
-      (lcN (assign cNoteKey AL cNoteDValue))
-      (ldN (assign dNoteKey AL dNoteDValue))
-      (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
-    )
-
-    (interpret-markup layout props
-      #{
-        \markup \rsf \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lFS
-      #}
-    )
-   )
- )
-% INTERFACE 2.D --------------------------------
-% returns the Riemann Function Symbol with a doubled root element as markup
-#(define-markup-command (dRSF layout props RS AL)
-  (markup? list?)
-  (let*
-    ( (lBN (assign BNoteKey AL BNoteDValue))
-      (lSN (assign SNoteKey AL SNoteDValue))
-      (laN (assign aNoteKey AL aNoteDValue))
-      (lbN (assign bNoteKey AL bNoteDValue))
-      (lcN (assign cNoteKey AL cNoteDValue))
-      (ldN (assign dNoteKey AL dNoteDValue))
-      (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
-    )
-
-    (interpret-markup layout props
-      #{
-        \markup \rsf \double \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lFS
-      #}
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+      )
     )
    )
  )
 
 
-% INTERFACE 2.E --------------------------------
+% ------------------------------------------------------------------------------
+% Harmonyli Interface No 2.B: Functions to use intermediary areas
+% ------------------------------------------------------------------------------
+
+initIMArea = 
+  { \set stanza = \markup {\normal-text \magnify #1.1 " ("} }
+
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (iRSF layout props RS AL)
+#(define-markup-command (closeIMArea layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -408,24 +390,157 @@
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
       (lFS (assign fsKey AL fsDValue))
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lCT (assign "CT" AL ""))
     )
-
+    (set! lFS (string-append ")" lFS ))
     (interpret-markup layout props
-      #{
-         \markup \rsf #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lFS
-      #}
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+      )
     )
    )
  )
 
-% ----------------------------------------------------------------------------------
-% Harmonyli Interface No 3: Some often used RFS defined as instantiation of method 2
-% ----------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% Harmonyli Interface No 2.C: Functions to use zoom in analyses
+% ------------------------------------------------------------------------------
+
+initTextSpan =
+#(define-music-function (parser location fText) (string?)
+   #{
+     \once \override TextSpanner #'direction = #DOWN
+     \once \override TextSpanner #'style = #'line
+     \once \override TextSpanner #'outside-staff-priority = ##f
+     \once \override TextSpanner #'padding = #-0.6 % sets the distance of the line from the lyrics
+     \once \override TextSpanner #'bound-details =
+     #`((left . ((Y . 0)
+                 (padding . 0)
+                 (attach-dir . ,LEFT)))
+        (left-broken . ((end-on-note . #t)))
+        (right . ((Y . 0)
+                  (padding . 0)
+                  (attach-dir . ,RIGHT))))
+     \once \override TextSpanner.bound-details.left.text = $fText
+   #})
+
+
+#(define-markup-command (initZoomRow layout props RS AL)
+  (markup? list?)
+  (let*
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (lSN (assign SNoteKey AL SNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lFS (assign fsKey AL fsDValue))
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lCT (assign "CT" AL ""))
+    )
+ 
+    (interpret-markup layout props
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+          #}
+        )
+      )
+    )
+   )
+ )
+
+#(define-markup-command (expZoomRow layout props AL)
+  (list?)
+  (let*
+    ( (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lFS (assign fsKey AL fsDValue))
+    )
+ 
+    (interpret-markup layout props
+     #{
+         \markup \fhas "" "" "" #laN #lbN #lcN #ldN #leN "" #lFS
+     #}
+    )
+   )
+ )
+
+
+
+#(define-markup-command (closeIMZoomRow layout props AL)
+  (list?)
+  (let*
+    ( (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lFS (assign fsKey AL fsDValue))
+    )
+    (set! lFS (string-append " )" lFS) )
+    (interpret-markup layout props
+      #{ \markup \fhas "" "" ""  #laN #lbN #lcN #ldN #leN "" #lFS #}
+    )
+   )
+ )
+% -----------------------------------------------------------------------------
+% Harmonyli Interface No 3: Some often used RFS (= instantiation of level 2)
+% ------------------------------------------------------------------------------
 
 #(define-markup-command (RS layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \RSF #rs #'() #}
+    #{ \markup \setFHAS #rs #'() #}
    )
  )
 
@@ -433,7 +548,7 @@
 #(define-markup-command (RSthird layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \RSF #rs #'(("B"."3") ) #}
+    #{ \markup \setFHAS #rs #'(("B"."3") ) #}
    )
  ) 
  
@@ -441,14 +556,14 @@
 #(define-markup-command (Dsept layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \RSF "D" #'(("a"."7") ) #}
+    #{ \markup \setFHAS "D" #'(("a"."7") ) #}
    )
  )
 
 #(define-markup-command (Dseptnone layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \RSF "D" #'(("a"."7")("b"."9")) #}
+    #{ \markup \setFHAS "D" #'(("a"."7")("b"."9")) #}
    )
  )
 % ---------------------------------------------------------------

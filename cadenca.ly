@@ -9,7 +9,7 @@
   
 \score {
   \new StaffGroup {
-    \time 4/2
+    \time 4/4
     <<
       \new Staff {
         \relative d' {
@@ -22,19 +22,29 @@
           < b  eis>2        
           | 
           < b fis'>2  
-          < e gis >2  
-          < e a >2    
-          < a fis>2      
+          < e gis >2 
+          < e a >4
+          < e a >4 
+          < a fis>2       
           \bar "||"
         }
         \addlyrics {
-          \markup \RSF "T" #'(("f" . ""))
-          \markup \RS "D" 
-          \markup \RSthird "D" 
-          \markup \Dsept 
-          \markup \Dseptnone
+          \markup \setFHAS "T" #'(("CT"."C")("f" . ""))
+          \initIMArea
+          \markup \closeIMArea "D" #'(("B"."1")("a" . "7"))
+          \markup \setFHAS "Sp" #'(("B"."7")("a" . "7"))
+          \markup \setFHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8"))
+          \markup \setFHAS "Tp" #'(("B"."3")) 
+          \markup \setFHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")) 
+                 
+          \initTextSpan "   "
+          \markup \initZoomRow "D" #'(("a"."4")) 
+          \startTextSpan
+          \markup \expZoomRow #'(("a"."3")) 
+          \stopTextSpan
+  
+          \markup \setFHAS "T" #'(("f" . ""))
         }   
-        
       }
       \new Staff {
         \relative d { 
@@ -49,7 +59,7 @@
           < d fis>2                      
           < b d>2                  
           <<
-            { a2        }
+            { a4( a4)   }
             { d4( cis4) }
           >> 
           < d, d'>2       
@@ -58,7 +68,12 @@
       }
     >>
   }
-  \layout { }
+  \layout {
+    \context {
+      \Lyrics
+      \consists "Text_spanner_engraver"
+    }
+  }
   \midi {}
 }
 

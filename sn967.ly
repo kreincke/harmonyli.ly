@@ -103,47 +103,58 @@ lyr = \lyricmode {
   % FunctionLetter SopranoNote BassNote OptA OptB OptC OptD OptE FillStr
 
   \set stanza = #"C-Dur:"
- \markup \rsf "TX" "3" ""  "" "" "" "" ""   ""
-  \openbracket
-  \markup \rsf \crossout "D" "" "3"  "7" "9>" "" "" ""   ")"
-  \fExtend "     " % call this function BEFORE the lyric event
-  \markup \rsf "Sp" "" ""  "9" "" "" "" ""   ""
+  % encoding on level 1 
+  \markup \fhas "T" "3" ""  "" "" "" "" ""  "" ""
+  \initIMArea
+  \markup \fhas \crossout "D" "" "3"  "7" "9>" "" "" ""  "" ")"
+  \initTextSpan "     "
+  \markup \fhas "Sp" "" ""  "9" "" "" "" "" ""  ""
   \startTextSpan  % call \startTextSpan AFTER the lyric event
-  \markup \rsf "" "" ""  "8" "" "" "" ""   ""
+  \markup \fhas "" "" ""  "8" "" "" "" "" ""  ""
   \stopTextSpan
-  \markup \rsf "S" "" ""  "5" "6" "" "" ""   ""
-  \openbracket
-  \markup \rsf "D" "" "3"  "7" "" "" "" ""   " )"
-  \fExtend "   "
-  \markup \rsf "D" "" ""  "2" "4" "" "" ""   ""
+
+  % encoding on level 2  
+  \markup \setFHAS "S" #'(("a"."5") ("b"."6"))
+  \initIMArea
+  \markup \closeIMArea "D" #'(("B"."3")("a" . "7")) 
+
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a"."2")("b" . "4")) 
   \startTextSpan
-  \markup \rsf "" "" ""  "1" "3" "" "" ""   ""
+  \markup \expZoomRow #'(("a"."1")("b" . "3")) 
   \stopTextSpan
-  \openbracket
-  \fExtend "   "
-  \markup \rsf "D" "" "3"  "7" "" "" "" ""   ""
+  
+  \initIMArea
+  \initTextSpan "         "
+  \markup \initZoomRow "D" #'(("B"."3")("a" . "7")("CT"."Tp")) 
   \startTextSpan
-  \markup \rsf "" "" ""  "8" "" "" "" ""   ""
-  \markup \rsf "" "" ""  "7" "" "" "" ""   " )[Tp]"
+  \markup \expZoomRow #'(("a"."8")) 
+  \markup \closeIMZoomRow #'(("a"."7")) 
   \stopTextSpan
-  \openbracket
-  \markup \rsf "D" "" "7"  "" "" "" "" ""   ")"
-  \fExtend "   "
-  \markup \rsf "S" "" "3"  "" "" "" "" ""   ""
+  
+  \initIMArea
+  \markup \closeIMArea "D" #'(("a" . "7")("CT"."S")) 
+
+  \initTextSpan "   " 
+  \markup \initZoomRow "S" #'(("B"."3")("a" . "3"))
   \startTextSpan
-  \markup \rsf " " "" "2"  "" "" "" "" ""   ""
+  \markup \expZoomRow #'(("a"."2"))   
   \stopTextSpan
-  \fExtend "    "
-  \markup \rsf \double "D" "" "3"  "8" "" "" "" ""   ""
+  
+  \initTextSpan "    "
+  \markup \initZoomRow "D" #'(("T" ."d")("B"."3")("a" . "8"))
   \startTextSpan
-  \markup \rsf "" "" ""  "7" "" "" "" ""   ""
+  \markup \expZoomRow #'(("a"."7"))  
   \stopTextSpan
-  \fExtend "   "
-  \markup \rsf "D" "" ""  "5" "" "" "" ""   ""
-  \startTextSpan
-  \markup \rsf "" "" ""  "7" "" "" "" ""   ""
+  
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a" . "5")("f" . "")) 
+  \startTextSpan  \startTextSpan
+  \markup \expZoomRow #'(("a"."7"))   
   \stopTextSpan
-  \markup \rsf "T" "" ""  "" "" "" "" ""   ""
+  
+  % symbol on level 3
+  \markup \RS "T" 
 }
 
 
@@ -184,17 +195,19 @@ lyr = \lyricmode {
   \addlyrics {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
-    \markup \rsf "F" "2" "3"  "4" "5" "6" "7" "8"   "9"
-    \markup \rsf "Function" "Soprano" "Bass"  "OptA" "OptB" "OptC" "OptD" "OptE"   "FillStr       "
+    \markup \fhas "F" "2" "3"  "4" "5" "6" "7" "8"  "C" ""
+    \markup \fhas "Function" "Soprano" "Bass" 
+      "a (1. num)" "b (2. num)" "c (3. num)" 
+        "d (4. num)" "e (5. num)" "Context"  "fill "
     \override LyricText.self-alignment-X = #CENTER
-    \markup \rsf "S" "" ""  "" "" "" "" ""   ""
-    \markup \rsf "D" "" ""  "" "" "" "" ""   ""
-    \markup \rsf \double S "  \double S  " ""  "" "" "" "" ""   ""
-    \markup \rsf \double "D" "  \double D  " ""  "" "" "" "" ""   ""
-    \markup \rsf \crossout "D" "  \crossout D  " ""  "" "" "" "" ""   ""
+    \markup \fhas "S" "" ""  "" "" "" "" ""   "C" ""
+    \markup \fhas "D" "" ""  "" "" "" "" ""  "D" ""
+    \markup \fhas \double S "  \double S  " ""  "" "" "" "" ""  "" ""
+    \markup \fhas \double "D" "  \double D  " ""  "" "" "" "" ""  "" ""
+    \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" ""
 
-    %\markup \dRSF "D" #'(("S" . "2") ("B"."1") ("a"."3") ("b"."4") ("c"."5") ("d"."6") ("e"."") ("f" . "--") )
-    %\markup \Dseptnone
-    \markup \iRSF "D" #'(("B"."3")("f" . "  ") )
+
+    \initIMArea
+    \markup \closeIMArea "D" #'(("T"."x")("B"."3")("f" . "")("CT" . "Tp")) 
   }
 } 
