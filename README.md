@@ -17,7 +17,7 @@ the terms of the GPLv3 license. As long as harmonyli.ly is distributed under
 both licenses, the recipient has the right to chose the license under which he
 wants to use the work.
 
-For details se the file `LICENSING`.
+For details se the file `[LICENSING](./LICENSING)`.
 
 ## Usage:
 
