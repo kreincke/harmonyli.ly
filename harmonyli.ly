@@ -238,8 +238,6 @@
 % Harmonyli Interface No 1: The basic method for inserting all manually
 % ---------------------------------------------------------------------
 
-
-
 #(define-markup-command (fhas layout props RS SN BN aN bN cN dN eN CT fst)
   (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
   (let* ((lCT (string-append "[" CT "]")))
@@ -278,59 +276,10 @@
        }
      #}
  )))
-  
-  
-#(define-markup-command (flas layout props RSl RSr SN BN aN bN cN dN eN CTl CTr fst)
-  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
-  (let* 
-    ( (lCTl (string-append "[" CTl "]"))  
-      (lCTr (string-append "[" CTr "]"))  
-    )
-    (if (equal? CTl "")(set! lCTl ""))
-    (if (equal? CTr "")(set! lCTr ""))
-    (interpret-markup layout props
-     #{
-       \markup{
-         \concat {
-           \override #'(baseline-skip . 3)
-           \center-column {
-             \override #`(direction . ,UP)
-             \override #'(baseline-skip . 3)
-             \dir-column {
-               \halign #CENTER
-                \override #'(box-padding . 0.4)
-                \box \concat { 
-                   $RSl \tiny {  $lCTl  } " ⇨ " $RSr \tiny {  $lCTr  } 
-                }
-               \tiny
-               \halign #CENTER
-               $SN
-             }
-             \tiny
-             $BN
-           }
-           " "
-           \tiny
-           \override #`(direction . ,UP)
-           \override #'(baseline-skip . 0.8)
-           \dir-column {
-             " "
-             {
-               \override #`(direction . ,UP)
-               \override #'(baseline-skip . 1.3)
-               \dir-column { $aN  $bN $cN $dN $eN }
-             }
-           }
-           $fst
-         }
-       }
-     #}
- )))
- 
  
 
 #(define-markup-command 
-  (flasx layout props 
+  (flas layout props 
     RSl SNl BNl aNl bNl cNl dNl eNl CTl
     RSr SNr BNr aNr bNr cNr dNr eNr CTr 
   fst)
@@ -485,42 +434,208 @@
   
     (interpret-markup layout props
       (cond
+        ;; ---------- combinations with left double
         ( (and (equal? lRSl "d") (equal? lRSr "d"))
           #{
-             \markup \flasx  
+             \markup \flas  
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
                 #lFS
           #}
         )
-        ( (equal? lRSl "x")
+        ( (and (equal? lRSl "d") (equal? lRSr "x"))
           #{
-             \markup \flasx \crossout 
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+             \markup \flas  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "d") (equal? lRSr "dx"))
+          #{
+             \markup \flas  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "d") (equal? lRSr "xd"))
+          #{
+             \markup \flas  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "d") (equal? lRSr ""))
+          #{
+             \markup \flas  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
                 #lFS
           #}
         )
-        ( (equal? lRSl "xd")
+        ;; ---------- combinations with left crossout
+        ( (and (equal? lRSl "x") (equal? lRSr "d"))
           #{
-             \markup \flasx \crossout \double 
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+             \markup \flas  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "x") (equal? lRSr "x"))
+          #{
+             \markup \flas  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "x") (equal? lRSr "dx"))
+          #{
+             \markup \flas  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "x") (equal? lRSr "xd"))
+          #{
+             \markup \flas  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "x") (equal? lRSr ""))
+          #{
+             \markup \flas  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
                 #lFS
           #}
         )
-        ( (equal? lRSl "dx")
+        ;; ---------- combinations with left crossout double (dx)
+        ( (and (equal? lRSl "dx") (equal? lRSr "d"))
           #{
-             \markup \flasx \crossout \double 
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "dx") (equal? lRSr "x"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "dx") (equal? lRSr "dx"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "dx") (equal? lRSr "xd"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "dx") (equal? lRSr ""))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
                 #lFS
           #}
         )
+        ;; ---------- combinations with left crossout double (xd)
+        ( (and (equal? lRSl "xd") (equal? lRSr "d"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "xd") (equal? lRSr "x"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "xd") (equal? lRSr "dx"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "xd") (equal? lRSr "xd"))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "xd") (equal? lRSr ""))
+          #{
+             \markup \flas  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ;; ---------- combinations with left pure
+        ( (and (equal? lRSl "") (equal? lRSr "d"))
+          #{
+             \markup \flas  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+        ( (and (equal? lRSl "") (equal? lRSr "x"))
+          #{
+             \markup \flas  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "") (equal? lRSr "dx"))
+          #{
+             \markup \flas  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+         ( (and (equal? lRSl "") (equal? lRSr "xd"))
+          #{
+             \markup \flas  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
+                #lFS
+          #}
+        )
+
         ( else
           #{
-             \markup \flasx 
-                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
+             \markup \flas 
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
                 #lFS
          #}

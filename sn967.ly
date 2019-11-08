@@ -1,20 +1,53 @@
-% http://lsr.di.unimi.it/LSR/Item?id=967
-% http://lists.gnu.org/archive/html/lilypond-user/2014-12/msg00123.html
-% http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html
-% Contributed by Klaus Blum
+% sn967.ly :- a re-implementation of Hans Blum's reference document
+% Copyright (c) 2019 Hans Blum, Karsten Reincke, 
+%
+% This file uses the score by which Hans Blum has explained / implemented
+% his version of inserting Functional Harmony Analysis Symbols (FHAS) 
+% see http://lsr.di.unimi.it/LSR/Item?id=967
+% 
+% It replaces his symbols by the equivalents of harmonyli.ly to verify that 
+% harmonyli.ly has at least the same expressiveness like as Hans Blum's 
+% preparatory work
+
+% As reference to him, this file is named by a condensed version of the title
+% "snippet no 977 of the LilyPond % Snippet Repository" = sn967.ly
+
+% This file is distributed either under the terms of the MIT license:
+% --------------------------------------
+% Copyright 2019 Hans Blum, Karsten Reincke (Frankfurt)
+
+% Permission is hereby granted, free of charge, to any person obtaining a copy 
+% of this software and associated documentation files (the "Software"), to deal 
+% in the Software without restriction, including without limitation the rights 
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+% copies of the Software, and to permit persons to whom the Software is 
+% furnished to do so, subject to the following conditions:
+
+% The above copyright notice and this permission notice shall be included in all 
+% copies or substantial portions of the Software.
+
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+% IN THE SOFTWARE.
 
 \version "2.18.2"
 
-\include "inc.harmonyli.ly"
+\include "harmonyli.ly"
 
-%\paper {
-%  indent = 0
-%  ragged-right = ##f
-%}
+\paper {
+  indent = 0
+  ragged-right = ##f
+}
 
-%\header {
-%  tagline = ##f
-%}
+\header {
+  %tagline = ##f
+  title = "Hans Blum's Reference Document"
+  subtitle = "rewritten with the capabilities of harmonyli.ly"
+}
 
 
 % ---------------------------------------------------------------
@@ -98,9 +131,7 @@ lyr = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  % Usage:
-  %
-  % FunctionLetter SopranoNote BassNote OptA OptB OptC OptD OptE FillStr
+  % Usage: see the harmonyli.ly tutorial
 
   \set stanza = #"C-Dur:"
   % encoding on level 1 
@@ -109,7 +140,7 @@ lyr = \lyricmode {
   \markup \fhas \crossout "D" "" "3"  "7" "9>" "" "" ""  "" ")"
   \initTextSpan "     "
   \markup \fhas "Sp" "" ""  "9" "" "" "" "" ""  ""
-  \startTextSpan  % call \startTextSpan AFTER the lyric event
+  \startTextSpan  
   \markup \fhas "" "" ""  "8" "" "" "" "" ""  ""
   \stopTextSpan
 
@@ -200,24 +231,23 @@ lyr = \lyricmode {
       "a (1. num)" "b (2. num)" "c (3. num)" 
         "d (4. num)" "e (5. num)" "Context"  "fill "
     \override LyricText.self-alignment-X = #CENTER
-    \markup \fhas "S" "" ""  "" "" "" "" ""   "C" ""
-    \markup \fhas "D" "" ""  "" "" "" "" ""  "D" ""
-    \markup \fhas \double S "  \double S  " ""  "" "" "" "" ""  "" ""
+    \markup \fhas "S" "Context Tonika" ""  "" "" "" "" ""   "T" ""
+    \markup \fhas "D" "Context es" ""  "" "" "" "" ""  "es" ""
+    \markup \fhas \double "S" "  \double S  " ""  "" "" "" "" ""  "" ""
     \markup \fhas \double "D" "  \double D  " ""  "" "" "" "" ""  "" ""
     \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" ""
 
-
-    %\initIMArea
-    %\markup \closeIMArea "D" #'(("T"."x")("B"."3")("f" . "")("C" . "Tp")) 
-
-    %\markup \setFLAS "S" "D" #'(("T"."x")("B"."3")("f" . "")("Cl" . "c")("Cr" . "d"))
-    %\markup \twobox "T3" "T4"
-    %\markup \flasx "S" "11" "12" "13" "14" "15" "16" "17" "18" "T" "21" "22" "23" "24" "25" "26" "27" "28" "9"
-    \markup \setFLAS "S" "D" 
-    #'( ("T"."d")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")
-        ("nT"."d")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")
+    \markup \setFLAS "T" "D" 
+    #'( ("T"."xd")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")
+        ("nT"."xd")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")
         ("f" . "")
     )
 
   }
 } 
+
+\markup \vspace #2
+\markup { 
+  This file only uses (indicates) a subset of 'harmonyli'. 
+  For details see the harmonily-tutorial.
+}

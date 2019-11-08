@@ -1,11 +1,16 @@
-% a lilypond cadence for demonstrating the use of harmonyli
-% (c) 2019 Frankfurt, Germany, Karsten Reincke
+% cadenca.ly ::- a lilypond encoded cadence for demonstrating some
+% capabilities of harmonyli.ly, a LilyPond library for integrating
+% functional harmony analysis symbols into a score
+%
+% (c) 2019  Karsten Reincke (Frankfurt/Germany)
+%
 % This file is licensed under CC-BY-SA 4.0 international
 % for details see https://creativecommons.org/licenses/by-sa/4.0/
+
 \version "2.18.2"
 
 \header { tagline = "" }
-\include "inc.harmonyli.ly"
+\include "harmonyli.ly"
   
 \score {
   \new StaffGroup {
