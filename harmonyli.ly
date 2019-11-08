@@ -1,7 +1,7 @@
-% harmonyli.ly :- a library for inserting Riemanm Function 
-% Analysis Symbols into a musical score created by LilyPOnd
+% harmonyli.ly :- a library for inserting Functional Harmony Analysis Symbols 
+% into musical scores encoded in and created by LilyPOnd
 %
-% Copyright (c) 2019 Karsten Reincke, Frankfurt
+% Copyright (c) 2019 Karsten Reincke, Frankfurt, Hans Blum
 %
 % This file is distributed either under the terms of the MIT license or under 
 % the terms of the GPLv3 license. Feel free to choose the distribution method 

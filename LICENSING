@@ -1,30 +1,73 @@
-harmonyli-2.0 is released under the terms of the MIT license.
-The licensing persons is the author himself, Karsten Reincke
-and all other contributors (-> AUTHORS).
+harmonyli.ly :- a library for inserting Functional Harmony Analysis Symbols 
+into musical scores encoded in and created by LilyPOnd
 
-ADDITIONAL HINT:
+Copyright (c) 2019 Karsten Reincke, Frankfurt, Hans Blum
+
+The file harmonyli.ly is distributed under the terms of the MIT license or under 
+the terms of the GPLv3 license. As long as harmonyli.ly is distributed under 
+both licenses, the recipient has the right to chose the license under which he
+wants to use the work.
+
+If you do not want to distribute harmonyli.ly under both licenses (because you 
+for example do not want to permit your recipient to select one of the licenses), 
+then you have the right to distribute only under one of the licenses:
+
+(a) If you want to use / distribute harmonyli.ly only under the terms of the MIT 
+    license erase the GPLv3 licensing statement in the file harmonyli.ly
+(b) If you want to use / distribute harmonyli.ly only under the terms of the GPLv3 
+    license erase the MIT licensing statement and the MIT license in the file 
+    harmonyli.ly
+(c) You are not allowed to erase both license / licensing statements = You do
+    not have the permission, to distribute harmonyli.ly under any other license.
+
+The only files which do not have to respect these rules are the examples of
+the harmonyli.ly-package 'sn967.ly' (MIT) and 'cadenca.ly' (CC-BY-SA 4.0)
+
+The documentation file is licensed under the terms of the (CC-BY 4.0)
+
+Compliance Hints:
+-----------------
+
+(1) If you use/distribute harmonyli.ly (especially as part of an overarching 
+work, which includes harmonyli.ly) under the terms of the GPLv3 or under 
+both licenses, then you have to fulfill all conditions, required by the GPLv3:
+especially those of §4 and §5 (strong copyleft effect and so on) and those of §6 
+(Conveying Non-Source Forms)
+
+(2.A) For using harmonyli.ly compliantly it is sufficient if the MIT license 
+text is part of this file.
+(2.B) For modifying harmonyli.ly compliantly or for using parts of it, it is 
+sufficient to include the MIT license text is into all copies or substantial 
+portions of harmonyli.ly
+(2.C) Under the terms of the MIT license you may embed harmonyli.ly into 
+your work and you may distribute the resulting complex as whole under any 
+license you want. But that does not mean, that the embedded file 'harmonyli.ly'
+or parts of it themselves are relicensed: Due to the fact, that the MIT license
+text (together with the copyright statement) - in accordance to the MIT license 
+- has to be included in all copies or substantial portions of the Software,
+such portions remain MIT licensed.
+
+Licensing Hints:
 ----------------
-harmonyli-2.0 modifies and or reuses (parts of) the snippet
-no 967 in the snippet database of the Lilypond Snippet Repository
-(http://lsr.di.unimi.it/LSR). This prework does not require us
-to respect any license / licensing precepts:
 
-(1) In accordance to the LSR 'what's this' document
-(http://lsr.di.unimi.it/LSR/html/whatsthis.html) every code of
-the LSR system itself is licensed under GPL, but all "content
-of the database" - which can be downloaded "as a directory of
-snippets" - "[...] is public domain, so you can use it, copy
-it, modify and redistribute it with no obligation".
+harmonyli.ly is initially developed and licensed by Karsten Reincke, Frankfurt.
 
-(2) The concept of 'public domain' does not exist in the European
-Legal Area, but in the American Legal Area: Publishing anything
-in the Public Domain means that no one claims the copyrights
-and that therefore everyone may do wit this item, whatever he wants.
+harmonyli.ly uses ideas and code of Klaus Blum's preparatory work published in 
+the 'Lilypond Snippet Repository': -> http://lsr.di.unimi.it/LSR/Item?id=967
 
-From (1) and (2) we derive, that we may use snippet 967 in every
-way we want.
+In a mail to Karsten Reincke from Nov. the 4th 2019 Klaus Blum explicitly 
+approved that he 
+a) distributes his code under the terms of the (American) public domain 
+b) agrees to use his file as preparatory work for harmonyli.ly
+c) to distribute the result under the terms of a dual-license: the user 
+   shall be enabled to choose whether he wants to use it under the terms
+  of the GPLv3 or the MIT
 
-------------------------------------------------------------
+Just as Klaus Blum's preparatory work, also harmonyli.ly uses some explanations 
+of Neil Puttock by which he described how to use text span engraver.
+-> http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html
 
-harmonyli 1.0 is released under the terms of the MIT license.
-The licensing person is the author himself, Karsten Reincke
+Due to these facts, you as a recipient, can be certain to have to have the
+rights descibed by this licensing statement.
+
+
