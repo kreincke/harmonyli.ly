@@ -12,7 +12,7 @@
 % As reference to him, this file is named by a condensed version of the title
 % "snippet no 977 of the LilyPond % Snippet Repository" = sn967.ly
 
-% This file is distributed either under the terms of the MIT license:
+% This file is distributed under the terms of the MIT license:
 % --------------------------------------
 % Copyright 2019 Karsten Reincke (Frankfurt), Hans Blum, 
 

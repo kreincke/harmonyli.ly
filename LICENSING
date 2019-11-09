@@ -21,7 +21,9 @@ then you have the right to distribute only under one of the licenses:
     not have the permission, to distribute harmonyli.ly under any other license.
 
 The only files which do not have to respect these rules are the examples of
-the harmonyli.ly-package 'sn967.ly' (MIT) and 'cadenca.ly' (CC-BY-SA 4.0)
+the harmonyli.ly-package 'sn967.ly' (MIT), 'cadenca.ly' (CC-BY-SA 4.0), and
+'modulation.ly' (MIT): they might use harmonyli.ly even the recipients decide
+to use it under the library under the terms of the GPLv3.
 
 The documentation file is licensed under the terms of the (CC-BY 4.0)
 
