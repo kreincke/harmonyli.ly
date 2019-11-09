@@ -21,7 +21,7 @@ For details see the file [LICENSING](./LICENSING).
 
 ## Examples:
 
-The packages contains 3 examples by which the user can learn how to use
+The package contains 3 examples by which the user can learn how to use
 the library `harmonyli.ly`. Like all other LilyPond files, each example 
 `example.ly`can be compiled by the command line order `make example.pdf` 
 respectively `make example.png`:
@@ -36,4 +36,7 @@ respectively `make example.png`:
 
 ## Usage:
 
-See `doc/harmonylily-tutorial.pdf`
+The next step will be the development of a tutorial which thoroughly
+explains and demonstrates how the requirements of an adequate **Functional
+Harmony Analysis** can be fulfilled by **harmonyli.ly**. Later, you can
+find that tutorial here `doc/harmonylily-tutorial.pdf`
