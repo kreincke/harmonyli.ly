@@ -20,3 +20,19 @@ the GitHUb repository harmonyli.ly
 Karsten Reincke (k.reincke@fodina.de)
 Hans Blum
 
+Reference:
+----------
+While I developed 'harmonyli.ly' I got a lot of indirect help, how to use
+Scheme correctly and how to use the LilyPond extend methods adequately,
+especially from the Lilypond User Community. Thankfully, let me at least 
+name some of these supporters:
+
+Leo Correia de Verdier
+Phil Holmes
+Urs Liska
+Thomas Morley
+Mark Stephen Mrotek
+Carl Sorensen
+Saul Tobin
+David Wright
+
