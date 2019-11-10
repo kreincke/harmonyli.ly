@@ -1,0 +1,6 @@
+
+2019-11-10: beta version 0.91 released
+* made the string between an intermediary bracket and the symbol configurable
+* allowed to insert a fillstring AFTER and BEFORE a symbol
+* fixed the blank bug in case of intermediary functions
+2019-11-09: first beta version (0.90.1) is released

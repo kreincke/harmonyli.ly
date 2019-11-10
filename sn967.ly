@@ -38,6 +38,7 @@
 
 \include "harmonyli.ly"
 
+
 \paper {
   indent = 0
   ragged-right = ##f
@@ -135,19 +136,19 @@ lyr = \lyricmode {
 
   \set stanza = #"C-Dur:"
   % encoding on level 1 
-  \markup \fhas "T" "3" ""  "" "" "" "" ""  "" ""
-  \initIMArea
-  \markup \fhas \crossout "D" "" "3"  "7" "9>" "" "" ""  "" ")"
-  \initTextSpan "     "
-  \markup \fhas "Sp" "" ""  "9" "" "" "" "" ""  ""
+  \markup \fhas "T" "3" ""  "" "" "" "" ""  "" "" ""
+
+  \markup \fhas \crossout "D" "" "3"  "7" "♭9" "" "" ""  "" "(" ")"
+  \initTextSpan "      "
+  \markup \fhas "Sp" "" ""  "9" "" "" "" "" ""  "(" ""
   \startTextSpan  
-  \markup \fhas "" "" ""  "8" "" "" "" "" ""  ""
+  \markup \fhas "" "" ""  "8" "" "" "" "" ""  "" ")"
   \stopTextSpan
 
   % encoding on level 2  
   \markup \setFHAS "S" #'(("a"."5") ("b"."6"))
-  \initIMArea
-  \markup \closeIMArea "D" #'(("B"."3")("a" . "7")) 
+
+  \markup \setImArea "D" #'(("B"."3")("a" . "7")) 
 
   \initTextSpan "   "
   \markup \initZoomRow "D" #'(("a"."2")("b" . "4")) 
@@ -155,16 +156,16 @@ lyr = \lyricmode {
   \markup \expZoomRow #'(("a"."1")("b" . "3")) 
   \stopTextSpan
   
-  \initIMArea
-  \initTextSpan "         "
-  \markup \initZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
+ 
+  \initTextSpan "          "
+  \markup \initImZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
   \markup \closeIMZoomRow #'(("a"."7")) 
   \stopTextSpan
   
-  \initIMArea
-  \markup \closeIMArea "D" #'(("a" . "7")("C"."S")) 
+
+  \markup \setImArea "D" #'(("a" . "7")("C"."S")) 
 
   \initTextSpan "   " 
   \markup \initZoomRow "S" #'(("B"."3")("a" . "3"))
@@ -226,22 +227,28 @@ lyr = \lyricmode {
   \addlyrics {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
-    \markup \fhas "F" "2" "3"  "4" "5" "6" "7" "8"  "C" ""
+    \markup \fhas "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --"
     \markup \fhas "Function" "Soprano" "Bass" 
       "a (1. num)" "b (2. num)" "c (3. num)" 
-        "d (4. num)" "e (5. num)" "Context"  "fill "
+        "d (4. num)" "e (5. num)" "Context"  "fillleft " " fillright"
     \override LyricText.self-alignment-X = #CENTER
-    \markup \fhas "S" "Context Tonika" ""  "" "" "" "" ""   "T" ""
-    \markup \fhas "D" "Context es" ""  "" "" "" "" ""  "es" ""
-    \markup \fhas \double "S" "  \double S  " ""  "" "" "" "" ""  "" ""
-    \markup \fhas \double "D" "  \double D  " ""  "" "" "" "" ""  "" ""
-    \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" ""
+    \markup \fhas "S" "Context Tonika" ""  "" "" "" "" ""   "T" "" ""
+    \markup \fhas "D" "Context es" ""  "" "" "" "" ""  "es" "" ""
+    \markup \fhas \double "S" "  \double S  " ""  "" "" "" "" ""  "" "" ""
+    \markup \fhas \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" ""
+    \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" ""
 
     \markup \setFLAS "T" "D" 
-    #'( ("T"."xd")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")
-        ("nT"."xd")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")
-        ("f" . "")
+    #'( ("T"."dx")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr".")")("fl"."(")
+        ("nT"."d")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")("nfr".")")("nfl"."(")
+       
     )
+
+    %\markup 
+    %\flas "T" "1" "2"  "3" "4" "5" "6" "7"  "8" "[" "]" "D" "1" "2"  "3" "4" "5" "6" "7"  "8" "(" ")"
+    %\setImArea "S" #'(("T"."xd")("S"."1")
+    %("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr"."(")("fl".")"))
+
 
   }
 } 

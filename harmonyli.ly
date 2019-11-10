@@ -132,12 +132,12 @@
 % Some implementation details:
 % We refer to the parts of a RFS by the following identifiers:
 %
-%                              5 added note number = e | e5
-%                              4 added note number = d | d4
-%                              3 added note number = c | c3
-% Sopran-Note-Number = S | SN  2 added note number = b | b2
-% Riemann-Symbol = RS          1 added note number = a | a1  fillstring = fs | FS
-% Bass-Note-Number = B | BN
+%                                                        5 added note number = e | e5
+%                                                        4 added note number = d | d4
+%                                                        3 added note number = c | c3
+%                           Sopran-Note-Number = S | SN  2 added note number = b | b2
+%  fillstring = fsr | FSr   Riemann-Symbol = RS          1 added note number = a | a1  fillstring = fsr | FSr
+%                           Bass-Note-Number = B | BN
 % 
 %
 % This harmonyli.ly offers 3 interfaces:
@@ -234,18 +234,28 @@
 %     'closeZoomArea'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+% harmonyli.ly config area
+
+% ImInfix
+
+#(define imInfix "")
+
+
 % ---------------------------------------------------------------------
 % Harmonyli Interface No 1: The basic method for inserting all manually
 % ---------------------------------------------------------------------
 
-#(define-markup-command (fhas layout props RS SN BN aN bN cN dN eN CT fst)
-  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
+ 
+#(define-markup-command (fhas layout props RS SN BN aN bN cN dN eN CT fstl fstr)
+  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
   (let* ((lCT (string-append "[" CT "]")))
     (if (equal? CT "")(set! lCT ""))
     (interpret-markup layout props
      #{
        \markup{
          \concat {
+           $fstl
            \override #'(baseline-skip . 1.4)
            \center-column {
              \override #`(direction . ,UP)
@@ -271,7 +281,7 @@
                \dir-column { $aN  $bN $cN $dN $eN }
              }
            }
-           $fst
+           $fstr
          }
        }
      #}
@@ -279,13 +289,13 @@
  
 
 #(define-markup-command 
-  (flas layout props 
-    RSl SNl BNl aNl bNl cNl dNl eNl CTl
-    RSr SNr BNr aNr bNr cNr dNr eNr CTr 
-  fst)
+  (flosx layout props 
+    RSl SNl BNl aNl bNl cNl dNl eNl CTl fstll fstrl
+    RSr SNr BNr aNr bNr cNr dNr eNr CTr fstlr fstrr
+    )
   ( markup? markup? markup? markup? markup? markup? markup? markup? markup?
     markup? markup? markup? markup? markup? markup? markup? markup? markup?
-    markup?
+    markup? markup? markup? markup?
   )
 
     (interpret-markup layout props
@@ -293,15 +303,13 @@
         \markup{
           \box
           \concat {
-            \fhas #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl ""
+            \fhas #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
             " ⇨ "
-            \fhas #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr ""
+            \fhas #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
           }      
-          $fst 
         }
      #}
  ))
-
  
 % ------------------------------------------------------------------------------
 % Harmonyli Interface No 2.A: The core method for inserting only relevant values
@@ -314,7 +322,12 @@
 #(define cNoteKey "c")
 #(define dNoteKey "d")
 #(define eNoteKey "e")
+% LÖSCHEN DEPRECATED
 #(define fsKey "f")
+% LÖSCHEN DEPRECATED
+#(define fsKeyL "fl")
+#(define fsKeyR "fr")
+
 #(define RsSpec "T")
 #(define RsCont "C")
 
@@ -327,6 +340,8 @@
 #(define NeNoteKey "ne")
 #(define NRsSpec "nT")
 #(define NRsCont "nC")
+#(define NfsKeyL "nfl")
+#(define NfsKeyR "nfr")
 
 #(define BNoteDValue "")
 #(define SNoteDValue "")
@@ -359,43 +374,45 @@
 #(define-markup-command (setFHAS layout props RS AL)
   (markup? list?)
   (let*
-    ( (lBN (assign BNoteKey AL BNoteDValue))
+    ( 
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lBN (assign BNoteKey AL BNoteDValue))
       (lSN (assign SNoteKey AL SNoteDValue))
       (laN (assign aNoteKey AL aNoteDValue))
       (lbN (assign bNoteKey AL bNoteDValue))
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
-      (lRS (assign RsSpec AL RsSpecDValue ))
       (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
     )
   
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr 
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -417,6 +434,8 @@
       (leNl (assign eNoteKey AL eNoteDValue))
       (lRSl (assign RsSpec AL RsSpecDValue ))
       (lCTl (assign RsCont AL RsContDValue)) 
+      (lFSll (assign fsKeyL AL fsDValue))
+      (lFSrl (assign fsKeyR AL fsDValue))
            
       (lBNr (assign NBNoteKey AL BNoteDValue))
       (lSNr (assign NSNoteKey AL SNoteDValue))
@@ -427,7 +446,8 @@
       (leNr (assign NeNoteKey AL eNoteDValue))
       (lRSr (assign NRsSpec AL RsSpecDValue ))
       (lCTr (assign NRsCont AL RsContDValue))      
-      
+      (lFSlr (assign NfsKeyL AL fsDValue))
+      (lFSrr (assign NfsKeyR AL fsDValue))
       (lFS (assign fsKey AL fsDValue))
 
     )
@@ -437,207 +457,182 @@
         ;; ---------- combinations with left double
         ( (and (equal? lRSl "d") (equal? lRSr "d"))
           #{
-             \markup \flas  
-                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx 
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr
           #}
         )
         ( (and (equal? lRSl "d") (equal? lRSr "x"))
           #{
-             \markup \flas  
-                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx   
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "d") (equal? lRSr "dx"))
           #{
-             \markup \flas  
-                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx   
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "d") (equal? lRSr "xd"))
           #{
-             \markup \flas  
-                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "d") (equal? lRSr ""))
           #{
-             \markup \flas  
-                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ;; ---------- combinations with left crossout
         ( (and (equal? lRSl "x") (equal? lRSr "d"))
           #{
-             \markup \flas  
-                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "x") (equal? lRSr "x"))
           #{
-             \markup \flas  
-                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "x") (equal? lRSr "dx"))
           #{
-             \markup \flas  
-                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "x") (equal? lRSr "xd"))
           #{
-             \markup \flas  
-                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "x") (equal? lRSr ""))
           #{
-             \markup \flas  
-                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ;; ---------- combinations with left crossout double (dx)
         ( (and (equal? lRSl "dx") (equal? lRSr "d"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "dx") (equal? lRSr "x"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "dx") (equal? lRSr "dx"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "dx") (equal? lRSr "xd"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "dx") (equal? lRSr ""))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ;; ---------- combinations with left crossout double (xd)
         ( (and (equal? lRSl "xd") (equal? lRSr "d"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "xd") (equal? lRSr "x"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "xd") (equal? lRSr "dx"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "xd") (equal? lRSr "xd"))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "xd") (equal? lRSr ""))
           #{
-             \markup \flas  
-                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ;; ---------- combinations with left pure
         ( (and (equal? lRSl "") (equal? lRSr "d"))
           #{
-             \markup \flas  
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "") (equal? lRSr "x"))
           #{
-             \markup \flas  
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "") (equal? lRSr "dx"))
           #{
-             \markup \flas  
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "") (equal? lRSr "xd"))
           #{
-             \markup \flas  
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx  
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
 
         ( else
           #{
-             \markup \flas 
-                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl 
-                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr             
-                #lFS
+             \markup \flosx 
+                #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
+                #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
          #}
         )
       )
@@ -649,11 +644,8 @@
 % Harmonyli Interface No 2.B: Functions to use intermediary areas
 % ------------------------------------------------------------------------------
 
-initIMArea = 
-  { \set stanza = \markup {\normal-text \magnify #1.1 " ("} }
-
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (closeIMArea layout props RS AL)
+#(define-markup-command (setImArea layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -663,36 +655,136 @@ initIMArea =
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
       (lRS (assign RsSpec AL RsSpecDValue ))
       (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
     )
-    (set! lFS (string-append ")" lFS ))
+    (set! lFSl (string-append lFSl "(" imInfix  ))
+    (set! lFSr (string-append imInfix  ")" lFSr ))
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+      )
+    )
+   )
+ )
+
+% returns the Riemann Function Symbol as markup
+#(define-markup-command (openImArea layout props RS AL)
+  (markup? list?)
+  (let*
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (lSN (assign SNoteKey AL SNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
+    )
+    (set! lFSl (string-append lFSl "(" imInfix ))
+    (interpret-markup layout props
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+      )
+    )
+   )
+ )
+
+% returns the Riemann Function Symbol as markup
+#(define-markup-command (closeImArea layout props RS AL)
+  (markup? list?)
+  (let*
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (lSN (assign SNoteKey AL SNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
+    )
+    (set! lFSr (string-append imInfix ")" lFSr ))
+    (interpret-markup layout props
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -733,42 +825,93 @@ initTextSpan =
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
       (lRS (assign RsSpec AL RsSpecDValue ))
       (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
     )
  
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFS
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
     )
    )
  )
+
+#(define-markup-command (initImZoomRow layout props RS AL)
+  (markup? list?)
+  (let*
+    ( 
+      (lRS (assign RsSpec AL RsSpecDValue ))    
+      (lBN (assign BNoteKey AL BNoteDValue))
+      (lSN (assign SNoteKey AL SNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
+    )
+    (set! lFSl (string-append lFSl "(" imInfix ))
+    (interpret-markup layout props
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+        ( else
+          #{
+             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+          #}
+        )
+      )
+    )
+   )
+ )
+
 
 #(define-markup-command (expZoomRow layout props AL)
   (list?)
@@ -778,17 +921,15 @@ initTextSpan =
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
     )
- 
+  
     (interpret-markup layout props
      #{
-         \markup \fhas "" "" "" #laN #lbN #lcN #ldN #leN "" #lFS
+         \markup \fhas "" "" "" #laN #lbN #lcN #ldN #leN "" "" ""
      #}
     )
    )
  )
-
 
 
 #(define-markup-command (closeIMZoomRow layout props AL)
@@ -799,11 +940,11 @@ initTextSpan =
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
-      (lFS (assign fsKey AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
     )
-    (set! lFS (string-append " )" lFS) )
+    (set! lFSr (string-append imInfix ")" lFSr) )
     (interpret-markup layout props
-      #{ \markup \fhas "" "" ""  #laN #lbN #lcN #ldN #leN "" #lFS #}
+      #{ \markup \fhas "" "" ""  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
     )
    )
  )

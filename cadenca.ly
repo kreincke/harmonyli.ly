@@ -35,8 +35,7 @@
         }
         \addlyrics {
           \markup \setFHAS "T" #'(("C"."C")("f" . ""))
-          \initIMArea
-          \markup \closeIMArea "D" #'(("B"."1")("a" . "7"))
+          \markup \setImArea "D" #'(("B"."1")("a" . "7"))
           \markup \setFHAS "Sp" #'(("B"."7")("a" . "7"))
           \markup \setFHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8"))
           \markup \setFHAS "Tp" #'(("B"."3")) 

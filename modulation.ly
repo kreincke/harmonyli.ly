@@ -142,18 +142,19 @@ fhasSubline = \lyricmode {
   \markup \setFHAS "T" #'(("C"."A"))
   \markup \setFHAS "Tp" #'(("C"."A"))
   \markup \setFHAS "Tg" #'(("C"."A"))
-  \initIMArea
-  \markup \setFLAS "D" "D" 
-    #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")
-        ("f" . ") ")
+
+    \markup \setFLAS "D" "D" 
+    #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
+       
     )
+
   \markup \setFHAS "Sp" #'(("C"."As")) 
   \markup \setFHAS "D" #'(("B"."3")("C"."as")) 
   \markup \setFHAS "D" #'(("B"."7")("a"."7")("C"."as")) 
   \markup \setFHAS "t" #'(("C"."as"))
-  \initIMArea
-  \markup \closeIMArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
+
+  \markup \setImArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
   
   
   \markup \setFHAS "D" #'(("T"."d")("a"."7")("C"."as")) 
@@ -194,18 +195,19 @@ fhasLine = \lyricmode {
   \markup \setFHAS "T" #'(("C"."A"))
   \markup \setFHAS "Tp" #'(("C"."A"))
   \markup \setFHAS "Tg" #'(("C"."A"))
-  \initIMArea
-  \markup \setFLAS "D" "D" 
-    #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")
-        ("f" . ") ")
+
+   \markup \setFLAS "D!" "D" 
+    #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
+       
     )
+
   \markup \setFHAS "Sp" #'(("C"."As")) 
   \markup \setFHAS "D" #'(("B"."3")("C"."as")) 
   \markup \setFHAS "D" #'(("B"."7")("a"."7")("C"."as")) 
   \markup \setFHAS "t" #'(("C"."as"))
-  \initIMArea
-  \markup \closeIMArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
+
+  \markup \setImArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
   
   
   \markup \setFHAS "D" #'(("T"."d")("a"."7")("C"."as")) 
@@ -214,6 +216,7 @@ fhasLine = \lyricmode {
   \markup \setFHAS "D" #'(("a"."7")("C"."as")) 
   \set stanza = #"as-minor"
   \markup \setFHAS "t" #'(("C"."as"))
+
 }
 \score {
   <<
