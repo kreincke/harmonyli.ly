@@ -34,12 +34,12 @@
           \bar "||"
         }
         \addlyrics {
-          \markup \setFHAS "T" #'(("C"."C")("fr" . " "))
+          \markup \setHAS "T" #'(("C"."C")("fr" . " "))
           \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-          \markup \setFHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-          \markup \setFHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8")("fr" . " "))
-          \markup \setFHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-          \markup \setFHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
+          \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+          \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8")("fr" . " "))
+          \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+          \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
                  
           \initTextSpan "   "
           \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
@@ -47,7 +47,7 @@
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
           \stopTextSpan
   
-          \markup \setFHAS "T" #'(("fr" . " "))
+          \markup \setHAS "T" #'(("fr" . " "))
         }   
       }
       \new Staff {

@@ -136,17 +136,17 @@ lyr = \lyricmode {
 
   \set stanza = #"C-Dur:"
   % encoding on level 1 
-  \markup \fhas "T" "3" ""  "" "" "" "" ""  "" "" ""
+  \markup \has "T" "3" ""  "" "" "" "" ""  "" "" ""
 
-  \markup \fhas \crossout "D" "" "3"  "7" "♭9" "" "" ""  "" "(" ")"
+  \markup \has \crossout "D" "" "3"  "7" "♭9" "" "" ""  "" "(" ")"
   \initTextSpan "      "
-  \markup \fhas "Sp" "" ""  "9" "" "" "" "" ""  "(" ""
+  \markup \has "Sp" "" ""  "9" "" "" "" "" ""  "(" ""
   \startTextSpan  
-  \markup \fhas "" "" ""  "8" "" "" "" "" ""  "" ")"
+  \markup \has "" "" ""  "8" "" "" "" "" ""  "" ")"
   \stopTextSpan
 
   % encoding on level 2  
-  \markup \setFHAS "S" #'(("a"."5") ("b"."6"))
+  \markup \setHAS "S" #'(("a"."5") ("b"."6"))
 
   \markup \setImArea "D" #'(("B"."3")("a" . "7")) 
 
@@ -227,16 +227,16 @@ lyr = \lyricmode {
   \addlyrics {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
-    \markup \fhas "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --"
-    \markup \fhas "Function" "Soprano" "Bass"  
+    \markup \has "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --"
+    \markup \has "Function" "Soprano" "Bass"  
       "a (1. num)" "b (2. num)" "c (3. num)" 
         "d (4. num)" "e (5. num)" "Context"  "fillleft " " fillright"
     \override LyricText.self-alignment-X = #CENTER
-    \markup \fhas "S" "Context Tonika" ""  "" "" "" "" ""   "T" "" ""
-    \markup \fhas "D" "Context es" ""  "" "" "" "" ""  "es" "" ""
-    \markup \fhas \double "S" "  \double S  " ""  "" "" "" "" ""  "" "" ""
-    \markup \fhas \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" ""
-    \markup \fhas \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" ""
+    \markup \has "S" "Context Tonika" ""  "" "" "" "" ""   "T" "" ""
+    \markup \has "D" "Context es" ""  "" "" "" "" ""  "es" "" ""
+    \markup \has \double "S" "  \double S  " ""  "" "" "" "" ""  "" "" ""
+    \markup \has \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" ""
+    \markup \has \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" ""
 
     \markup \setFLAS "T" "D" 
     #'( ("T"."dx")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr".")")("fl"."(")

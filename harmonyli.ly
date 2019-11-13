@@ -247,7 +247,7 @@
 % ---------------------------------------------------------------------
 
  
-#(define-markup-command (fhas layout props RS SN BN aN bN cN dN eN CT fstl fstr)
+#(define-markup-command (has layout props RS SN BN aN bN cN dN eN CT fstl fstr)
   (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
   (let* ((lCT (string-append "[" CT "]")))
     (if (equal? CT "")(set! lCT ""))
@@ -303,9 +303,9 @@
         \markup{
           \box
           \concat {
-            \fhas #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
+            \has #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
             " ⇨ "
-            \fhas #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
+            \has #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
           }      
         }
      #}
@@ -371,7 +371,7 @@
 
 % INTERFACE 2.A
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (setFHAS layout props RS AL)
+#(define-markup-command (setHAS layout props RS AL)
   (markup? list?)
   (let*
     ( 
@@ -392,27 +392,27 @@
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr 
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr 
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -664,27 +664,27 @@
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -713,27 +713,27 @@
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -762,27 +762,27 @@
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -833,27 +833,27 @@ initTextSpan =
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -882,27 +882,27 @@ initTextSpan =
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \fhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \fhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \fhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
         ( else
           #{
-             \markup \fhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
           #}
         )
       )
@@ -923,7 +923,7 @@ initTextSpan =
   
     (interpret-markup layout props
      #{
-         \markup \fhas "" "" "" #laN #lbN #lcN #ldN #leN "" "" ""
+         \markup \has "" "" "" #laN #lbN #lcN #ldN #leN "" "" ""
      #}
     )
    )
@@ -942,7 +942,7 @@ initTextSpan =
     )
     (set! lFSr (string-append imInfix ")" lFSr) )
     (interpret-markup layout props
-      #{ \markup \fhas "" "" ""  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
+      #{ \markup \has "" "" ""  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
     )
    )
  )
@@ -953,7 +953,7 @@ initTextSpan =
 #(define-markup-command (FHAS layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \setFHAS #rs #'() #}
+    #{ \markup \setHAS #rs #'() #}
    )
  )
 
@@ -961,7 +961,7 @@ initTextSpan =
 #(define-markup-command (FHASth layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \setFHAS #rs #'(("B"."3") ) #}
+    #{ \markup \setHAS #rs #'(("B"."3") ) #}
    )
  ) 
  
@@ -969,14 +969,14 @@ initTextSpan =
 #(define-markup-command (Dsept layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \setFHAS "D" #'(("a"."7") ) #}
+    #{ \markup \setHAS "D" #'(("a"."7") ) #}
    )
  )
 
 #(define-markup-command (Dseptnone layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \setFHAS "D" #'(("a"."7")("b"."9")) #}
+    #{ \markup \setHAS "D" #'(("a"."7")("b"."9")) #}
    )
  )
 % ---------------------------------------------------------------
