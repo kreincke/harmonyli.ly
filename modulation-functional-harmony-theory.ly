@@ -56,7 +56,7 @@ voiceS = \relative c'' {
   \stemUp
   \global
   c4 c c( b) | c2 r4 d4 | e f d d | cis2 r4 d4 |
-  cis4 cis gis' dis | bes bes bes es | e2 f4 es |
+  cis4 cis gis' dis | bes bes bes es | e!2 f4 es |
   es2 des | ces1 \bar "|."
 }
 
@@ -74,7 +74,7 @@ voiceT = \relative c' {
   \stemDown
   \global
   e4 c d2 | e2 r4 f4 | g f f gis | e2 r4 gis4 |
-  e4 fis gis fis | bes, bes es es | g2 as4 g |
+  e4 fis gis fis | bes, bes es es | g2 as4 bes |
   as2 g | es1 \bar "|."
 }
 

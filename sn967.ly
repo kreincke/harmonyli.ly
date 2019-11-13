@@ -228,7 +228,7 @@ lyr = \lyricmode {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
     \markup \fhas "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --"
-    \markup \fhas "Function" "Soprano" "Bass" 
+    \markup \fhas "Function" "Soprano" "Bass"  
       "a (1. num)" "b (2. num)" "c (3. num)" 
         "d (4. num)" "e (5. num)" "Context"  "fillleft " " fillright"
     \override LyricText.self-alignment-X = #CENTER

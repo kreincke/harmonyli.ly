@@ -28,27 +28,11 @@
           | 
           < b fis'>2  
           < e gis >2 
-          < e a >4
-          < e a >4 
+          < e a >2
           < a fis>2       
           \bar "||"
         }
-        \addlyrics {
-          \markup \setFHAS "T" #'(("C"."C")("f" . ""))
-          \markup \setImArea "D" #'(("B"."1")("a" . "7"))
-          \markup \setFHAS "Sp" #'(("B"."7")("a" . "7"))
-          \markup \setFHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8"))
-          \markup \setFHAS "Tp" #'(("B"."3")) 
-          \markup \setFHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")) 
-                 
-          \initTextSpan "   "
-          \markup \initZoomRow "D" #'(("a"."4")) 
-          \startTextSpan
-          \markup \expZoomRow #'(("a"."3")) 
-          \stopTextSpan
   
-          \markup \setFHAS "T" #'(("f" . ""))
-        }   
       }
       \new Staff {
         \relative d { 
@@ -63,11 +47,28 @@
           < d fis>2                      
           < b d>2                  
           <<
-            { a4( a4)   }
-            { d4( cis4) }
+            { a2   }
+            { d4 cis4 }
           >> 
           < d, d'>2       
           \bar "||"
+        } 
+                % TODO: fstring nicht ausgewertet1
+        \addlyrics {
+          \markup \setFHAS "I" #'(("fr" . " "))
+          \markup \setFHAS "VI" #'(("a" . "♯3")("b" . "5")("c" . "6")("fr" . " "))
+          \markup \setFHAS "I" #'(("a" . "2")("fr" . " "))
+          \markup \setFHAS "VII" #'(("a" . "♯3")("b" . "7")("fl" . " ")("fr" . " "))
+          \markup \setFHAS "I" #'(("a" . "6")("fr" . " ")("fr" . " ")) 
+          \markup \setFHAS "VI" #'(("a" . "3")("b" . "4")("c" . "♯6")("fr" . " ")) 
+                 
+          \initTextSpan "   "
+          \markup \initZoomRow "V" #'(("a"."4")("b"."5")("fl" . " ")) 
+          \startTextSpan
+          \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+          \stopTextSpan
+  
+          \markup \setFHAS "I" #'(("fr" . " "))
         }   
       }
     >>

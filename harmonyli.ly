@@ -323,7 +323,7 @@
 #(define dNoteKey "d")
 #(define eNoteKey "e")
 % LÖSCHEN DEPRECATED
-#(define fsKey "f")
+% #(define fsKey "f")
 % LÖSCHEN DEPRECATED
 #(define fsKeyL "fl")
 #(define fsKeyR "fr")
@@ -448,8 +448,6 @@
       (lCTr (assign NRsCont AL RsContDValue))      
       (lFSlr (assign NfsKeyL AL fsDValue))
       (lFSrr (assign NfsKeyR AL fsDValue))
-      (lFS (assign fsKey AL fsDValue))
-
     )
   
     (interpret-markup layout props
@@ -1046,6 +1044,21 @@ fExtend =
          }
        }
      #}))
+
+% This is an improved function 'double' which unfortunately
+% needs LilyPond 2.19.x
+%#(define-markup-command (double layout props letter)
+%   (markup?)
+%   (interpret-markup layout props
+%     #{
+%       \markup{
+%         \overlay {
+%           $letter
+%           \translate-scaled #'(0.4 . -0.4)
+%           $letter
+%         }
+%       }
+%     #}))
 
 % ---------------------------------------------------------------
 % opening round bracket before a chord:
