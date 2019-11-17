@@ -110,8 +110,11 @@
 % Hyperlinks
 \usepackage[breaklinks=true]{hyperref}
 \hypersetup{bookmarks=true,breaklinks=true,colorlinks=true,citecolor=blue,draft=false}
+\newcommand{\acc}[0]{\textit}
+\newcommand{\ra}[0]{$\rightarrow$}
 \newcommand{\lnka}[1]{\href{#1}{\texttt{#1}}}
 \newcommand{\lnkb}[2]{\href{#1}{\texttt{#1} (RDL: #2)}}
+\newcommand{\lnkr}[1]{\ra\ \href{#1}{\texttt{#1}}}
 
 
 \usepackage{harmony}
@@ -119,7 +122,10 @@
 %\usepackage{bigfoot}
 \usepackage{verbatimbox}
 
-
+\newcommand{\hlyn}[0]{\textit{harmonyli.ly}}
+\newcommand{\hlyf}[0]{\texttt{harmonyli.ly}}
+\newcommand{\lily}[0]{\textit{LilyPond}}
+\newcommand{\has}[1]{\textit{Harmony Analysis Symbol#1}}
 
 \begin{document}
 
@@ -139,28 +145,48 @@
 \maketitle
 %%-- end(titlepage)
 
-\section{Introduction}
-
-\section{Installation}
-
-
-\section{Integration}
-
-\section{Harmonic Constructs}
-
 \footnotesize
 \tableofcontents
 
 \normalsize
 
+\section{Introduction}
+\subsection{Some Systematical Preliminary Remarks}
+\subsection{Some Historival Preliminary Remarks}
 
+\section{Installation \& Integration}
+\begin{itemize}
+  \item Clone the \hlyn\ repository or download and extract the \hlyn\ zip
+  archive by using the respective (github)
+  commands.\footnote{\lnkr{https://github.com/kreincke/harmonyli.ly}}
+  \item Copy the file \hlyf\ to any position of your file system from where you
+  want to include the \hlyn\ library into your \lily\ file.
+  \item Insert the command \texttt{\textbackslash include 
+  "YOUR\_PATH\_TO/harmonyli.ly"} into
+  you \lily\ file above the first \texttt{score\{\ldots\}} section.
+  \item Copy the line \verb|\context{\Lyrics \consists "Text_spanner_engraver"}|
+  into your \texttt{layout\{\ldots\}} section
+\end{itemize}
 
+\section{Application \& Utilization}
 
+\hlyn\ uses the \lily\ lyrics technique to integrate its \has{s} into a \lily\
+score. The benefit is that \lily\ itself aligns the music notes and the
+respective symbols and prevents horizontal overlappings, even if the \has is
+much longer than the notes.
 
+The very little disadvantage is that you are not totally free to place a \has\
+where you normally can insert a \lily\ \texttt{\textbackslash markup}. Instead
+of this, \hlyn\ requires a dedicated voice or staff to which you must bind the
+row of \has{s} by using the command \texttt{\textbackslash addlyrics}. After
+having prepared your \lily\ file as described above you have three opportunities
+to do so:
 
+\subsection{Binding \has{s} to a real voice in a staff}
 
+Binding a row of \has{s} to a real staff is straight forward: 
 
-\section{LilyPond-Beispiel}
+\subsubsection{Result}
 \begin{center}
 \begin{lilypond}
 
@@ -180,8 +206,7 @@
           \stemUp
           < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
           < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
-        }
-   
+        }   
       }
       \new Staff {
         \relative d { 
@@ -218,9 +243,519 @@
   }
   \midi {}
 }
+\end{lilypond}
+\end{center}
+
+\subsubsection{Code}
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "harmonyli.ly"
+\score {
+  \new StaffGroup {
+    \time 4/4
+    <<
+      \new Staff {
+        \relative d' {
+          \clef "treble" \key d \major \stemUp
+          < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+          < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
+      } }   
+
+      \new Staff {
+        \relative d { 
+          \clef "bass" \key d \major \stemDown
+          d2 b d cis  | d b d4 cis4 d2 \bar "||"
+      } }   
+      
+      \addlyrics {
+          \markup \setHAS "T" #'(("C"."D")("fr" . " "))
+          \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
+          \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+          \markup \setHAS "D" #'(("T"."x")("B"."3")
+                                ("a" . "5")("b" . "7")("c" . "-9>+8")("fr" . " "))
+          \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+          \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+                                ("fr" . " "))    
+          \initTextSpan "   "
+          \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+          \startTextSpan
+          \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+          \stopTextSpan
+          \markup \setHAS "T" #'(("fr" . " "))
+        }
+    >>
+  }
+  \layout { \context{\Lyrics\consists "Text_spanner_engraver"} }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
+
+\subsubsection{Explanation}
+
+This example contains a descant staff and a bass voice and to letter one it
+appends the section \texttt{addlyrics}, which contains for each note of the bass
+voice one specific \has. If you do not want to use such a 1:1 relation between
+notes and \has{s}, you can use one of the other methods.
+
+\subsection{Binding \has{s} to a hidden voice of a real staff}
+
+Binding a row of \has{s} to a (second) hidden voice in a real staff is a bit
+tricky: You must rewrite your musical staff as a staff with several voices,
+integrate a (mostly very deep) 'artificial' voice into that staff and bind the
+symbols to that 'artificial' voice.\footnote{For demonstrating this option, we
+colored the 'hidden' voice. If you change the string \texttt{new Voice =
+"AnalysisSubline"} into \texttt{new NullVoice = "AnalysisSubline"}, the voice
+beoomes really invisble.}
+
+This method is good to be applied in a score with a large amplitude of pitches
+(as some romantic piano pieces have): by using it you can enforce a larger
+distance between the really used notes and the \has{s}.
+
+\subsubsection{Result}
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\paper {
+  indent = 0
+  ragged-right = ##f
+  system-system-spacing #'basic-distance = #20
+  score-system-spacing =
+    #'((basic-distance . 12)
+       (minimum-distance . 6)
+       (padding . 1)
+       (stretchability . 12))
+}
+
+\header { tagline = "" }
+
+global  = { \key d \major  \time 4/4}
+
+descant = \relative c' {
+  \clef treble \stemUp \global
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
+}
+
+bass = \relative c {
+  \clef bass \stemNeutral \global
+  d2 b d cis  | d b d4 cis4 d2 \bar "||"
+}
+
+hasRhythmHidden =
+\relative c, {
+  \clef bass \stemDown \global
+  \override NoteHead.color = #red
+  \override NoteColumn #'ignore-collision = ##t
+  c2 c | c c | c c | c4 c4 c2 \bar "||"
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
+  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+                          ("c" . "♭9>♯8")("fr" . " "))
+  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+                          ("fr" . " "))    
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \startTextSpan
+  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \stopTextSpan
+  \markup \setHAS "T" #'(("fr" . " "))
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \new Staff = upper
+      \with { printPartCombineTexts = ##f }
+      { <<
+          \descant 
+        >>
+      }
+      \new Staff = lower
+      \new Voice = "Musical Bass"
+      \with { printPartCombineTexts = ##f }
+      { <<
+          \bass
+          % change "Voice" to "NullVoice" to make analyze voice unvisible:
+          \new Voice = "AnalysisSubline" {\shiftOff  \hasRhythmHidden}
+          \new Lyrics \lyricsto "AnalysisSubline" \hasSymbols
+        >>
+      }
+    >>
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{lilypond}
+\end{center}
+
+\subsubsection{Code}
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\paper {
+  indent = 0
+  ragged-right = ##f
+  system-system-spacing #'basic-distance = #20
+  score-system-spacing =
+    #'((basic-distance . 12)
+       (minimum-distance . 6)
+       (padding . 1)
+       (stretchability . 12))
+}
+
+\header { tagline = "" }
+
+global  = { \key d \major  \time 4/4}
+
+descant = \relative c' {
+  \clef treble \stemUp \global
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
+}
+
+bass = \relative c {
+  \clef bass \stemNeutral \global
+  d2 b d cis  | d b d4 cis4 d2 \bar "||"
+}
+
+hasRhythmHidden =
+\relative c, {
+  \clef bass \stemDown \global
+  \override NoteHead.color = #red
+  \override NoteColumn #'ignore-collision = ##t
+  c2 c | c c | c c | c4 c4 c2 \bar "||"
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
+  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+                          ("c" . "-9>+8")("fr" . " "))
+  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+                          ("fr" . " "))    
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \startTextSpan
+  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \stopTextSpan
+  \markup \setHAS "T" #'(("fr" . " "))
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \new Staff = upper
+      \with { printPartCombineTexts = ##f }
+      { <<
+          \descant 
+        >>
+      }
+      \new Staff = lower
+      \new Voice = "Musical Bass"
+      \with { printPartCombineTexts = ##f }
+      { <<
+          \bass
+          % change "Voice" to "NullVoice" to make analyze voice unvisible:
+          \new Voice = "AnalysisSubline" {\shiftOff  \hasRhythmHidden}
+          \new Lyrics \lyricsto "AnalysisSubline" \hasSymbols
+        >>
+      }
+    >>
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{verbatim}
+\end{scriptsize}
+
+\subsubsection{Explanation}
+
+This example defines four variables: the right hand voices (\texttt{= descant}),
+the left hand voice (\texttt{= bass)}, the hidden voice definining the rhythmic
+granularity of the analysis (\texttt{= hasRhythmHidden}) and the respective
+stream of \has{s} (\texttt{= hasSymbols}). Inside of the section
+\texttt{\textbackslash score{\ldots}} the 'sounding' bass and the 'virtual'
+voice \acc{AnalysisSubline} are inserted into the left hand staff. And the
+stream of \has{s} \texttt{\textbackslash hasSymbols} is bound to that 'virtual'
+voice by using the command \texttt{\textbackslash lyristico} and a reference by
+name.\footnote{Due to fact, that the \has{s} are placed under the analysis
+staff, it sometimes happens, that next part of your score (after the system
+'linefeed') is not sufficiently separated from the system above. Hereby it
+becomes difficult to read the score fluently. For increasing or decreasing the
+distance between the system lines, you can play around with the values inserted
+into the section \texttt{\textbackslash page\{\ldots\}}}
+
+
+\subsection{Binding \has{s} to a dedicated analysis staff}
+
+Binding a row of \has{s} to a dedicated analysis staff is straight forward
+again: you must create a special staff with one voice which only represents the
+the rhythm (relevant for the analysis). 
+
+This method is good to be used in a score with many staves. It simplifies to deal
+with ignorable passing notes.
+
+\subsubsection{Result}
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\paper {
+  indent = 0
+  ragged-right = ##f
+  system-system-spacing #'basic-distance = #20
+  score-system-spacing =
+    #'((basic-distance . 12)
+       (minimum-distance . 6)
+       (padding . 1)
+       (stretchability . 12))
+}
+
+\header { tagline = "" }
+
+global  = { \key d \major  \time 4/4}
+
+descant = \relative c' {
+  \clef treble \stemUp \global
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
+}
+
+bass = \relative c {
+  \clef bass \stemNeutral \global
+  d2 b d cis  | d b d4 cis4 d2 \bar "||"
+}
+
+hasRhythm = \relative c {
+  \stemDown \global
+  c2 c | c c | c c | c4 c4 c2 \bar "||"
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
+  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+                          ("c" . "♭9>♯8")("fr" . " "))
+  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+                          ("fr" . " "))    
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \startTextSpan
+  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \stopTextSpan
+  \markup \setHAS "T" #'(("fr" . " "))
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \new Staff = upper
+      \with { printPartCombineTexts = ##f }{\descant}
+      \new Staff = lower
+      \with { printPartCombineTexts = ##f }{\bass}
+    >>
+    \new RhythmicStaff = analysis
+    \with { printPartCombineTexts = ##f }
+    {
+      << 
+      \new Voice = "AnalysisLine" { \hasRhythm}
+      \new Lyrics \lyricsto "AnalysisLine" \hasSymbols
+      >>
+    }
+  >>
+
+  \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
+} 
 
 \end{lilypond}
 \end{center}
+
+
+\subsubsection{Code}
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\paper {
+  indent = 0
+  ragged-right = ##f
+  system-system-spacing #'basic-distance = #20
+  score-system-spacing =
+    #'((basic-distance . 12)
+       (minimum-distance . 6)
+       (padding . 1)
+       (stretchability . 12))
+}
+
+\header { tagline = "" }
+
+global  = { \key d \major  \time 4/4}
+
+descant = \relative c' {
+  \clef treble \stemUp \global
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
+}
+
+bass = \relative c {
+  \clef bass \stemNeutral \global
+  d2 b d cis  | d b d4 cis4 d2 \bar "||"
+}
+
+hasRhythm = \relative c {
+  \stemDown \global
+  c2 c | c c | c c | c4 c4 c2 \bar "||"
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
+  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+                          ("c" . "+9>-8")("fr" . " "))
+  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+                          ("fr" . " "))    
+  \initTextSpan "   "
+  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \startTextSpan
+  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \stopTextSpan
+  \markup \setHAS "T" #'(("fr" . " "))
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \new Staff = upper
+      \with { printPartCombineTexts = ##f }{\descant}
+      \new Staff = lower
+      \with { printPartCombineTexts = ##f }{\bass}
+    >>
+    \new RhythmicStaff = analysis
+    \with { printPartCombineTexts = ##f }
+    {
+      << 
+      \new Voice = "AnalysisLine" { \hasRhythm}
+      \new Lyrics \lyricsto "AnalysisLine" \hasSymbols
+      >>
+    }
+  >>
+
+  \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
+} 
+
+\end{verbatim}
+\end{scriptsize}
+
+\subsubsection{Explanation}
+
+In general, this example follows the ideas of the latter one\footnote{Due to
+fact, that the \has{s} are placed under the analysis staff, it often happens,
+that next part of your score (after the system 'linefeed') is not sufficiently
+separated from the system above. Hereby it becomes difficult to read the score
+fluently. For increasing or decreasing the distance between the system lines,
+you can play around with the values inserted into the section
+\texttt{\textbackslash page\{\ldots\}}}. But it does not integrate the sounding
+bass and the 'virtual' analysis voice into the same staff. Instead of this, each
+of them gets its own. And again, the stream of \has{s} is linked to the
+analysis voice \acc{hasRhythm} by the command \texttt{\textbackslash lyristico}
+and a name reference.
+
+\section{Harmonic Constructs}
+
+After having generally discussed how to integrate and use \hlyn, we can now
+explain, how a particular \has is generated / inserted by a respective \hlyn
+command. \hlyn offers two interfaces, each consting of a set of functions / commands.
+
+\subsection{The Basic Interface of 'harmonyli.ly'}
+
+The basic interface of \hlyn offers seven functions:
+
+\begin{description}
+  \item[setHAS] :- inserts a \has{}
+    \item[setImArea] :- inserts an intermediary \has{}
+  \item[openImArea] :- starts a row of intermediary \has{s} with a first \has{}
+  \item[closeImArea] :- closes the row of intermediary \has{s} with the last \has{}
+  \item[initZoomRow] :- starts the zoom into a \has{} which contains suspended or
+  passing notes
+  \item[expZoomRown] :- expands the zoom by a next movement of suspended or
+  passing notes
+  \item[initImZoomRow] :- starts the zoom into a intermediary \has{} which
+  contains suspended or passing notes 
+  \item[closeImZoomRow] :- stops the zoom
+  into a intermediary \has{} which contains suspended or passing notes
+\end{description}
+
+By these functions, you can build five types subrows of your stream of
+\has{s}\footnote{Note: \hlyn intends to be complete, but not correct. This means
+that 
+\begin{itemize}
+  \item all kind of 'subrows' of \has{s} which are necessary to describe the
+  harmonic relationships of real world chords must be formulatable by \hlyn.
+  \item not all \has which can be created by \hlyn necessarily describe
+  possible chord rows.
+\end{itemize}
+}
+
+\begin{description}
+  \item[setHAS+] :- a row of one or more \has{}
+  \item[setImArea+] :- a row of one or more intermediary \has{s}
+  \item[openImArea,setHAS*,closeImArea] :- the opening of an intermediary area
+    \item[initZoomRow,expZoomRow+] :- a zoom-in area opened by a specific
+  start-zoom-\has and followed by any number of reduced zoom-expansion-\has{}
+  \item[initImZoomRow,expZoomRow*,closeImZoomRow] :-  zoom-in area opened by a
+  specific start-zoom-\has and followed by any number of reduced
+  zoom-expansion-\has{}
+\end{description}
+
+
+\section{Package Content}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
