@@ -21,19 +21,21 @@
           \clef "treble"
           \key d \major  
           \stemUp
-         < fis  d'>2    
-          < fis  dis'>2   
-          < b  e>2        
-          < b  eis>2        
-          | 
-          < b fis'>2  
-          < e gis >2 
-          < e a >4
-          < e a >4 
-          < a fis>2       
-          \bar "||"
+          < fis a d>2	< fis a dis> < g b e> < g b eis>2 | 
+          < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
         }
-        \addlyrics {
+   
+      }
+      \new Staff {
+        \relative d { 
+          \clef "bass"
+          \key d \major  
+          \stemDown
+          d2 b d cis  |
+          d b d4 cis4 d2 \bar "||"
+        }   
+      }
+      \addlyrics {
           \markup \setHAS "T" #'(("C"."D")("fr" . " "))
           \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
           \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
@@ -48,28 +50,7 @@
           \stopTextSpan
   
           \markup \setHAS "T" #'(("fr" . " "))
-        }   
-      }
-      \new Staff {
-        \relative d { 
-          \clef "bass"
-          \key d \major  
-          \stemDown
-          < d a'>2                              
-          < b a'>2                   
-          < d g>2                
-          < cis g'>2                                    
-          |
-          < d fis>2                      
-          < b d>2                  
-          <<
-            { a4( a4)   }
-            { d4( cis4) }
-          >> 
-          < d, d'>2       
-          \bar "||"
-        }   
-      }
+        }
     >>
   }
   \layout {

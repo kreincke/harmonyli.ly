@@ -1,0 +1,50 @@
+@ARTICLE
+@BOOK
+@INBOOK
+@INCOLLECTION
+@INPROCEEDINGS
+@MISC
+@PROCEEDINGS
+
+custom tab fields 1 (optional):
+	* annote;
+	* note;
+	* url;
+	* urldate;
+	* owner;
+	* timestamp
+custom tab fields 2 (optional):
+	* abstract
+custom tab fields 3 (optional):
+	* review
+
+Type_0: article
+req.:	* author;title;journal;year;pages;shorttitle
+fac.:	* titeladdon;volume;number;issn
+
+Type_1: book
+req.:	* author;title;address;year;shorttitle"
+fac.:	* titleaddon;editor;edition;publisher;isbn;volume;volumes;series;number
+
+Type_6: inbook
+req.:	* author;title;pages;shorttitle;booktitle;address;year
+fac.:	* titleaddon;bookauthor;booktitleaddon;editor;edition;publisher;volume;number;series;number;isbn
+
+Type_7: incollection
+req.:	* author;title;pages;shorttitle;booktitle;address;year
+fac.:	* titleaddon;bookauthor;booktitleaddon;editor;edition;publisher;volume;number;series;number;isbn
+
+Type_8: inproceedings
+req.:	* author;title;crossref;pages;shorttitle
+fac.:	* titleaddon;
+
+Type11:	misc
+req.:	* author; title; year; shorttitle
+fac.:	* 
+
+Type15: proceedings
+req.:	* editor;title;address;year;shorttitle
+fac.:	* titleaddon;publisher;edition;volume;number;series;
+
+
+

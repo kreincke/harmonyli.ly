@@ -1,4 +1,7 @@
-
+2019-11-24: beta version 0.99.1 released
+* added a tutorial
+* refactored the functions and the interface
+* made the interface also usable for scale step theory
 2019-11-10: beta version 0.91 released
 * made the string between an intermediary bracket and the symbol configurable
 * allowed to insert a fillstring AFTER and BEFORE a symbol
