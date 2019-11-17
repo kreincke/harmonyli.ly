@@ -4,8 +4,23 @@
 
 RES_EXTS=png pdf midi 
 
+TFS=./sn967.pdf \
+    ./cadenca-functional-harmony-theory.pdf \
+    ./cadenca-scale-step-theory.pdf \
+    ./doc/source/lilypond/cadenca-method-three.pdf \
+    ./doc/source/lilypond/cadenca-method-two.pdf \
+    ./doc/source/lilypond/cadenca-method-one.pdf \
+    ./modulation-scale-step-theory.pdf \
+    ./modulation-functional-harmony-theory.pdf
+
+help:
+	@echo "call 'make XYZ.(pdf|png)' for creating a single file or 'make test' for creating all"
+
 play:
 	timidity $<
+
+test:
+	$(foreach F, ${TFS}, make  ${F} ;)
 
 .SUFFIXES: .ly .pdf .png
 
