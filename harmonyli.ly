@@ -289,7 +289,7 @@
  
 
 #(define-markup-command 
-  (flosx layout props 
+  (rfhas layout props 
     RSl SNl BNl aNl bNl cNl dNl eNl CTl fstll fstrl
     RSr SNr BNr aNr bNr cNr dNr eNr CTr fstlr fstrr
     )
@@ -369,8 +369,8 @@
   )
 )
 
-% INTERFACE 2.A
-% returns the Riemann Function Symbol as markup
+
+
 #(define-markup-command (setHas layout props RS AL)
   (markup? list?)
   (let*
@@ -420,9 +420,8 @@
    )
  )
 
-% INTERFACE 2.A
-% returns the Riemann Function Symbol as markup
-#(define-markup-command (setFLAS layout props RSl RSr AL)
+
+#(define-markup-command (setRfHas layout props RSl RSr AL)
   (markup? markup? list?)
   (let*
     ( (lBNl (assign BNoteKey AL BNoteDValue))
@@ -455,35 +454,35 @@
         ;; ---------- combinations with left double
         ( (and (equal? lRSl "d") (equal? lRSr "d"))
           #{
-             \markup \flosx 
+             \markup \rfhas 
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr
           #}
         )
         ( (and (equal? lRSl "d") (equal? lRSr "x"))
           #{
-             \markup \flosx   
+             \markup \rfhas   
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "d") (equal? lRSr "dx"))
           #{
-             \markup \flosx   
+             \markup \rfhas   
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "d") (equal? lRSr "xd"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "d") (equal? lRSr ""))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
@@ -491,35 +490,35 @@
         ;; ---------- combinations with left crossout
         ( (and (equal? lRSl "x") (equal? lRSr "d"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "x") (equal? lRSr "x"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "x") (equal? lRSr "dx"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "x") (equal? lRSr "xd"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "x") (equal? lRSr ""))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
@@ -527,35 +526,35 @@
         ;; ---------- combinations with left crossout double (dx)
         ( (and (equal? lRSl "dx") (equal? lRSr "d"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "dx") (equal? lRSr "x"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "dx") (equal? lRSr "dx"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "dx") (equal? lRSr "xd"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "dx") (equal? lRSr ""))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
@@ -563,35 +562,35 @@
         ;; ---------- combinations with left crossout double (xd)
         ( (and (equal? lRSl "xd") (equal? lRSr "d"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "xd") (equal? lRSr "x"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "xd") (equal? lRSr "dx"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "xd") (equal? lRSr "xd"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "xd") (equal? lRSr ""))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 \crossout \double #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
@@ -599,28 +598,28 @@
         ;; ---------- combinations with left pure
         ( (and (equal? lRSl "") (equal? lRSr "d"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
         ( (and (equal? lRSl "") (equal? lRSr "x"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "") (equal? lRSr "dx"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
         )
          ( (and (equal? lRSl "") (equal? lRSr "xd"))
           #{
-             \markup \flosx  
+             \markup \rfhas  
                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 \crossout \double #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
           #}
@@ -628,7 +627,7 @@
 
         ( else
           #{
-             \markup \flosx 
+             \markup \rfhas 
                 #RSl #lSNl #lBNl  #laNl #lbNl #lcNl #ldNl #leNl #lCTl #lFSll #lFSrl
                 #RSr #lSNr #lBNr  #laNr #lbNr #lcNr #ldNr #leNr #lCTr #lFSlr #lFSrr             
          #}

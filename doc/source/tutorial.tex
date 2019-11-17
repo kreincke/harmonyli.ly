@@ -127,6 +127,10 @@
 \newcommand{\lily}[0]{\textit{LilyPond}}
 \newcommand{\has}[1]{\textit{Harmony Analysis Symbol#1}}
 
+
+\usepackage{longtable}
+
+
 \begin{document}
 
 %% use all entries of the bliography
@@ -294,7 +298,7 @@ Binding a row of \has{s} to a real staff is straight forward:
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Explanation}
+\subsubsection{Additional Remarks}
 
 This example contains a descant staff and a bass voice and to letter one it
 appends the section \texttt{addlyrics}, which contains for each note of the bass
@@ -489,7 +493,7 @@ hasSymbols = \lyricmode {
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Explanation}
+\subsubsection{Additional Remarks}
 
 This example defines four variables: the right hand voices (\texttt{= descant}),
 the left hand voice (\texttt{= bass)}, the hidden voice definining the rhythmic
@@ -682,7 +686,7 @@ hasSymbols = \lyricmode {
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Explanation}
+\subsubsection{Additional Remarks}
 
 In general, this example follows the ideas of the latter one\footnote{Due to
 fact, that the \has{s} are placed under the analysis staff, it often happens,
@@ -696,53 +700,82 @@ of them gets its own. And again, the stream of \has{s} is linked to the
 analysis voice \acc{hasRhythm} by the command \texttt{\textbackslash lyristico}
 and a name reference.
 
-\section{Harmonic Constructs}
+\section{\has{s}}
 
 After having generally discussed how to integrate and use \hlyn, we can now
 explain, how a particular \has is generated / inserted by a respective \hlyn
 command. \hlyn offers two interfaces, each consting of a set of functions / commands.
 
-\subsection{The Basic Interface of 'harmonyli.ly'}
+\subsection{The basic \hlyn-functions}
+The \hlyn\ offers nine basic functions:
 
-The basic interface of \hlyn offers seven functions:
+\begin{longtable}
+  { r
+    >{\raggedleft\hspace{0pt}}p{4cm}
+    c
+    >{\raggedright\hspace{0pt}}p{8cm}
+   }
+ 
+(01) & \textbf{setHas} & \ra & inserts a \has{} 
+\tabularnewline
+(02) & \textbf{setImHas} & \ra & inserts an \acc{Intermediary \has{}} whose
+function refers to the root of the next chord
+\tabularnewline
+(03) & \textbf{setRfHas} & \ra & inserts a \acc{Reframing \has{}} as it is
+required by modulations: the function of the chord -- determined by the current
+tonal center -- is reinterpreted as a function in the context of the next
+tonal center
+\tabularnewline
+(04) & \textbf{openImRow} & \ra & starts a row of \acc{Intermediary \has{s}} which
+as whole refers to the root of the next chord after the row has been closed
+\tabularnewline
+(05) & \textbf{closeImRow} & \ra & closes a row of \acc{Intermediary \has{s}}
+and indicates, that the root of the next chord is the tonal center of that
+row
+\tabularnewline
+(06) & \textbf{openZoomRow} & \ra & starts the zoom into a \has{} which shall be
+described by suspended or passing notes
+\tabularnewline
+(07) & \textbf{expZoomRow} & \ra & expands the initially given \has{} by the
+numbers of the modified (suspended or passing) notes
+\tabularnewline
+(08) & \textbf{openImZoomRow}  & \ra & starts the zoom into an intermediary
+\has{} which shall be described by suspended or passing notes
+\tabularnewline
+(09) & \textbf{closeImZoomRow} & \ra &  closes the zoom into a intermediary
+\has{} which contains suspended or passing notes
+\tabularnewline
 
-\begin{description}
-  \item[setHas] :- inserts a \has{}
-    \item[setImHas] :- inserts an intermediary \has{}
-  \item[openImRow] :- starts a row of intermediary \has{s} with a first \has{}
-  \item[closeImRow] :- closes the row of intermediary \has{s} with the last \has{}
-  \item[openZoomRow] :- starts the zoom into a \has{} which contains suspended or
-  passing notes
-  \item[expZoomRow] :- expands the zoom by a next movement of suspended or
-  passing notes
-  \item[openImZoomRow] :- starts the zoom into a intermediary \has{} which
-  contains suspended or passing notes 
-  \item[closeImZoomRow] :- stops the zoom
-  into a intermediary \has{} which contains suspended or passing notes
-\end{description}
+\end{longtable}
 
-By these functions, you can build five types subrows of your stream of
-\has{s}\footnote{Note: \hlyn intends to be complete, but not correct. This means
-that 
+
+\subsection{How to combine these \hlyn-functions correctly}
+
+In accordance to the following grammer, you can embed five types of subrows
+into your stream of \has{s}\footnote{Note: \hlyn\ intends to be complete, but not
+correct. This means that
 \begin{itemize}
   \item all kind of 'subrows' of \has{s} which are necessary to describe the
   harmonic relationships of real world chords must be formulatable by \hlyn.
   \item not all \has which can be created by \hlyn necessarily describe
   possible chord rows.
 \end{itemize}
-}
+}:
 
-\begin{description}
-  \item[setHas+] :- a row of one or more \has{}
-  \item[setImHas+] :- a row of one or more intermediary \has{s}
-  \item[openImRow,setHas*,closeImRow] :- the opening of an intermediary area
-    \item[openZoomRow,expZoomRow+] :- a zoom-in area opened by a specific
-  start-zoom-\has and followed by any number of reduced zoom-expansion-\has{}
-  \item[openImZoomRow,expZoomRow*,closeImZoomRow] :-  zoom-in area opened by a
-  specific start-zoom-\has and followed by any number of reduced
-  zoom-expansion-\has{}
-\end{description}
+\begin{verbatim}
+HasStream ::- ( setHas | setImHas | setImHas |
+                openImRow, setHas*, closeImRow |
+                openZoomRow, expZoomRow+ |
+                openImZoomRow, expZoomRow*, closeImZoomRow )+
+\end{verbatim}
 
+\subsection{The output of the basic \hlyn-functions}
+
+\subsection{How to pass parameters to the basic \hlyn\-functions}
+
+\subsection{The 'Often-Used' Interface of 'harmonyli.ly'}
+
+\section{\has{s}: Examples}
 
 \section{Package Content}
 

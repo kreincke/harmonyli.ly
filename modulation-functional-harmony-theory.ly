@@ -132,7 +132,7 @@ fhasSubline = \lyricmode {
   \markup \Dsept 
   \markup \FHAS "T"
   \markup \setHas  "S" #'(("B"."3"))
-  \markup \setFLAS "Sp" "s" 
+  \markup \setRfHas "Sp" "s" 
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
@@ -143,7 +143,7 @@ fhasSubline = \lyricmode {
   \markup \setHas  "Tp" #'(("C"."A"))
   \markup \setHas  "Tg" #'(("C"."A"))
 
-    \markup \setFLAS "D" "D" 
+    \markup \setRfHas "D" "D" 
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
         ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
        
@@ -185,7 +185,7 @@ fhasLine = \lyricmode {
   \markup \Dsept 
   \markup \FHAS "T"
   \markup \setHas  "S" #'(("B"."3"))
-  \markup \setFLAS "Sp" "s" 
+  \markup \setRfHas "Sp" "s" 
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
@@ -196,7 +196,7 @@ fhasLine = \lyricmode {
   \markup \setHas  "Tp" #'(("C"."A"))
   \markup \setHas  "Tg" #'(("C"."A"))
 
-   \markup \setFLAS "D!" "D" 
+   \markup \setRfHas "D!" "D" 
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
         ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
        

@@ -238,7 +238,7 @@ lyr = \lyricmode {
     \markup \has \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" ""
     \markup \has \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" ""
 
-    \markup \setFLAS "T" "D" 
+    \markup \setRfHas "T" "D" 
     #'( ("T"."dx")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr".")")("fl"."(")
         ("nT"."d")("nS"."1")("nB"."2")("na"."3")("nb"."4")("nc"."5")("nd"."6")("ne"."7")("nC" . "d")("nfr".")")("nfl"."(")
        
