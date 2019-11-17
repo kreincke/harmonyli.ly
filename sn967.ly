@@ -146,41 +146,41 @@ lyr = \lyricmode {
   \stopTextSpan
 
   % encoding on level 2  
-  \markup \setHAS "S" #'(("a"."5") ("b"."6"))
+  \markup \setHas "S" #'(("a"."5") ("b"."6"))
 
-  \markup \setImArea "D" #'(("B"."3")("a" . "7")) 
+  \markup \setImHas "D" #'(("B"."3")("a" . "7")) 
 
   \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."2")("b" . "4")) 
+  \markup \openZoomRow "D" #'(("a"."2")("b" . "4")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."1")("b" . "3")) 
   \stopTextSpan
   
  
   \initTextSpan "          "
-  \markup \initImZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
+  \markup \openImZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
   \markup \closeIMZoomRow #'(("a"."7")) 
   \stopTextSpan
   
 
-  \markup \setImArea "D" #'(("a" . "7")("C"."S")) 
+  \markup \setImHas "D" #'(("a" . "7")("C"."S")) 
 
   \initTextSpan "   " 
-  \markup \initZoomRow "S" #'(("B"."3")("a" . "3"))
+  \markup \openZoomRow "S" #'(("B"."3")("a" . "3"))
   \startTextSpan
   \markup \expZoomRow #'(("a"."2"))   
   \stopTextSpan
   
   \initTextSpan "    "
-  \markup \initZoomRow "D" #'(("T" ."d")("B"."3")("a" . "8"))
+  \markup \openZoomRow "D" #'(("T" ."d")("B"."3")("a" . "8"))
   \startTextSpan
   \markup \expZoomRow #'(("a"."7"))  
   \stopTextSpan
   
   \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a" . "5")("f" . "")) 
+  \markup \openZoomRow "D" #'(("a" . "5")("f" . "")) 
   \startTextSpan  \startTextSpan
   \markup \expZoomRow #'(("a"."7"))   
   \stopTextSpan
@@ -246,7 +246,7 @@ lyr = \lyricmode {
 
     %\markup 
     %\flas "T" "1" "2"  "3" "4" "5" "6" "7"  "8" "[" "]" "D" "1" "2"  "3" "4" "5" "6" "7"  "8" "(" ")"
-    %\setImArea "S" #'(("T"."xd")("S"."1")
+    %\setImHas "S" #'(("T"."xd")("S"."1")
     %("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr"."(")("fl".")"))
 
 

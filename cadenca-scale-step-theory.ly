@@ -55,20 +55,20 @@
         } 
                 % TODO: fstring nicht ausgewertet1
         \addlyrics {
-          \markup \setHAS "I" #'(("fr" . " "))
-          \markup \setHAS "VI" #'(("a" . "♯3")("b" . "5")("c" . "6")("fr" . " "))
-          \markup \setHAS "I" #'(("a" . "2")("fr" . " "))
-          \markup \setHAS "VII" #'(("a" . "♯3")("b" . "7")("fl" . " ")("fr" . " "))
-          \markup \setHAS "I" #'(("a" . "6")("fr" . " ")("fr" . " ")) 
-          \markup \setHAS "VI" #'(("a" . "3")("b" . "4")("c" . "♯6")("fr" . " ")) 
+          \markup \setHas "I" #'(("fr" . " "))
+          \markup \setHas "VI" #'(("a" . "♯3")("b" . "5")("c" . "6")("fr" . " "))
+          \markup \setHas "I" #'(("a" . "2")("fr" . " "))
+          \markup \setHas "VII" #'(("a" . "♯3")("b" . "7")("fl" . " ")("fr" . " "))
+          \markup \setHas "I" #'(("a" . "6")("fr" . " ")("fr" . " ")) 
+          \markup \setHas "VI" #'(("a" . "3")("b" . "4")("c" . "♯6")("fr" . " ")) 
                  
-          \initTextSpan "   "
-          \markup \initZoomRow "V" #'(("a"."4")("b"."5")("fl" . " ")) 
+          \initTextSpan "  "
+          \markup \openZoomRow "V" #'(("a"."4")("b"."5")("fl" . " ")) 
           \startTextSpan
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
           \stopTextSpan
   
-          \markup \setHAS "I" #'(("fr" . " "))
+          \markup \setHas "I" #'(("fr" . " "))
         }   
       }
     >>

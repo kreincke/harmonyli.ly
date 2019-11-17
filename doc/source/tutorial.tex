@@ -218,20 +218,20 @@ Binding a row of \has{s} to a real staff is straight forward:
         }   
       }
       \addlyrics {
-          \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-          \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-          \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-          \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8")("fr" . " "))
-          \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-          \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
+          \markup \setHas "T" #'(("C"."D")("fr" . " "))
+          \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+          \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+          \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8")("fr" . " "))
+          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+          \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
                  
-          \initTextSpan "   "
-          \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+          \initTextSpan "  "
+          \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
           \startTextSpan
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
           \stopTextSpan
   
-          \markup \setHAS "T" #'(("fr" . " "))
+          \markup \setHas "T" #'(("fr" . " "))
         }
     >>
   }
@@ -271,20 +271,20 @@ Binding a row of \has{s} to a real staff is straight forward:
       } }   
       
       \addlyrics {
-          \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-          \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-          \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-          \markup \setHAS "D" #'(("T"."x")("B"."3")
+          \markup \setHas "T" #'(("C"."D")("fr" . " "))
+          \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+          \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+          \markup \setHas "D" #'(("T"."x")("B"."3")
                                 ("a" . "5")("b" . "7")("c" . "-9>+8")("fr" . " "))
-          \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-          \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+          \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                                 ("fr" . " "))    
           \initTextSpan "   "
-          \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+          \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
           \startTextSpan
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
           \stopTextSpan
-          \markup \setHAS "T" #'(("fr" . " "))
+          \markup \setHas "T" #'(("fr" . " "))
         }
     >>
   }
@@ -360,20 +360,20 @@ hasSymbols = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+  \markup \setHas "T" #'(("C"."D")("fr" . " "))
+  \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "♭9>♯8")("fr" . " "))
-  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
-  \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \initTextSpan "    "
+  \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
   \stopTextSpan
-  \markup \setHAS "T" #'(("fr" . " "))
+  \markup \setHas "T" #'(("fr" . " "))
 }
 
 \score {
@@ -447,20 +447,20 @@ hasSymbols = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+  \markup \setHas "T" #'(("C"."D")("fr" . " "))
+  \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "-9>+8")("fr" . " "))
-  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
-  \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \initTextSpan "    "
+  \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
   \stopTextSpan
-  \markup \setHAS "T" #'(("fr" . " "))
+  \markup \setHas "T" #'(("fr" . " "))
 }
 
 \score {
@@ -559,20 +559,20 @@ hasSymbols = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+  \markup \setHas "T" #'(("C"."D")("fr" . " "))
+  \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "♭9>♯8")("fr" . " "))
-  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
-  \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \initTextSpan "    "
+  \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
   \stopTextSpan
-  \markup \setHAS "T" #'(("fr" . " "))
+  \markup \setHas "T" #'(("fr" . " "))
 }
 
 \score {
@@ -642,20 +642,20 @@ hasSymbols = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+  \markup \setHas "T" #'(("C"."D")("fr" . " "))
+  \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "+9>-8")("fr" . " "))
-  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
-  \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \initTextSpan "    "
+  \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
   \stopTextSpan
-  \markup \setHAS "T" #'(("fr" . " "))
+  \markup \setHas "T" #'(("fr" . " "))
 }
 
 \score {
@@ -707,15 +707,15 @@ command. \hlyn offers two interfaces, each consting of a set of functions / comm
 The basic interface of \hlyn offers seven functions:
 
 \begin{description}
-  \item[setHAS] :- inserts a \has{}
-    \item[setImArea] :- inserts an intermediary \has{}
-  \item[openImArea] :- starts a row of intermediary \has{s} with a first \has{}
-  \item[closeImArea] :- closes the row of intermediary \has{s} with the last \has{}
-  \item[initZoomRow] :- starts the zoom into a \has{} which contains suspended or
+  \item[setHas] :- inserts a \has{}
+    \item[setImHas] :- inserts an intermediary \has{}
+  \item[openImRow] :- starts a row of intermediary \has{s} with a first \has{}
+  \item[closeImRow] :- closes the row of intermediary \has{s} with the last \has{}
+  \item[openZoomRow] :- starts the zoom into a \has{} which contains suspended or
   passing notes
-  \item[expZoomRown] :- expands the zoom by a next movement of suspended or
+  \item[expZoomRow] :- expands the zoom by a next movement of suspended or
   passing notes
-  \item[initImZoomRow] :- starts the zoom into a intermediary \has{} which
+  \item[openImZoomRow] :- starts the zoom into a intermediary \has{} which
   contains suspended or passing notes 
   \item[closeImZoomRow] :- stops the zoom
   into a intermediary \has{} which contains suspended or passing notes
@@ -733,12 +733,12 @@ that
 }
 
 \begin{description}
-  \item[setHAS+] :- a row of one or more \has{}
-  \item[setImArea+] :- a row of one or more intermediary \has{s}
-  \item[openImArea,setHAS*,closeImArea] :- the opening of an intermediary area
-    \item[initZoomRow,expZoomRow+] :- a zoom-in area opened by a specific
+  \item[setHas+] :- a row of one or more \has{}
+  \item[setImHas+] :- a row of one or more intermediary \has{s}
+  \item[openImRow,setHas*,closeImRow] :- the opening of an intermediary area
+    \item[openZoomRow,expZoomRow+] :- a zoom-in area opened by a specific
   start-zoom-\has and followed by any number of reduced zoom-expansion-\has{}
-  \item[initImZoomRow,expZoomRow*,closeImZoomRow] :-  zoom-in area opened by a
+  \item[openImZoomRow,expZoomRow*,closeImZoomRow] :-  zoom-in area opened by a
   specific start-zoom-\has and followed by any number of reduced
   zoom-expansion-\has{}
 \end{description}

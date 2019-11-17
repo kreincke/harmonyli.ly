@@ -119,43 +119,43 @@ fhasSubline = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
 
-  \markup \setHAS "I" #'()
-  \markup \setHAS "VI" #'(("a"."6"))
+  \markup \setHas "I" #'()
+  \markup \setHas "VI" #'(("a"."6"))
   \initTextSpan "   "
-  \markup \initZoomRow "V" #'(("a"."4")("b"."7"))
+  \markup \openZoomRow "V" #'(("a"."4")("b"."7"))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")) 
   \stopTextSpan
   
-  \markup \setHAS "I" #'()
-  \markup \setHAS "V" #'(("a"."7")("fr" . " ")) 
+  \markup \setHas "I" #'()
+  \markup \setHas "V" #'(("a"."7")("fr" . " ")) 
   
-  \markup \setHAS "I" #'()
-  \markup \setHAS "VI" #'(("a"."6"))
-  \markup \setHAS "VII" #'(("a"."7"))
-  \markup \setHAS "III" #'(("a"."♯3")("b"."7")("fr" . " "))
+  \markup \setHas "I" #'()
+  \markup \setHas "VI" #'(("a"."6"))
+  \markup \setHas "VII" #'(("a"."7"))
+  \markup \setHas "III" #'(("a"."♯3")("b"."7")("fr" . " "))
    
-  \markup \setHAS "VI" #'(("a"."♯3"))
-  \markup \setHAS "III" #'(("a"."♯3")("b"."7")("fr" . " ")) 
+  \markup \setHas "VI" #'(("a"."♯3"))
+  \markup \setHas "III" #'(("a"."♯3")("b"."7")("fr" . " ")) 
    
-  \markup \setHAS "VI" #'(("a"."♯3"))
-  \markup \setHAS "IV" #'(("B"."♯")("a"."♯5"))
-  \markup \setHAS "III" #'(("a"."♯3")("b"."♯6"))
-  \markup \setHAS "I" #'(("a"."♯2")("b"."♯4")("c"."6")("fr" . " "))
+  \markup \setHas "VI" #'(("a"."♯3"))
+  \markup \setHas "IV" #'(("B"."♯")("a"."♯5"))
+  \markup \setHas "III" #'(("a"."♯3")("b"."♯6"))
+  \markup \setHas "I" #'(("a"."♯2")("b"."♯4")("c"."6")("fr" . " "))
 
-  \markup \setHAS "II" #'(("B"."♭")("a"."♭6")) 
-  \markup \setHAS "V" #'(("a"."♭3")("b"."♭6")) 
-  \markup \setHAS "II" #'(("B"."♭")("a"."♭2")("b"."4")("c"."♭6")) 
-  \markup \setHAS "I" #'(("B"."♭")("a"."♭3")("b"."♭6")("fr" . " ")) 
+  \markup \setHas "II" #'(("B"."♭")("a"."♭6")) 
+  \markup \setHas "V" #'(("a"."♭3")("b"."♭6")) 
+  \markup \setHas "II" #'(("B"."♭")("a"."♭2")("b"."4")("c"."♭6")) 
+  \markup \setHas "I" #'(("B"."♭")("a"."♭3")("b"."♭6")("fr" . " ")) 
   
-  \markup \setHAS "VII" #'(("B"."♭")("a"."2")("b"."♭4")("c"."♭6"))
-  \markup \setHAS "VII" #'(("B"."♭")("a"."♭7"))
-  \markup \setHAS "V" #'(("a"."♭3")("b"."♭5")("c"."♭6")("fr" . " ")) 
+  \markup \setHas "VII" #'(("B"."♭")("a"."2")("b"."♭4")("c"."♭6"))
+  \markup \setHas "VII" #'(("B"."♭")("a"."♭7"))
+  \markup \setHas "V" #'(("a"."♭3")("b"."♭5")("c"."♭6")("fr" . " ")) 
   
-  \markup \setHAS "VI" #'(("B"."♭")("a"."♭3")("b"."♭5"))
-  \markup \setHAS "III" #'(("B"."♭")("a"."♭5")("b"."♭7"))  
+  \markup \setHas "VI" #'(("B"."♭")("a"."♭3")("b"."♭5"))
+  \markup \setHas "III" #'(("B"."♭")("a"."♭5")("b"."♭7"))  
 
-  \markup \setHAS "VI" #'(("B"."♭")("a"."♭3")("b"."♭5"))
+  \markup \setHas "VI" #'(("B"."♭")("a"."♭3")("b"."♭5"))
 
 }
 

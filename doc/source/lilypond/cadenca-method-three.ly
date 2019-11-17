@@ -63,20 +63,20 @@ hasSymbols = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHAS "T" #'(("C"."D")("fr" . " "))
-  \markup \setImArea "D" #'(("B"."1")("a" . "7")("fr" . " "))
-  \markup \setHAS "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
-  \markup \setHAS "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
+  \markup \setHas "T" #'(("C"."D")("fr" . " "))
+  \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
+  \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
+  \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "♭9>♯8")("fr" . " "))
-  \markup \setHAS "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-  \markup \setHAS "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
-  \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("fl" . " "))
+  \initTextSpan "    "
+  \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
   \stopTextSpan
-  \markup \setHAS "T" #'(("fr" . " "))
+  \markup \setHas "T" #'(("fr" . " "))
 }
 
 \score {

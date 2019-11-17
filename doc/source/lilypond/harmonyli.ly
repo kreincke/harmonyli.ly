@@ -371,7 +371,7 @@
 
 % INTERFACE 2.A
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (setHAS layout props RS AL)
+#(define-markup-command (setHas layout props RS AL)
   (markup? list?)
   (let*
     ( 
@@ -643,7 +643,7 @@
 % ------------------------------------------------------------------------------
 
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (setImArea layout props RS AL)
+#(define-markup-command (setImHas layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -693,7 +693,7 @@
  )
 
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (openImArea layout props RS AL)
+#(define-markup-command (openImRow layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -742,7 +742,7 @@
  )
 
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (closeImArea layout props RS AL)
+#(define-markup-command (closeImRow layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -813,7 +813,7 @@ initTextSpan =
    #})
 
 
-#(define-markup-command (initZoomRow layout props RS AL)
+#(define-markup-command (openZoomRow layout props RS AL)
   (markup? list?)
   (let*
     ( (lBN (assign BNoteKey AL BNoteDValue))
@@ -861,7 +861,7 @@ initTextSpan =
    )
  )
 
-#(define-markup-command (initImZoomRow layout props RS AL)
+#(define-markup-command (openImZoomRow layout props RS AL)
   (markup? list?)
   (let*
     ( 
@@ -953,7 +953,7 @@ initTextSpan =
 #(define-markup-command (FHAS layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \setHAS #rs #'() #}
+    #{ \markup \setHas #rs #'() #}
    )
  )
 
@@ -961,7 +961,7 @@ initTextSpan =
 #(define-markup-command (FHASth layout props rs)
   (markup?)
   (interpret-markup layout props
-    #{ \markup \setHAS #rs #'(("B"."3") ) #}
+    #{ \markup \setHas #rs #'(("B"."3") ) #}
    )
  ) 
  
@@ -969,14 +969,14 @@ initTextSpan =
 #(define-markup-command (Dsept layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \setHAS "D" #'(("a"."7") ) #}
+    #{ \markup \setHas "D" #'(("a"."7") ) #}
    )
  )
 
 #(define-markup-command (Dseptnone layout props)
   ()
   (interpret-markup layout props
-    #{ \markup \setHAS "D" #'(("a"."7")("b"."9")) #}
+    #{ \markup \setHas "D" #'(("a"."7")("b"."9")) #}
    )
  )
 % ---------------------------------------------------------------

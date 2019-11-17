@@ -121,27 +121,27 @@ fhasSubline = \lyricmode {
 
   \set stanza = #"C-Major:"
   % encoding on level 1 
-  \markup \setHAS  "T" #'(("C"."C"))
-  \markup \setHAS  "S" #'(("B"."3"))
+  \markup \setHas  "T" #'(("C"."C"))
+  \markup \setHas  "S" #'(("B"."3"))
   \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("b"."7"))
+  \markup \openZoomRow "D" #'(("a"."4")("b"."7"))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")) 
   \stopTextSpan
   \markup \FHAS "T"
   \markup \Dsept 
   \markup \FHAS "T"
-  \markup \setHAS  "S" #'(("B"."3"))
+  \markup \setHas  "S" #'(("B"."3"))
   \markup \setFLAS "Sp" "s" 
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
-  \markup \setHAS  "D" #'(("a"."7")("C"."A")) 
-  \markup \setHAS  "T" #'(("C"."A"))
-  \markup \setHAS  "D" #'(("a"."7")("C"."A")) 
-  \markup \setHAS  "T" #'(("C"."A"))
-  \markup \setHAS  "Tp" #'(("C"."A"))
-  \markup \setHAS  "Tg" #'(("C"."A"))
+  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "T" #'(("C"."A"))
+  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "T" #'(("C"."A"))
+  \markup \setHas  "Tp" #'(("C"."A"))
+  \markup \setHas  "Tg" #'(("C"."A"))
 
     \markup \setFLAS "D" "D" 
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
@@ -149,20 +149,20 @@ fhasSubline = \lyricmode {
        
     )
 
-  \markup \setHAS  "Sp" #'(("C"."As")) 
-  \markup \setHAS  "D" #'(("B"."3")("C"."as")) 
-  \markup \setHAS  "D" #'(("B"."7")("a"."7")("C"."as")) 
-  \markup \setHAS  "t" #'(("C"."as"))
+  \markup \setHas  "Sp" #'(("C"."As")) 
+  \markup \setHas  "D" #'(("B"."3")("C"."as")) 
+  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as")) 
+  \markup \setHas  "t" #'(("C"."as"))
 
-  \markup \setImArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
+  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7")) 
   
   
-  \markup \setHAS  "D" #'(("T"."d")("a"."7")("C"."as")) 
-  \markup \setHAS  "D" #'(("B" . "3")("a"."7")("C"."as")) 
-  \markup \setHAS  "t" #'(("C"."as"))
-  \markup \setHAS  "D" #'(("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as")) 
+  \markup \setHas  "t" #'(("C"."as"))
+  \markup \setHas  "D" #'(("a"."7")("C"."as")) 
   \set stanza = #"as-minor"
-  \markup \setHAS  "t" #'(("C"."as"))
+  \markup \setHas  "t" #'(("C"."as"))
 
 }
 
@@ -174,27 +174,27 @@ fhasLine = \lyricmode {
 
   \set stanza = #"C-Major:"
   % encoding on level 1 
-  \markup \setHAS  "T" #'(("C"."C"))
-  \markup \setHAS  "S" #'(("B"."3"))
+  \markup \setHas  "T" #'(("C"."C"))
+  \markup \setHas  "S" #'(("B"."3"))
   \initTextSpan "   "
-  \markup \initZoomRow "D" #'(("a"."4")("b"."7"))
+  \markup \openZoomRow "D" #'(("a"."4")("b"."7"))
   \startTextSpan
   \markup \expZoomRow #'(("a"."3")) 
   \stopTextSpan
   \markup \FHAS "T"
   \markup \Dsept 
   \markup \FHAS "T"
-  \markup \setHAS  "S" #'(("B"."3"))
+  \markup \setHas  "S" #'(("B"."3"))
   \markup \setFLAS "Sp" "s" 
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
-  \markup \setHAS  "D" #'(("a"."7")("C"."A")) 
-  \markup \setHAS  "T" #'(("C"."A"))
-  \markup \setHAS  "D" #'(("a"."7")("C"."A")) 
-  \markup \setHAS  "T" #'(("C"."A"))
-  \markup \setHAS  "Tp" #'(("C"."A"))
-  \markup \setHAS  "Tg" #'(("C"."A"))
+  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "T" #'(("C"."A"))
+  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "T" #'(("C"."A"))
+  \markup \setHas  "Tp" #'(("C"."A"))
+  \markup \setHas  "Tg" #'(("C"."A"))
 
    \markup \setFLAS "D!" "D" 
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
@@ -202,20 +202,20 @@ fhasLine = \lyricmode {
        
     )
 
-  \markup \setHAS  "Sp" #'(("C"."As")) 
-  \markup \setHAS  "D" #'(("B"."3")("C"."as")) 
-  \markup \setHAS  "D" #'(("B"."7")("a"."7")("C"."as")) 
-  \markup \setHAS  "t" #'(("C"."as"))
+  \markup \setHas  "Sp" #'(("C"."As")) 
+  \markup \setHas  "D" #'(("B"."3")("C"."as")) 
+  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as")) 
+  \markup \setHas  "t" #'(("C"."as"))
 
-  \markup \setImArea "D" #'(("T"."d")("B"."7")("a" . "7")) 
+  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7")) 
   
   
-  \markup \setHAS  "D" #'(("T"."d")("a"."7")("C"."as")) 
-  \markup \setHAS  "D" #'(("B" . "3")("a"."7")("C"."as")) 
-  \markup \setHAS  "t" #'(("C"."as"))
-  \markup \setHAS  "D" #'(("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as")) 
+  \markup \setHas  "t" #'(("C"."as"))
+  \markup \setHas  "D" #'(("a"."7")("C"."as")) 
   \set stanza = #"as-minor"
-  \markup \setHAS  "t" #'(("C"."as"))
+  \markup \setHas  "t" #'(("C"."as"))
 
 }
 \score {
