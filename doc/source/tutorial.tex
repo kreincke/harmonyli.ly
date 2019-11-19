@@ -775,7 +775,101 @@ HasStream ::- ( setHas | setImHas | setImHas |
 
 \subsection{The 'Often-Used' Interface of 'harmonyli.ly'}
 
-\section{\has{s}: Examples}
+\section{\has{s}}
+
+\subsection{The Function Symbol}
+
+The majority of Anglo-Saxonian musicology uses something like the
+'scale-step-theory' by which each tone of scale and the respective chord is
+referred by a its number. Alternatively one can use the functional (harmony)
+theory which refers the chords of scale by their functions.\footcite[for dedails
+cf.][\nopage wp]{wpFunctionTheory2019a} Both methods can be expressed by \hlyn:
+Insert the respective symbol as first argument of the \hlyn\ basic functions. If
+you don't need any additional specifier, add at least an empty attribution list
+\texttt{\#'()}:
+
+
+
+
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+  
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < d' fis' a'>1 
+    < e' g' b' >1  
+    < fis' a' cis'' >1
+    < g' b' d'' >1  
+    < a' cis'' e'' >1 
+    < b' d'' fis'' >1  
+    < cis'' e'' g'' >1
+  }
+  \addlyrics {
+    \markup \setHas "I" #'()
+    \markup \setHas "II" #'()
+    \markup \setHas "III" #'()
+    \markup \setHas "IV" #'()
+    \markup \setHas "V" #'()
+    \markup \setHas "VI" #'()
+    \markup \setHas "VII" #'()
+  }
+  \addlyrics {
+    \markup \setHas "T" #'()
+    \markup \setHas "Sp" #'()
+    \markup \setHas "Tg/Dp" #'()
+    \markup \setHas "S" #'()
+    \markup \setHas "D" #'()
+    \markup \setHas "Tp/Sg" #'()
+    \markup \setHas "D" #'(("T"."x")("a" . "7"))
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+
+
+\end{lilypond}
+\end{center}
+
+
+\subsection{Indicating a special Bass}
+
+Usually the bass note of a described chord is only revealed if it is not the
+root of the chord. Due to the fact, that in the 'scale-step-theory' the step
+number of a chord refers by definition its bass, the scale-step-theory does not
+use bass notes. For indicating the bass note expand the attribute list by the
+string \texttt{("B"."YOUR\_NUMBER")}:
+
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d''>1 }
+  \addlyrics { \markup \setHas "T" #'(("B"."3")) }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+
+\subsection{Indicating other descant tones}
+
+In accordance to the method for writing a basso continuo, the scale-step-theory
+must indicate deviations from the default case by using additional numbers: if
+the upper voices use other tones than those which are automatically and
+defaultly referred by the third or fifth or eigth upon the tone referred by the
+step number, then one must add the numbers of these other tones.
+
+
+\end{lilypond}
+\end{center}
 
 \section{Package Content}
 
