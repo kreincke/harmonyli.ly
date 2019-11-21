@@ -118,6 +118,7 @@
 
 
 \usepackage{harmony}
+\usepackage{musicography}
 
 %\usepackage{bigfoot}
 \usepackage{verbatimbox}
@@ -987,17 +988,17 @@ aspects, you can add the attribute \verb|("T"."x")| respectively
 After having explained the general methods to create a \has{}, we can now show
 how one can fulfill specific musical needs by these techniques:
 
-\subsection{Inserting the Appropriate Function Symbol}
+\subsection{Inserting a Function Symbol}
 
 The majority of Anglo-Saxonian musicologists use something like the
 'scale-step-theory' by which each tone of scale and the respective chord is
 referred by the respective number (represented by a Roman numeral).
 Alternatively one can use the functional (harmony) theory by which the chords of
-a scale are referred by their harmonical functions (represented by characters).\footcite[for
-dedails cf.][\nopage wp]{wpFunctionTheory2019a} Both methods can be expressed by
-\hlyn: Insert the respective symbol as first argument of the \hlyn\ basic
-functions. If you don't need any additional specifier, add at least an empty
-attribution list \texttt{\#'()}:
+a scale are referred by their harmonical functions (represented by
+characters).\footcite[for dedails cf.][\nopage wp]{wpFunctionTheory2019a} Both
+methods can be expressed by \hlyn: Insert the respective symbol as first
+argument of the \hlyn\ basic functions. If you don't need any additional
+specifier, add at least an empty attribution list \texttt{\#'()}:
 
 \begin{center}
 \begin{lilypond}
@@ -1082,14 +1083,18 @@ attribution list \texttt{\#'()}:
 \end{verbatim}
 \end{scriptsize}
 
-\subsection{Indicating a Special Bass}
+\subsection{Indicating a Bass Note}
 
-Usually the bass note of a described chord is only revealed if it is not the
-root of the chord. Due to the fact, that in the 'scale-step-theory' the step
-number of a chord refers by definition its bass, the scale-step-theory does not
-use bass notes. For indicating the bass note expand the attribute list by the
+In the context of the scale-step-theory, the bass note is referred by the Roman
+numeral which is inserted as a functional symbol. Hence, the  scale-step-theory
+does not have the need to additionally indicate the bass note.
+
+In the context of the functional harmony theory the chord is referred by its
+function. By default the respective symbol implies that the root is the bass
+note and that the chord uses the third and the fifth. Therefore, the bass note
+of a described chord is only revealed if it is not the root of the chord. For
+indicating the bass note expand the attribute list by the
 string \texttt{("B"."YOUR\_NUMBER")}:
-
 
 \begin{center}
 \begin{lilypond}
@@ -1098,25 +1103,198 @@ string \texttt{("B"."YOUR\_NUMBER")}:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d''>1 }
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d'' a''>1 }
   \addlyrics { \markup \setHas "T" #'(("B"."3")) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
 }
-
-
-
 \end{lilypond}
 \end{center}
 
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d'' a''>1 }
+  \addlyrics { 
+\end{verbatim}
+{ \color{red} \verb|    \markup \setHas "T" #'(("B"."3"))| }
+\begin{verbatim}    
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+\end{verbatim}
+\end{scriptsize}
 
-\subsection{Indicating other descant tones}
+\subsection{Indicating a Sopran Note}
 
-In accordance to the method for writing a basso continuo, the scale-step-theory
-must indicate deviations from the default case by using additional numbers: if
-the upper voices use other tones than those which are automatically and
-defaultly referred by the third or fifth or eigth upon the tone referred by the
-step number, then one must add the numbers of these other tones.
+Sometimes, a musicologist wants to reveal the highest tone of a chord. For
+indicating the 'soprano' note expand the attribute list by the
+string \texttt{("S"."YOUR\_NUMBER")}:
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < d' a' d'' fis''>1 }
+  \addlyrics { \markup \setHas "T" #'(("S"."3")) }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d'' a''>1 }
+  \addlyrics { 
+\end{verbatim}
+{ \color{red} \verb|    \markup \setHas "T" #'(("S"."3"))| }
+\begin{verbatim}    
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+\end{verbatim}
+\end{scriptsize}
+
+\subsection{Indicating Descant Tones}
+
+In accordance to the method for writing a basso continuo, both theories
+explicitly display the numbers of those chord tones which shall be used, but
+which are not covered by the default rule 'take 1+3+5+8'. And with respect to
+the other composition rule 'by defaut use thirds' each number implictly
+supresses its predecessor and successor. Hence, if a second shall be
+integrated into a chord, the two adjacent numbers must be revealed.
+
+\hlyn\ allows you to add up to five deviating tones by inserting the strings
+\texttt{("a"."YOUR\_NUMBER")}, \ldots, \texttt{("e"."YOUR\_NUMBER")} into the
+attribute list. Additionally, these numbers can be altered by using the standard
+UTF8 / unicode signs \{\musDoubleFlat , \musFlat , \musNatural , \musSharp ,
+\musDoubleSharp \}\footnote{We use the \LaTeX command
+ \texttt{\textbackslash verbatim} for showing the \lily code which creates the
+ example. Unfortunately, we can not use special Unicode signs in these sections.
+As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and 
+ \texttt{*} for \musNatural. }:
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    < a' c'' es'' f'' g'' bis''>1 
+  }
+  \addlyrics { 
+    \markup \setHas "D" #'(("a"."3♮")("b"."5♭")("c"."6♮")("d"."7")("e"."9♯")) 
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    < a' c'' es'' f'' g'' bis''>1 
+  }
+  \addlyrics {
+  \end{verbatim}
+  { \color{red} \verb|    \markup \setHas "D" #'(("a"."3*")("b"."5-")("c"."6*")("d"."7")("e"."9+")) |
+  }
+\begin{verbatim}    
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
+
+Note, the 'scale-step-theory' and the 'functional harmony analysis' use
+different types of numberings: In a \has{}, all numbers refer to the root of the
+chord. In a description based on the scale-step-theory, all added numbers refer
+the bass tone represented by the Roman numeral. Therefore, if we describe an
+inversion of a chord, we have to use different numberings:
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    < fis' a' c'' e''>1 
+    < fis' a' c'' e''>1 
+ }
+  \addlyrics { 
+    \markup \setHas "T" #'(("B"."3")("a"."7♮")("b"."9")) 
+    \markup \setHas "III" #'(("a"."5♮")("b"."7")) 
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\hlyn\ does not support you to use the correct digits. It is your task
+to adequately describe the chords with respect to the chosen theory.
+
+Sometimes it is helpful, to expand your representation by a reinterpretation in
+accordance to an enharmonic change. The parameters 'a', \ldots,'e' can be bound
+to strings, not only to (altered) numbers. So, you are able also to create
+constructs like this:
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    < fis' a' c'' es''>1 
+ }
+  \addlyrics { 
+    \markup \setHas "T" #'(("B"."3")("a"."7♮")("b"."9♭⇒8♯")) 
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\subsection{Indicating Intermediary Chords}
+
+\subsection{Indicating Chords Contexts}
+
+\subsection{Indicating Chains of Intermediary Chords}
+
+\subsection{Indicating Suspended and Passing Notes}
+
+\subsection{Indicating Chords With Suspended and Passing Notes}
+
+
 
 \subsection{The 'Often-Used' Interface of 'harmonyli.ly'}
 
