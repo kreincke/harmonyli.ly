@@ -156,12 +156,87 @@
 \normalsize
 
 \section{Introduction}
-As so often - in the beginning there was a need: I wanted to write a larger
-scientific musicology work. Actually, I had a good starting point because I had
-already created a \LaTeX package for humanities which fulfilled the requirements
-of the scientific style I prefered. But I still had to evaluate how music
-examples which harmonical analyses could be embedded into the \LaTeX\ source.
 
+As so often - in the beginning there was a need: I had to write a musicological
+work.
+
+Actually, I had a good starting point: I knew, that there was an Anglo-American
+scientific style which heavily differed from the European resp. German standard
+in the humanities. To close that gap, I had already created a \LaTeX\
+environment for writing scientific articles and books which even fulfilled the
+very sophisticated requirements of the humanities in general and the standards
+of the musicology in particular. I had documented that work, had explained and
+justified that style of writing and published the result as open source
+software.
+
+Unfortunately, I did not know, how to embed snippets of musical scores into a
+\LaTeX\ file. Trawling through the web delivered a bulk of tools and methods,
+but no manual, how to do so, and no tutorial, how to successfully combine which
+tools for getting a usable working environment. Therefore, I started an
+investigation. And again, I published my work as a kind of open source
+software.
+
+A preliminary result of this investigation was, that we had three backends for
+using musical notes in \LaTeX: We could use the style of \acc{ABC}-Notation and
+would only be able to integrate very simple harmony analysis symbols into our
+exemplifying score. Or we could use a combination of \acc{\LaTeX, Musix\TeX, and
+harmony} which offered excellent and sophisticated results, but enforced us, to
+use the very complex and difficult typesetting language \acc{MusicTeX} without
+being supported by any good (semi-)graphical Editor. Or we could use the well
+established coding environment \acc{LilyPond} and its \LaTeX-integration tool
+\acc{lilypondbook} together with at least two excellent semi-graphical Editors
+like \acc{Frescobaldi} or \acc{Elysium}. Moreover, if we were willing to use
+converters like \acc{musicxml2ly}, we could also use the genuine graphic editor
+\acc{MuseScore}. But then, we would again not be able to insert  harmony
+analysis symbols on a level which matches the state of the art and which was
+fulfilled by the \LaTeX\ tool \acc{harmony}.
+
+At that point I knew, what was possible. But I did not want to respect the
+result. Using \acc{\LaTeX, Musix\TeX, and harmony} would decrease my productivity
+in an unacceptable manner. So, I started a reimplementation of \acc{harmony} for
+\acc{LilyPond} by using its LISP based language \acc{GUILE} and the respectives
+techniques for expanding this score edition system. I decided to name it
+\acc{harmonyli.ly}, because this name would give credits to the \LaTeX\ based
+idea generator \acc{harmony} as well as to the intended target system
+\acc{LilyPond}, which I had learned to love. My result worked. But its
+appearance was not on the level I preferred to achieve.
+
+So, I asked the \acc{LilyPond} community for feedback. I knew, that at that time
+I might have been a good programmer, an expert of musical theory, and an adept
+of Free and Open Source Software and its spirit, but I certainly was not familiar
+with the internals of \acc{LilyPond}, its 'biotope' of additional tools and its
+history. From this point, a typical open source success-story started.
+
+I got a lot of hints, for instance by \ldots. And I was told the \ldots had
+already written a first version of such a tool and that it was published as
+Public Domain Software in the \acc{LilyPond Snippet Repository}. So I took this
+preliminary work, redesigned and expanded the interface, rewrote some functions
+and added a lot of other code. But nevertheless, my work was a derivative work
+of Hand Blum's work. So -- and even if it had not been necessary from a legal
+point of view --, I asked him whether he could agree that I re-engineered his
+work and that I released the result under a licensing construct, by which the
+user could chose the license he prefered, either GPL or MIT. And to my great
+pleasure, Hans Blum agreed with this concept. 
+
+That was the way by which you now obtain three results, which should not be
+undervalued:
+\begin{itemize}
+  \item With \hlyn, you get a technique to enrich your scores by
+  harmony analysis symbols on a level, which is as expressive as it is required
+  by the musicology and as beautiful as it necessary for not disturbing the
+  excellent outpout of \acc{LilyPond}.
+  \item You get \hlyn\ as open source software. And the act of licensing is
+  explicitly approved by the copyright holders Hans Blum and me, Karsten
+  Reincke. hence, you can be sure also to get the rights to use \hlyn.
+  \item You get a complete tutorial which thoroughly explains 
+  \begin{itemize}
+    \item how to generally install and integrate \hlyn into your work
+    \item how to prepare your work for using \hlyn successfuly
+    \item how to create the particular \has{s} required by the musicology.
+  \end{itemize}
+\end{itemize}
+
+And the way of learning how to use \hlyn\ starts now:
 
 \section{Installation \& Integration}
 \begin{itemize}
@@ -184,7 +259,7 @@ score. The benefit is that \lily\ itself aligns the music notes and the
 respective analysis symbols: it prevents horizontal overlappings, if a \has\ is
 longer than the respective note.
 
-As a little disadvantage \hlyn\ needs dedicated voice to which the row of
+As a little disadvantage \hlyn\ needs a dedicated voice to which the row of
 \has{s} can be bound. After having set up your \lily\ file as described above
 you have three opportunities to fulfill this condition:
 
@@ -300,7 +375,7 @@ Linking \has{s} to a really used staff is straight forward:
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Remarks}
+\subsubsection{Description}
 
 This example contains a descant staff and a bass voice. To the letter one, it
 appends the section \texttt{addlyrics}, which contains for each note of the bass
@@ -495,7 +570,7 @@ hasSymbols = \lyricmode {
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Remarks}
+\subsubsection{Description}
 
 This example uses four voices in four variables: the right hand voice
 (\texttt{= descant}), the left hand voice (\texttt{= bass)}, the hidden voice
@@ -688,7 +763,7 @@ hasSymbols = \lyricmode {
 \end{verbatim}
 \end{scriptsize}
 
-\subsubsection{Remarks}
+\subsubsection{Description}
 
 In general, this third example follows the ideas of the second. But it does not
 inscribe the sounding bass and the 'virtual' analysis voice into the same staff.
@@ -700,7 +775,7 @@ Instead of this, each of them gets its own staff. And again, the stream of
 
 After having generally explained how to integrate and use \hlyn, we can now
 discuss, how particular \has{s}\ are generated by \hlyn\ commands. For that
-purpose, \hlyn\ offers two interfaces: the basic \hlyn functions and some
+purpose, \hlyn\ offers two interfaces: the basic \hlyn\ functions and some
 often used instantiations. This chapter describes the general interface: 
 
 \subsection{The basic \hlyn-functions}
@@ -724,10 +799,10 @@ required by modulations: the function of a chord -- determined by the current
 tonal center -- is reinterpreted as a function in the context of the next tonal
 center
 \tabularnewline
-(04) & \textbf{openImRow} & \ra & starts a chain of \acc{Intermediary \has{s}}
-which together refer to the root of the successing chord
+(04) & \textbf{openImRow} & \ra & starts an intermediary chain of \has{s}\
+where each chord of the chain refers to the root of chord which follows the chain
 \tabularnewline
-(05) & \textbf{closeImRow} & \ra & closes a chain of \acc{Intermediary \has{s}}
+(05) & \textbf{closeImRow} & \ra & closes an intermediary chain of \has{s}\ 
 and indicates, that the root of the directly successing chord is the tonal
 center of that chain
 \tabularnewline
@@ -789,7 +864,8 @@ HasStream ::- ( setHas | setImHas | setRfHas |
 
 These production rules inidicate, that 
 \begin{itemize}
-  \item you may use the \has{s}\ itself without having to consider its
+  \item you may use the 'normal' \has{s}\ -- may it be a simple \has, an
+  intermediary \has, or a reframing \has\ -- without having to consider its
   predecessors or successors
   \item you must close an opened intermediate row and between the opening and
   the closing element of that chain you can insert as many normal \has{s} as you
@@ -839,7 +915,7 @@ They are created by different \hlyn\ functions, which -- nevertheless -- take
 the same kind of parameters\footnote{except \texttt{setRfHas} and
 \texttt{expZoomRow}}: The function symbol is obligatoric and specified as string
 argument. The other parameters are optional and handed over in a list of
-attributes. Let us visualize the structure of a \has{}\ by \hlyn\ itself:
+attributes. Let \hlyn\ itself visualize the structure of a \has{}:
 
 \begin{center}
 \begin{lilypond}
@@ -1455,11 +1531,12 @@ setImHas} instead of \texttt{\textbackslash setHas}:
  
 \subsection{Indicating the Chord Context}
 
-Using intermediary chords allow us to conclide, that the syntax of the
-functional harmony theory is still not sufficiently elaborated and that
-therefore the musicologists who use that theory depend on an underlying 'good
-will' understanding of their readers. For understanding this statement take
-a look at the following traditionally represented deceptive cadence:
+The common use of intermediary chords leads attentive musicologists to the
+conclusion, that the syntax of the functional harmony theory is still not
+sufficiently designed. They know that their analyses sometimes unfortunately
+depend on an underlying 'good will' understanding of their readers. Let us prove
+this statement by a look at the following traditionally represented deceptive
+cadence:
 
 \begin{center}
 \begin{lilypond}
@@ -1479,14 +1556,15 @@ a look at the following traditionally represented deceptive cadence:
 \end{lilypond}
 \end{center}
 
-The disadvantage of such a notation is, that the reader has to know, that A major
-is the dominant of D major and the b minor is the relative key of D major and
-that in this case therefore the row \texttt{(D) Tp} represents a deceptive
-cadence.The harmonical analysis does not give him any hint.
-
-It is better to explicate such implicit interpretations by using an expanded
-language. \hlyn\ solves this issue by the opportunity to indicate the context of
-a chord:
+The disadvantage of such a notation is, that the reader has to know, that A
+major is the dominant of D major and the b minor is the relative key of D major
+and that in this case therefore the row \texttt{(D) Tp} represents a deceptive
+cadence. The representation of the harmonical analysis does not give him any
+hint. But if we found the string \texttt{(D[T]) Tp}, which could indicate the
+context of a chord, we would have a clear representation which would
+syntactically indicate that the dominant to the tonic is followed by the
+relative to the tonic and that therefore the definition of a deceptive cadence
+is fulfilled:
 
 \begin{center}
 \begin{lilypond}
@@ -1506,29 +1584,247 @@ a chord:
 \end{lilypond}
 \end{center}
 
-Here you can conclude  to the deceptive cadence by using nothing more than the
-definitions which the functional harmonyt theory uses. You do not need any
-other knowledge:
+If one uses such a representation for a deceptive cadence, then one can directly
+argue from the definitions and the facts to the existence of a deceptive cadence:
+
 \begin{itemize}
-  \item Every dominant \texttt{D} leads to the tonic \texttt{T}.
+  \item Every dominant \texttt{D} leads to its tonic \texttt{T}.
   \item An intermediary chord \texttt{()} refers to the successor.
-  \item In this case, the successor is not the expected tonic, but the relative tonic.
+  \item In he current case, the successor is not the expected tonic, but the relative tonic.
   \item Hence it is not a cadence, but a deceptive cadence \texttt{(D) Tp}
 \end{itemize}
 
-For indicating such a context you must expand the attribute list by the string
-\texttt{("C"."YOUR\_CONTEXT")}.
+For indicating the context of a specific function you must expand the attribute
+list by the string \texttt{("C"."YOUR\_CONTEXT")}. The context can either be
+another function or the root of a key.
 
 
-\subsection{Indicating Chains of Intermediary Chords}
+\subsection{Indicating Intermediary Chains Chords}
 
-\subsection{Indicating the Context of Intermediary Chord Chains}
+Sometimes, the musicologist has not only to indicate a single intermediary
+chord, but an intermediary chain of chords where each chord of this chain
+refers to the successor of the chain. 
+
+For deriving this need, let us first present an example and a traditional
+straight forward analysis:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setHas "T" #'(("a"."♮7")) 
+    \markup \setHas "Sp" #'() 
+    \markup \setHas "S" #'(("T"."d")("B"."3"))     
+    \markup \setHas "T" #'(("a"."♮7"))
+    \markup \setHas "S" #'(("B"."3"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+Beyond any doubt, this analysis is correct. But it is not appropriate because it
+does not consider the leading quality of the decreased seventh in bar \texttt{2}
+and bar \texttt{5}. An analysis which better covers our auditive understandings
+would be this:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setImHas "D[S]" #'(("a"."♮7")) 
+    \markup \setHas "Sp" #'() 
+    \markup \setHas "S" #'(("T"."d")("B"."3"))     
+    \markup \setImHas "D" #'(("a"."♮7")) 
+    \markup \setHas "S" #'(("B"."3"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+But even this analysis does not represent, what we hear. It does not capture the
+functional releationshop of \texttt{e-minor} in bar \texttt{3} and
+\texttt{C-Major} in bar \texttt{4} which is established by the three common
+tones. So, a better interpretation would also represent the chords in bar
+\texttt{3} and \texttt{4} with respect to the chord in  bar \texttt{6}:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setImHas "D[S]" #'(("a"."♮7")) 
+    \markup \setImHas "Sp[S]" #'() 
+    \markup \setImHas "S[S]" #'(("B"."3"))     
+    \markup \setImHas "D[S]" #'(("a"."♮7")) 
+    \markup \setHas "S" #'(("B"."3"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+And here, we can directly see that all chords from bar \texttt{2} to bar
+\texttt{5} functionally refer to the chord in bar \texttt{6}. Hence we hear an
+intermediary chain of chords. \hlyn\ shall be able to represent such rows as it
+is shown by the next interpretation:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
+    < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' d'' g''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \openImRow "D" #'(("a"."♮7")) 
+    \markup \setHas "Tp" #'() 
+    \markup \setHas "S" #'(("B"."3"))     
+    \markup \closeImRow "D" #'(("a"."♮7")) 
+    \markup \setHas "S" #'(("B"."3"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+Here you can see the advantage of such a sophisticated analysis: only our last
+interpretation syntactically represents the fact that we hear a deceptive
+cadence in the row and that the complete chain of chords from bar \texttt{2} to
+\texttt{6} as a unit fulfills the function of a subdomain.
+
+Intermediary chains of chords can be created by explicitly open an intermediary
+row, by inserting as many simple \has\ as necessary and by explicitly closing
+the intermediary row as it is shown here:
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
+    < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' d'' g''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+\end{verbatim}
+{ \color{red} \verb|    \markup \openImRow "D" #'(("a"."-7")| }
+\begin{verbatim} 
+    \markup \setHas "Tp" #'() 
+    \markup \setHas "S" #'(("B"."3"))     
+\end{verbatim}
+{ \color{red} \verb|    \markup closeImRow "D" #'(("a"."-7")| }
+\begin{verbatim}  
+    \markup \setHas "S" #'(("B"."3"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+
+\end{verbatim}
+\end{scriptsize}
+
+
+Please keep in mind: It is not necessary that you agree with our analysis. But
+we wanted to prove that \hlyn\ can grasp such complex relationships.
+
+\subsection{Indicating the Context of Intermediary Chains of Chords}
+
+But we must still tighten up the screw a bit more: If \hlyn\ shall be able to
+represent deceptive candences by indicating the expected function of an
+intermediary chord and the real disappointing function of the successing chord
+-- as it is shown here --
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setImHas "D" #'(("a"."♮7")("C"."S")) 
+    \markup \setHas "Sp" #'() 
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+then \hlyn\  must also be able to represent deceptive cadences which use
+intermediary chains of chords followed by a functionally disappointing relative
+chord:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
+    < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' e'' g''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \openImRow "D" #'(("a"."♮7")) 
+    \markup \setHas "Tp" #'() 
+    \markup \setHas "S" #'(("B"."3"))     
+    \markup \closeImRow "D" #'(("a"."♮7")("fr"."[S]")) 
+    \markup \setHas "Sp" #'(("B"."5"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
 
 \subsection{Indicating Suspended and Passing Notes}
 
 \subsection{Indicating Chords With Suspended and Passing Notes}
 
 \subsection{Indicating Modulations}
+
+\subsection{Indicating A Prefix or Suffix}
 
 \subsection{The 'Often-Used' Interface of 'harmonyli.ly'}
 
