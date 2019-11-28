@@ -930,7 +930,7 @@ initTextSpan =
  )
 
 
-#(define-markup-command (closeIMZoomRow layout props AL)
+#(define-markup-command (closeImZoomRow layout props AL)
   (list?)
   (let*
     ( (laN (assign aNoteKey AL aNoteDValue))

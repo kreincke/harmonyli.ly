@@ -176,7 +176,7 @@ tools for getting a usable working environment. Therefore, I started an
 investigation. And again, I published my work as a kind of open source
 software.
 
-A preliminary result of this investigation was, that we had three backends for
+A preliminary result of this investigation was, that we had three back-ends for
 using musical notes in \LaTeX: We could use the style of \acc{ABC}-Notation and
 would only be able to integrate very simple harmony analysis symbols into our
 exemplifying score. Or we could use a combination of \acc{\LaTeX, Musix\TeX, and
@@ -193,8 +193,8 @@ fulfilled by the \LaTeX\ tool \acc{harmony}.
 
 At that point I knew, what was possible. But I did not want to respect the
 result. Using \acc{\LaTeX, Musix\TeX, and harmony} would decrease my productivity
-in an unacceptable manner. So, I started a reimplementation of \acc{harmony} for
-\acc{LilyPond} by using its LISP based language \acc{GUILE} and the respectives
+in an unacceptable manner. So, I started a re-implementation of \acc{harmony} for
+\acc{LilyPond} by using its LISP based language \acc{GUILE} and the respective
 techniques for expanding this score edition system. I decided to name it
 \acc{harmonyli.ly}, because this name would give credits to the \LaTeX\ based
 idea generator \acc{harmony} as well as to the intended target system
@@ -224,14 +224,14 @@ undervalued:
   \item With \hlyn, you get a technique to enrich your scores by
   harmony analysis symbols on a level, which is as expressive as it is required
   by the musicology and as beautiful as it necessary for not disturbing the
-  excellent outpout of \acc{LilyPond}.
+  excellent output of \acc{LilyPond}.
   \item You get \hlyn\ as open source software. And the act of licensing is
   explicitly approved by the copyright holders Hans Blum and me, Karsten
   Reincke. hence, you can be sure also to get the rights to use \hlyn.
   \item You get a complete tutorial which thoroughly explains 
   \begin{itemize}
     \item how to generally install and integrate \hlyn into your work
-    \item how to prepare your work for using \hlyn successfuly
+    \item how to prepare your work for using \hlyn successfully
     \item how to create the particular \has{s} required by the musicology.
   \end{itemize}
 \end{itemize}
@@ -256,7 +256,7 @@ And the way of learning how to use \hlyn\ starts now:
 
 \hlyn\ uses the lyrics technique of \lily\ to embed the \has{s} into the \lily\
 score. The benefit is that \lily\ itself aligns the music notes and the
-respective analysis symbols: it prevents horizontal overlappings, if a \has\ is
+respective analysis symbols: it prevents horizontal overlaps, if a \has\ is
 longer than the respective note.
 
 As a little disadvantage \hlyn\ needs a dedicated voice to which the row of
@@ -583,12 +583,13 @@ the stream of \has{s} \texttt{\textbackslash hasSymbols} is bound to that
 reference by name.\footnote{Due to fact, that the \has{s} appear under the
 analysis staff, it sometimes happens, that next part of your score (after the
 system 'linefeed') is visually not sufficiently separated from the preceding
-system. That agravates to read the score fluently. For increasing or decreasing
+system. That aggravates to read the score fluently. For increasing or decreasing
 the distance between the system lines, you can play around with the values
 inserted into the section \texttt{\textbackslash page\{\ldots\}}}
 
 
 \subsection{Binding \has{s} to a Dedicated 'Analysis' Staff}
+\label{BindingToDedicatedAnalysisStaff}
 
 Binding the \has{s} to a specific \acc{analysis} staff is straight forward
 again: you must create a voice in a special staff which only represents the
@@ -810,7 +811,7 @@ center of that chain
 cover suspended or passing notes
 \tabularnewline
 (07) & \textbf{expZoomRow} & \ra & expands an opened \has{} by a description of
-suspended or passing notes which do not modify the current harmonical function
+suspended or passing notes which do not modify the current harmonic function
 \tabularnewline
 (08) & \textbf{openImZoomRow}  & \ra & starts the zoom into an intermediary
 \has{} which shall cover suspended or passing notes
@@ -832,7 +833,7 @@ and/or \lnka{https://en.wikipedia.org/wiki/Backus-Naur\_form}
 into your stream of \has{s}\footnote{Note: \hlyn\ intends to be complete, but
 not correct. This -- maybe surprising -- statement must be explained: In
 computer sciences one discusses the correctness and the completeness of a
-process for deriving syntagms by using a semantical interpretation of each
+process for deriving syntagms by using a semantic interpretation of each
 derivable syntagm. The construct (language and process) is \textbf{complete}, if
 for any intended real world object a syntagm can be derived which refers to that
 real world element. And the construct is \textbf{correct} if each derivable
@@ -845,12 +846,12 @@ our language is not correct (in the sense of computer languages) does not
 matter. Therefore, we want to say that
 \begin{itemize}
   \item \textbf{all} 'subrows' of \has{s} which are necessary to describe the
-  harmonic relationships of real world chords must be formulatable by \hlyn.
+  harmonic relationships of real world chords must be formable by \hlyn.
   \item \textbf{not all} 'subrows' of \has{s} which can be generated by \hlyn\
   necessarily describe possible chord chains.
 \end{itemize}
 A last remark: If one had a correct and complete language for describing streams
-of harmonical chords, then one would have a complete theory of harmonization
+of harmonic chords, then one would have a complete theory of harmonization
 which no longer needs the help of 'unrepresented human knowledge'.
 Delivering such a theory is far beyond the target of \hlyn.
 }:
@@ -1078,11 +1079,11 @@ how one can fulfill specific musical needs by these techniques:
 
 \subsection{Inserting a Function Symbol}
 
-The majority of Anglo-Saxonian musicologists use something like the
+The majority of Anglo-American musicologists use something like the
 'scale-step-theory' by which each tone of scale and the respective chord is
 referred by the respective number (represented by a Roman numeral).
 Alternatively one can use the functional (harmony) theory by which the chords of
-a scale are referred by their harmonical functions (represented by
+a scale are referred by their harmonious functions (represented by
 characters).\footcite[for dedails cf.][\nopage wp]{wpFunctionTheory2019a} Both
 methods can be expressed by \hlyn: Insert the respective symbol as first
 argument of the \hlyn\ basic functions. If you don't need any additional
@@ -1219,7 +1220,7 @@ string \texttt{("B"."YOUR\_NUMBER")}:
 \end{verbatim}
 \end{scriptsize}
 
-\subsection{Indicating a Sopran Note}
+\subsection{Indicating a Treble Note}
 
 Sometimes, a musicologist wants to explicitly specify the highest tone of a
 chord. For indicating the 'soprano' note expand the attribute list by the string
@@ -1265,7 +1266,7 @@ In accordance to the method for writing a basso continuo, both theories
 explicitly display the numbers of those chord tones which shall be used, but
 which are not covered by the default rule 'take 1+3+5+8'. And with respect to
 the other composition rule 'by default combine thirds' each number implictly
-supresses its predecessor and successor. Hence, if the chord contains a second,
+suppresses its predecessor and successor. Hence, if the chord contains a second,
 the two respective adjacent numbers must be revealed.
 
 \hlyn\ allows you to add up to five deviating tones by inserting the strings
@@ -1376,15 +1377,15 @@ constructs like this:
 
 In the context of the scale-step-theory, the bass note is referred by the Roman
 numeral which is inserted as a functional symbol. And each tone of the chord is
-described by the distance to that bass tone (= by the number of the respectiv
-intervall). Hence, the scale-step-theory does not have the need to indicate the
-supression of the root tone.
+described by the distance to that bass tone (= by the number of the respective
+interval). Hence, the scale-step-theory does not have the need to indicate the
+suppression of the root tone.
 
 In the context of the functional harmony theory the chord is referred by its
 function. By default the respective symbol implies that the root is the bass
 note and that the chord uses the third and the fifth. But in some cases you want
 to indicate, that the chord does not use its root, but only the other
-explitcitly or implicitly specified tones.
+explicitly or implicitly specified tones.
 
 For indicating that the chord does not contain its root, insert the string
 \texttt{("T"."x")} into the attribute list:
@@ -1559,7 +1560,7 @@ cadence:
 The disadvantage of such a notation is, that the reader has to know, that A
 major is the dominant of D major and the b minor is the relative key of D major
 and that in this case therefore the row \texttt{(D) Tp} represents a deceptive
-cadence. The representation of the harmonical analysis does not give him any
+cadence. The representation of the harmonic analysis does not give him any
 hint. But if we found the string \texttt{(D[T]) Tp}, which could indicate the
 context of a chord, we would have a clear representation which would
 syntactically indicate that the dominant to the tonic is followed by the
@@ -1599,13 +1600,13 @@ list by the string \texttt{("C"."YOUR\_CONTEXT")}. The context can either be
 another function or the root of a key.
 
 
-\subsection{Indicating Intermediary Chains Chords}
+\subsection{Indicating Intermediary Chains of Chords}
 
 Sometimes, the musicologist has not only to indicate a single intermediary
 chord, but an intermediary chain of chords where each chord of this chain
 refers to the successor of the chain. 
 
-For deriving this need, let us first present an example and a traditional
+For deriving this need, let us first present an example and its traditional
 straight forward analysis:
 
 \begin{center}
@@ -1635,7 +1636,7 @@ straight forward analysis:
 Beyond any doubt, this analysis is correct. But it is not appropriate because it
 does not consider the leading quality of the decreased seventh in bar \texttt{2}
 and bar \texttt{5}. An analysis which better covers our auditive understandings
-would be this:
+could look like this:
 
 \begin{center}
 \begin{lilypond}
@@ -1662,7 +1663,7 @@ would be this:
 \end{center}
 
 But even this analysis does not represent, what we hear. It does not capture the
-functional releationshop of \texttt{e-minor} in bar \texttt{3} and
+functional relationship of \texttt{e-minor} in bar \texttt{3} and
 \texttt{C-Major} in bar \texttt{4} which is established by the three common
 tones. So, a better interpretation would also represent the chords in bar
 \texttt{3} and \texttt{4} with respect to the chord in  bar \texttt{6}:
@@ -1720,15 +1721,14 @@ is shown by the next interpretation:
 \end{lilypond}
 \end{center}
 
-Here you can see the advantage of such a sophisticated analysis: only our last
+The advantage of such a sophisticated analysis strikes the eye: only this last
 interpretation syntactically represents the fact that we hear a deceptive
 cadence in the row and that the complete chain of chords from bar \texttt{2} to
 \texttt{6} as a unit fulfills the function of a subdomain.
 
 Intermediary chains of chords can be created by explicitly open an intermediary
-row, by inserting as many simple \has\ as necessary and by explicitly closing
+row, by inserting as many simple \has{s}\ as necessary and by explicitly closing
 the intermediary row as it is shown here:
-
 \begin{scriptsize}
 \begin{verbatim}
 \version "2.18.2"
@@ -1742,12 +1742,12 @@ the intermediary row as it is shown here:
   \addlyrics { 
     \markup \setHas "T" #'((""."")) 
 \end{verbatim}
-{ \color{red} \verb|    \markup \openImRow "D" #'(("a"."-7")| }
+{ \color{red} \verb|    \markup \openImRow "D" #'(("a"."-7"))| }
 \begin{verbatim} 
     \markup \setHas "Tp" #'() 
     \markup \setHas "S" #'(("B"."3"))     
 \end{verbatim}
-{ \color{red} \verb|    \markup closeImRow "D" #'(("a"."-7")| }
+{ \color{red} \verb|    \markup closeImRow "D" #'(("a"."-7"))| }
 \begin{verbatim}  
     \markup \setHas "S" #'(("B"."3"))
     }
@@ -1759,14 +1759,14 @@ the intermediary row as it is shown here:
 \end{scriptsize}
 
 
-Please keep in mind: It is not necessary that you agree with our analysis. But
-we wanted to prove that \hlyn\ can grasp such complex relationships.
+Please keep in mind: It is not necessary that you agree with our analysis. The
+example should only prove that \hlyn\ can grasp such complex relationships.
 
 \subsection{Indicating the Context of Intermediary Chains of Chords}
 
 But we must still tighten up the screw a bit more: If \hlyn\ shall be able to
-represent deceptive candences by indicating the expected function of an
-intermediary chord and the real disappointing function of the successing chord
+represent deceptive cadences by indicating the expected function of an
+intermediary chord and the real disappointing function of the subsequent chord
 -- as it is shown here --
 
 \begin{center}
@@ -1817,8 +1817,234 @@ chord:
 \end{lilypond}
 \end{center}
 
+For indicating the context of an intermediary chain of chords you can use nearly
+the same method used for creating intermediary chain of chords without
+indicating the content. But you have to add the attribute string
+\texttt{("fr"."[YOUR\_CONTEXT]")} into the attribute list of the chord which
+closes the intermediary row:
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
+    < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' e'' g''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \openImRow "D" #'(("a"."-7")) 
+    \markup \setHas "Tp" #'() 
+    \markup \setHas "S" #'(("B"."3"))     
+\end{verbatim}
+{ \color{red} \verb|    \markup \closeImRow "D" #'(("a"."-7")("fr"."[S]"))| }
+\begin{verbatim} 
+    \markup \setHas "Sp" #'(("B"."5"))
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
+
+The idea behind this method is that you here use the attribute
+\acc{f(illstring)r(ight)} to append an the string \texttt{"[YOUR\_CONTEXT]"} 
 
 \subsection{Indicating Suspended and Passing Notes}
+
+In other harmonic analyses the musicologist wants to represent suspended or
+passing notes although they do not modify the underlying harmonic function. It
+is like he zooms in on the details of the chord. Here is an example of such a
+'chordal movement':
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  e' g' a' d''>1 | < e' g' a' cis''> |
+    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+    < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    % bar 2 - 3
+    \markup \openZoomRow "D" #'(("B"."5")("a"."4")("b"."7"))
+    \markup \expZoomRow #'(("a"."3")("b"."7")) 
+    % bar 4 - 5
+    \initTextSpan "   "
+    \markup \openZoomRow "S" #'(("B"."3")("a"."4"))
+    \startTextSpan
+    \markup \expZoomRow #'(("a"."5")) 
+    \stopTextSpan
+    % bar 6 - 9
+    \initTextSpan "   "
+    \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+    \startTextSpan
+    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+    \stopTextSpan 
+        
+    \markup \setHas "Tp" #'() 
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+For constructing this kind of descriptions you must open a zoom row before you
+can expand it (\texttt{bar 2-3} and \texttt{bar 4-5}). Or you open an
+intermediary zoom row, expand it, and close it explicitly (\texttt{bar 6-9}). If
+you want to create a line for indicating the zoom row graphically (\texttt{bar
+4-5} and \texttt{bar 6-9} ), you must call the function \texttt{\textbackslash
+initTextSpan} before the function \texttt{\textbackslash open[Im]ZoomRow}, the
+function \texttt{\textbackslash startTextSpan} after the function
+\texttt{\textbackslash open[Im]ZoomRow}, and the function \texttt{\textbackslash
+stopTextSpan} after the last call of the function \texttt{\textbackslash
+expZoomRow} respectively after having called the function \texttt{\textbackslash
+closeImZoomRow} -- as it is shown in the code of the given example:
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  e' g' a' d''>1 | < e' g' a' cis''> |
+    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+    < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+\end{verbatim}
+\color{red}
+\begin{verbatim} 
+    % bar 2 - 3
+    \markup \openZoomRow "D" #'(("B"."5")("a"."4")("b"."7"))
+    \markup \expZoomRow #'(("a"."3")("b"."7")) 
+\end{verbatim}
+\color{blue}
+\begin{verbatim} 
+    % bar 4 - 5
+    \initTextSpan "   "
+    \markup \openZoomRow "S" #'(("B"."3")("a"."4"))
+    \startTextSpan
+    \markup \expZoomRow #'(("a"."5")) 
+    \stopTextSpan
+\end{verbatim}
+\color{magenta}
+\begin{verbatim} 
+    % bar 6 - 9
+    \initTextSpan "   "
+    \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+    \startTextSpan
+    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+    \stopTextSpan 
+\end{verbatim}
+\color{black}
+\begin{verbatim} 
+        
+    \markup \setHas "Tp" #'() 
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
+
+Please note:
+\begin{itemize}
+  \item It is not necessary to close a normal zoom row by any specific function.
+  But if you start with \texttt{\textbackslash initTextSpan} before
+  \texttt{\textbackslash openZoomRow}, then you must call \texttt{\textbackslash
+  stopTextSpan} after the last \texttt{\textbackslash expZoomRow}
+  \item In case of a normal zoom row as well as in case of an intermediary zoom
+  row, you may insert the function \texttt{\textbackslash expZoomRow} as often as
+  it is required by your chord stream.
+  \item In accordance to the nature of a zoom row, the functions
+  \texttt{\textbackslash expZoomRow} and \texttt{\textbackslash closeImZoomRow}
+  do not accept the parameter 'function symbol'. And they do not evaluate the
+  attribute \texttt{"S"}.
+\end{itemize}
+
+
+Finally, some of you might have noted, that the closure of an intermediary zoom
+row sometimes is a bit ugly (\texttt{bar 6-9}). Let us shortly explain the
+inevitable reasons before we present you a less ugly workaround:
+
+\hlyn\ uses the method \acc{addlyrics} for binding the stream of symbols to the
+stream of chords. Hence, each markup-command and each single word not being
+embedded into a markup-command is mapped to the next chord of the voice to which
+the analysis has been bound. And intermediary row on the other side is indicated
+by an open bracket as prefix and a closed bracket as suffix. From the viewpoint
+of \lily, the connection of the symbol and its prefix resp. its suffix is the
+symbol itself. And in a lyric stream \lily\ only allows us to underscore the
+symbol as whole, not only the half of the symbol or the part before the closing
+bracket. That's the reason, why in this case the line in \texttt{bar 9} crosses
+the bracket.
+
+But note, this will become only visible in case of very long notes as we used
+here. If you nevertheless meet such unattractive figures, you can use the
+following workaround:
+
+\begin{itemize}
+  \item Use the method \acc{Binding \has{s} to a Dedicated 'Analysis'
+  Staff}\footnote{\ra S. \pageref{BindingToDedicatedAnalysisStaff}}
+  \item Split the long note into a large note and a shorter note.
+  \item stop the text span before the shorter note.
+  \item close the intermediary row by refering to the shorter note.
+\end{itemize}
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+\header { tagline = "" }
+
+imInfix= " "
+
+\score {
+  <<
+
+    \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    
+    < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+    < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
+
+    \new RhythmicStaff {
+        \time 4/4 \stemUp \stemUp 
+        d1 | d1 | d1 | d2. d4 | d1
+    }
+    \addlyrics { 
+
+      \markup \setHas "S" #'(("B"."3"))
+
+      \initTextSpan "   "
+      \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+      \startTextSpan
+      \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+      \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+      \stopTextSpan 
+      \markup \closeImZoomRow #'() 
+        
+    \markup \setHas "Tp" #'() 
+    }
+  >>
+
+  \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
+} 
+
+\end{lilypond}
+\end{center}
 
 \subsection{Indicating Chords With Suspended and Passing Notes}
 
