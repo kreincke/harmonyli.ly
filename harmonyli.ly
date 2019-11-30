@@ -369,8 +369,8 @@
   )
 )
 
-
-
+% INTERFACE 2.A
+% returns the Riemann Function Symbol as markup
 #(define-markup-command (setHas layout props RS AL)
   (markup? list?)
   (let*
@@ -420,7 +420,8 @@
    )
  )
 
-
+% INTERFACE 2.A
+% returns the Riemann Function Symbol as markup
 #(define-markup-command (setRfHas layout props RSl RSr AL)
   (markup? markup? list?)
   (let*
@@ -913,7 +914,8 @@ initTextSpan =
 #(define-markup-command (expZoomRow layout props AL)
   (list?)
   (let*
-    ( (laN (assign aNoteKey AL aNoteDValue))
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
       (lbN (assign bNoteKey AL bNoteDValue))
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
@@ -922,17 +924,18 @@ initTextSpan =
   
     (interpret-markup layout props
      #{
-         \markup \has "" "" "" #laN #lbN #lcN #ldN #leN "" "" ""
+         \markup \has " " "" #lBN #laN #lbN #lcN #ldN #leN "" "" ""
      #}
     )
    )
  )
 
 
-#(define-markup-command (closeIMZoomRow layout props AL)
+#(define-markup-command (closeImZoomRow layout props AL)
   (list?)
   (let*
-    ( (laN (assign aNoteKey AL aNoteDValue))
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
       (lbN (assign bNoteKey AL bNoteDValue))
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
@@ -941,7 +944,7 @@ initTextSpan =
     )
     (set! lFSr (string-append imInfix ")" lFSr) )
     (interpret-markup layout props
-      #{ \markup \has "" "" ""  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
+      #{ \markup \has " " "" #lBN  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
     )
    )
  )

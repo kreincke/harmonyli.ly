@@ -150,6 +150,19 @@
 \maketitle
 %%-- end(titlepage)
 
+\begin{abstract}
+\noindent \itshape
+This tutorial describes how to create and embed \has{s}\ into scores. It
+intends to be a handout for musicologist and other enthusiasts of harmony
+analyses, who use \lily. It documents the usage of the library \hlyn\ by which
+can develop \acc{Riemann} symbols as well as symbols of the
+\acc{scale-step-theory}). Due to the fact, that \hlyn\ as well as this \LaTeX\ 
+based paper is published as open source software and that its sources are part
+of the library \hlyn, it indirectly can also teach how to embed \lily\ snippets
+into \LaTeX\ files.
+\end{abstract}
+
+
 \footnotesize
 \tableofcontents
 
@@ -157,26 +170,32 @@
 
 \section{Introduction}
 
-As so often - in the beginning there was a need: I had to write a musicological
-work.
+In the beginning there was the need to write a musicological work.
 
-Actually, I had a good starting point: I knew, that there was an Anglo-American
-scientific style which heavily differed from the European resp. German standard
-in the humanities. To close that gap, I had already created a \LaTeX\
-environment for writing scientific articles and books which even fulfilled the
-very sophisticated requirements of the humanities in general and the standards
-of the musicology in particular. I had documented that work, had explained and
-justified that style of writing and published the result as open source
-software.
+Actually, I should have had a good start: I knew already, that -- at least in
+the humanities -- there is a big difference between the Anglo-American
+scientific style\footcite[cf.][619ff]{ChMaStyle2010a} and the European resp.
+German standard.\footcite[cf.][147ff]{Theisen2013a} I had already seen that it
+was a bit tricky to use that style in \LaTeX. To close the gap that I had met, I
+had developed a complete \LaTeX\ based environment for writing scientific
+articles and books which fulfill the sophisticated requirements of the (German)
+humanities in general and the standards of the musicology in
+particular.\footcite[cf.][\nopage wp]{reincke2018a} I had published this tool as
+open source software\footcite[cf.][\nopage wp]{reincke2018c} and described the
+respective (working) style.\footcite[cf.][\nopage]{reincke2018b}
 
-Unfortunately, I did not know, how to embed snippets of musical scores into a
-\LaTeX\ file. Trawling through the web delivered a bulk of tools and methods,
-but no manual, how to do so, and no tutorial, how to successfully combine which
-tools for getting a usable working environment. Therefore, I started an
-investigation. And again, I published my work as a kind of open source
-software.
+But -- unfortunately -- I still did not know, how to embed snippets of musical
+scores into a \LaTeX\ file. Trawling through the web delivered a bulk of tools
+and methods, but no manual and no tutorial, how to successfully combine which
+tools for getting a usable working environment. Thus, I had to interrupt my
+musicological work before I had started it. Previously, it was necessary to
+investigate the situation for not backing the wrong horse. At the end, I had
+written a complete analysis about the best way to embed musicological examples
+into \LaTeX\ texts.\footcite[cf.][\nopage]{reincke2019c} And I had published the
+respective sources als kind of open source
+'software'.\footcite[cf.][\nopage]{reincke2019a}
 
-A preliminary result of this investigation was, that we had three back-ends for
+A preliminary result of this investigation was, that we have three back-ends for
 using musical notes in \LaTeX: We could use the style of \acc{ABC}-Notation and
 would only be able to integrate very simple harmony analysis symbols into our
 exemplifying score. Or we could use a combination of \acc{\LaTeX, Musix\TeX, and
@@ -186,37 +205,56 @@ being supported by any good (semi-)graphical Editor. Or we could use the well
 established coding environment \acc{LilyPond} and its \LaTeX-integration tool
 \acc{lilypondbook} together with at least two excellent semi-graphical Editors
 like \acc{Frescobaldi} or \acc{Elysium}. Moreover, if we were willing to use
-converters like \acc{musicxml2ly}, we could also use the genuine graphic editor
-\acc{MuseScore}. But then, we would again not be able to insert  harmony
+converters like \acc{music\-xml2ly}, we could also use the genuine graphic editor
+\acc{MuseScore}. But then, we would again not be able to insert harmony
 analysis symbols on a level which matches the state of the art and which was
-fulfilled by the \LaTeX\ tool \acc{harmony}.
+fulfilled by the \LaTeX\ tool \acc{harmony}.\footnote{For a survey of the
+existing backends \cite[cf.][19ff]{reincke2019c}. For a an outline of the
+generally possible way to combine existing tools \cite[cf.][91f]{reincke2019c}.
+And for the final result \cite[cf.][100f]{reincke2019c}. If you need more
+information about the tools mentioned in this paragraph, have a look at the
+respective chapters in \cite[cf.][\nopage et passim]{reincke2019c}}
 
 At that point I knew, what was possible. But I did not want to respect the
-result. Using \acc{\LaTeX, Musix\TeX, and harmony} would decrease my productivity
-in an unacceptable manner. So, I started a re-implementation of \acc{harmony} for
-\acc{LilyPond} by using its LISP based language \acc{GUILE} and the respective
-techniques for expanding this score edition system. I decided to name it
-\acc{harmonyli.ly}, because this name would give credits to the \LaTeX\ based
-idea generator \acc{harmony} as well as to the intended target system
-\acc{LilyPond}, which I had learned to love. My result worked. But its
+result. Using \acc{\LaTeX, Musix\TeX, and harmony} would decrease my
+productivity in an unacceptable manner. So, I started a re-implementation of
+\acc{harmony} for \acc{LilyPond} by using its LISP based language \acc{GUILE}
+and the respective techniques for expanding this score edition system. I decided
+to name it \acc{harmonyli.ly}, because this name would give credits to the
+\LaTeX\ based idea generator \acc{harmony}\footcite[cf.][\nopage]{WegWeg2007a}
+as well as to the intended target system \acc{LilyPond}\footcite[cf.][\nopage
+wp]{LilyPond2018a}, which I had learned to love. My result worked. But its
 appearance was not on the level I preferred to achieve.
 
-So, I asked the \acc{LilyPond} community for feedback. I knew, that at that time
-I might have been a good programmer, an expert of musical theory, and an adept
-of Free and Open Source Software and its spirit, but I certainly was not familiar
-with the internals of \acc{LilyPond}, its 'biotope' of additional tools and its
-history. From this point, a typical open source success-story started.
+So, I asked the \acc{LilyPond} community for feedback\footnote{\ra\
+\lnka{https://lists.gnu.org/archive/html/lilypond-user/2019-10/msg00411.html}}.
+I knew, that at that time I might have been a good programmer, an expert of
+musical theory, and an adept of Free and Open Source Software and its spirit,
+but I certainly was not familiar with the internals of \acc{LilyPond}, its
+'biotope' of additional tools and its history. But at this point, a typical open
+source success story started.
 
-I got a lot of hints, for instance by \ldots. And I was told the \ldots had
-already written a first version of such a tool and that it was published as
-Public Domain Software in the \acc{LilyPond Snippet Repository}. So I took this
+I got a lot of hints, for instance by Leo Correia de Verdier, Phil Holmes, Urs
+Liska Thomas Morley, Mark Stephen Mrotek, Carl Sorensen, Saul Tobin, David
+Wright. I was told that Klaus Blum had already written a first version of such a
+tool and that it was published as Public Domain Software in the \acc{LilyPond
+Snippet Repository}.\footcite[cf.][\nopage wp]{Blum2019a} So I took this
 preliminary work, redesigned and expanded the interface, rewrote some functions
-and added a lot of other code. But nevertheless, my work was a derivative work
-of Hand Blum's work. So -- and even if it had not been necessary from a legal
-point of view --, I asked him whether he could agree that I re-engineered his
-work and that I released the result under a licensing construct, by which the
-user could chose the license he prefered, either GPL or MIT. And to my great
-pleasure, Hans Blum agreed with this concept. 
+and added a lot of other code. But nevertheless, my library was a derivative
+work of Klaus Blum's model. So -- and even if it had not been necessary from a
+legal point of view --, I asked him whether he could accept that I was
+re-engineering his work and that I was going to release the result under a
+licensing construct, by which the user could choose the license he prefered,
+either GPL or MIT. And to my great pleasure, Klaus Blum agreed with this
+concept.\footnote{You will find the approving mail in the directory 'xtras' of
+the harmonyli.ly sources. (\ra\
+\lnka{https://github.com/kreincke/harmonyli.ly/tree/master/xtras}) Just as Klaus
+Blum did, also \hlyn\ uses some examples offered by Neil Puttock for explaining
+how to use text span engraver ( \ra\
+\lnka{http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html 
+} )
+and which therefore fall under the same license as any other example code which
+is offered by \lily. }
 
 That was the way by which you now obtain three results, which should not be
 undervalued:
@@ -225,14 +263,15 @@ undervalued:
   harmony analysis symbols on a level, which is as expressive as it is required
   by the musicology and as beautiful as it necessary for not disturbing the
   excellent output of \acc{LilyPond}.
-  \item You get \hlyn\ as open source software. And the act of licensing is
-  explicitly approved by the copyright holders Hans Blum and me, Karsten
-  Reincke. hence, you can be sure also to get the rights to use \hlyn.
-  \item You get a complete tutorial which thoroughly explains 
+  \item You get \hlyn\ as open source software\footcite[cf.][\nopage wp]{ReinckeBlum2019a} together with a licensing, which is explicitly approved
+  by the copyright holders Hans Blum and me, Karsten Reincke. Hence, you can be
+  sure of really having got the rights you need to use \hlyn.
+  \item You get a complete tutorial\footcite[cf.][\nopage wp]{Reincke2019b} which
+  thoroughly explains
   \begin{itemize}
-    \item how to generally install and integrate \hlyn into your work
-    \item how to prepare your work for using \hlyn successfully
-    \item how to create the particular \has{s} required by the musicology.
+    \item how to generally install and integrate \hlyn\ into your work
+    \item how to prepare your work for using \hlyn\ successfully
+    \item how to create the particular \has{s}\ required by the musicology.
   \end{itemize}
 \end{itemize}
 
@@ -383,6 +422,7 @@ voice one specific \has. If you do not want to use such a 1:1 relation between
 notes and \has{s}, you can use one of the other methods.
 
 \subsection{Binding \has{s} to a Hidden Voice}
+\label{HiddenVoice}
 
 Linking the \has{s} to an invisible voice is a bit tricky: First, you must
 design your staff as a staff with several voices. Then you inscribe a (mostly
@@ -472,7 +512,7 @@ hasSymbols = \lyricmode {
       { <<
           \bass
           % change "Voice" to "NullVoice" to make analyze voice unvisible:
-          \new Voice = "AnalysisSubline" {\shiftOff  \hasRhythmHidden}
+          \new NullVoice = "AnalysisSubline" {\shiftOff  \hasRhythmHidden}
           \new Lyrics \lyricsto "AnalysisSubline" \hasSymbols
         >>
       }
@@ -777,7 +817,7 @@ Instead of this, each of them gets its own staff. And again, the stream of
 After having generally explained how to integrate and use \hlyn, we can now
 discuss, how particular \has{s}\ are generated by \hlyn\ commands. For that
 purpose, \hlyn\ offers two interfaces: the basic \hlyn\ functions and some
-often used instantiations. This chapter describes the general interface: 
+often used instantiations\footnote{\ra\ FAQ p. \pageref{FAQ}}. This chapter describes the general interface: 
 
 \subsection{The basic \hlyn-functions}
 The basic interface of \hlyn\ contains nine functions:
@@ -1560,12 +1600,11 @@ cadence:
 The disadvantage of such a notation is, that the reader has to know, that A
 major is the dominant of D major and the b minor is the relative key of D major
 and that in this case therefore the row \texttt{(D) Tp} represents a deceptive
-cadence. The representation of the harmonic analysis does not give him any
-hint. But if we found the string \texttt{(D[T]) Tp}, which could indicate the
-context of a chord, we would have a clear representation which would
-syntactically indicate that the dominant to the tonic is followed by the
-relative to the tonic and that therefore the definition of a deceptive cadence
-is fulfilled:
+cadence. The representation of the harmonic analysis itself does not give him
+any hint. But if we found the string \texttt{(D[T]) Tp} indicating the context
+of the frist chord, we would have a clear syntactically based representation:
+The dominant of the tonic is followed by the relative to the tonic and that it
+is -- by definition -- a deceptive cadence:
 
 \begin{center}
 \begin{lilypond}
@@ -1585,19 +1624,19 @@ is fulfilled:
 \end{lilypond}
 \end{center}
 
-If one uses such a representation for a deceptive cadence, then one can directly
-argue from the definitions and the facts to the existence of a deceptive cadence:
-
 \begin{itemize}
   \item Every dominant \texttt{D} leads to its tonic \texttt{T}.
-  \item An intermediary chord \texttt{()} refers to the successor.
-  \item In he current case, the successor is not the expected tonic, but the relative tonic.
+  \item All intermediary chords \texttt{()} refer to their successors.
+  \item Here, the successor is not the expected tonic, but the relative tonic.
   \item Hence it is not a cadence, but a deceptive cadence \texttt{(D) Tp}
 \end{itemize}
 
 For indicating the context of a specific function you must expand the attribute
 list by the string \texttt{("C"."YOUR\_CONTEXT")}. The context can either be
-another function or the root of a key.
+another function or the root of a key.\footnote{Using the square brackets as
+indicator for the context follows de la Motte who also saw the need to exemplify
+a local tonal center as something like the context of the interpretation.
+(\cite[cf.][144 et passim]{Delamotte2011a})}
 
 
 \subsection{Indicating Intermediary Chains of Chords}
@@ -1975,87 +2014,457 @@ Please note:
 \end{itemize}
 
 
-Finally, some of you might have noted, that the closure of an intermediary zoom
-row sometimes is a bit ugly (\texttt{bar 6-9}). Let us shortly explain the
-inevitable reasons before we present you a less ugly workaround:
+Finally, some of you might have noticed, that the closure of an intermediary
+zoom row sometimes can become a bit ugly (\texttt{bar 6-9}). Let us shortly
+give reasons for that before we present a 'workaround':
 
 \hlyn\ uses the method \acc{addlyrics} for binding the stream of symbols to the
-stream of chords. Hence, each markup-command and each single word not being
-embedded into a markup-command is mapped to the next chord of the voice to which
-the analysis has been bound. And intermediary row on the other side is indicated
-by an open bracket as prefix and a closed bracket as suffix. From the viewpoint
-of \lily, the connection of the symbol and its prefix resp. its suffix is the
-symbol itself. And in a lyric stream \lily\ only allows us to underscore the
-symbol as whole, not only the half of the symbol or the part before the closing
-bracket. That's the reason, why in this case the line in \texttt{bar 9} crosses
-the bracket.
+stream of chords. Hence, each markup-command -- and each single word not being
+embedded into a markup-command -- is mapped to the next chord of the voice to
+which the analysis has been bound. On the other hand, an intermediary row is
+indicated by a left parenthesis as prefix and a right parenthesis as suffix.
+From the viewpoint of \lily, the connection of the symbol and its prefix resp.
+its suffix is that unit which is bound to a chord. But in a lyric stream, \lily\
+only allows us to underscore such a unit as whole, not only the 'half' of a unit
+or a third or -- as it actually is required here -- the part before the right
+parenthesis. That's the reason, why in this case the line in \texttt{bar 9}
+crosses the bracket an is drawn through to the right border of the chord.
 
-But note, this will become only visible in case of very long notes as we used
-here. If you nevertheless meet such unattractive figures, you can use the
-following workaround:
+The good message is, that you will rarely run into this visual deficiency:
+it only arises in case of very long notes as we used here. Hence you mostly can
+use this technique without any modifications. 
+
+But if your nevertheless have run into this trap, you can use a good
+'workaround' to put yourself out of this misery:
 
 \begin{itemize}
-  \item Use the method \acc{Binding \has{s} to a Dedicated 'Analysis'
-  Staff}\footnote{\ra S. \pageref{BindingToDedicatedAnalysisStaff}}
+  \item Use the method \acc{Binding \has{s} to a Hidden Voice}\footnote{\ra p.
+  \pageref{HiddenVoice}}
   \item Split the long note into a large note and a shorter note.
-  \item stop the text span before the shorter note.
-  \item close the intermediary row by refering to the shorter note.
+  \item Stop the text span before the shorter note.
+  \item Close the intermediary row with the shorter note.
 \end{itemize}
+
+As your result you will get this:
 
 \begin{center}
 \begin{lilypond}
-
 \version "2.18.2"
 \include "lilypond/harmonyli.ly"
+
 \header { tagline = "" }
 
-imInfix= " "
+imInfix = " "
+
+isVisible = { \stemUp 
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+  < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
+}
+
+isHidden = \relative d { \stemDown 
+  \override NoteHead.color = #red
+  \override NoteColumn #'ignore-collision = ##t
+  d1 | d1 | d1 | d2. d4 | d1
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "S" #'(("B"."3"))
+  \initTextSpan "      "
+  \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+  \startTextSpan
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+  \stopTextSpan 
+  \markup \closeImZoomRow #'()    
+  \markup \setHas "Tp" #'() 
+}
 
 \score {
-  <<
-
-    \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    
-    < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
-    < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
-
-    \new RhythmicStaff {
-        \time 4/4 \stemUp \stemUp 
-        d1 | d1 | d1 | d2. d4 | d1
-    }
-    \addlyrics { 
-
-      \markup \setHas "S" #'(("B"."3"))
-
-      \initTextSpan "   "
-      \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
-      \startTextSpan
-      \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-      \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-      \stopTextSpan 
-      \markup \closeImZoomRow #'() 
-        
-    \markup \setHas "Tp" #'() 
-    }
+  \new Staff <<
+    \key d \major  \time 4/4 \clef treble
+    \new Voice { \isVisible }
+    % change "Voice" to "NullVoice" to make analyze voice unvisible:
+    \new NullVoice = "inVisible" { \isHidden}
+    \new Lyrics \lyricsto "inVisible" { \hasSymbols }
   >>
-
-  \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
 } 
-
 \end{lilypond}
 \end{center}
 
-\subsection{Indicating Chords With Suspended and Passing Notes}
+The trick becomes understandable if we unhide the hidden voice:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\header { tagline = "" }
+
+imInfix = " " % don't forget this!
+
+isVisible = { \stemUp 
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+  < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
+}
+
+isHidden = \relative d { \stemDown 
+  \override NoteHead.color = #red
+  \override NoteColumn #'ignore-collision = ##t
+  d1 | d1 | d1 | d2. d4 | d1
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "S" #'(("B"."3"))
+  \initTextSpan "      "
+  \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+  \startTextSpan
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+  \stopTextSpan 
+  \markup \closeImZoomRow #'()    
+  \markup \setHas "Tp" #'() 
+}
+
+\score {
+  \new Staff <<
+    \key d \major  \time 4/4 \clef treble
+    \new Voice { \isVisible }
+    % change "Voice" to "NullVoice" to make analyze voice unvisible:
+    \new Voice = "inVisible" { \isHidden}
+    \new Lyrics \lyricsto "inVisible" { \hasSymbols }
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{lilypond}
+\end{center}
+
+Here is the respective code:
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\header { tagline = "" }
+
+imInfix = " " % don't forget this!
+
+isVisible = { \stemUp 
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+  < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
+}
+
+isHidden = \relative d { \stemDown 
+  \override NoteHead.color = #red
+  \override NoteColumn #'ignore-collision = ##t
+  d1 | d1 | d1 | d2. d4 | d1
+}
+
+hasSymbols = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "S" #'(("B"."3"))
+  \initTextSpan "      "
+  \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
+  \startTextSpan
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
+  \stopTextSpan 
+  \markup \closeImZoomRow #'()    
+  \markup \setHas "Tp" #'() 
+}
+
+\score {
+  \new Staff <<
+    \key d \major  \time 4/4 \clef treble
+    \new Voice { \isVisible }
+    % change "Voice" to "NullVoice" to make analyze voice unvisible:
+    \new Voice = "inVisible" { \isHidden}
+    \new Lyrics \lyricsto "inVisible" { \hasSymbols }
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+
+\end{verbatim}
+\end{scriptsize}
 
 \subsection{Indicating Modulations}
 
-\subsection{Indicating A Prefix or Suffix}
+One of the most important capabilities of a language to describe harmonic
+relationships is the feature to represent harmonic modulations. In a modulation
+the current function of a chord is re-interpreted with respect to a new tonal
+center: In the context of \texttt{D-Major}, \texttt{e-minor} is the
+\acc{relative of the subdominant}, but in the context of \texttt{C-Major}, it is
+the \acc{counterrelative of the tonic}. Using this ambiguity, \texttt{e-minor}
+can act as linking chord which connects a section written in \texttt{D-Major}
+with a section written in \texttt{C-Major}.
 
-\subsection{The 'Often-Used' Interface of 'harmonyli.ly'}
+As far as we know, there still does not exist a coherently and commonly used
+method to indicate such harmonic reframings.\footnote{One of the apologist of the
+functional harmonic theory, Hugo de la Motte, prefers to use a line based
+concept with an overlapping section at the point of reframing: The first line
+starts with the \has{s} related to the first tonal center up inclusevily to the
+chord, which is reinterpreted, and is continuated by blanks. The second line
+starts with blanks up to the beginning of the reinterpreted chord and is
+continued by the \has{s} related to the second tonal center. (\cite[cf.][144 et
+passim]{Delamotte2011a}) For the use in a score this method is a bit unwieldy.
+Therefore, \hlyn\ 'only' labels the reinterpreted chord added by indicating the
+modified context. To explicate the context by square brackets is used by de la
+Motte too. (\cite[cf.][226 et passim]{Delamotte2011a})} Therefore, we propose a
+straight forward approach: the two functions of the re-interpreted chord are
+linked by an arrow and the complete complex is outlined by a rectangle:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  b g' d'' g''>1 | < cis' g' a' e''> | < d' fis' a' d''>1 |
+    <  b g' e'' g''> | <  c' a' d'' f''> |
+    <  d' f' g' b' > | < c' e' g' c''> | 
+    }
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setHas "S" #'(("B"."3")) 
+    \markup \setHas "D" #'(("B"."3")("a"."7"))
+    \markup \setHas "T" #'((""."")) 
+    % bar 5 - 6
+    
+    \markup \setRfHas "Sp" "Tg" 
+    #'( ("B"."5")("C" . "D")
+        ("nB"."5")("nC" . "C")
+    )
+    
+    \markup \setHas "S" #'(("B"."5")("a"."5")("b"."6"))
+    \markup \setHas "D" #'(("B"."5")("a"."7"))
+    % bar 4 - 5
+    \markup \setHas "T" #'((""."")) 
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+
+The complete syntax of such a reframing chord symbol can be demonstrated by using
+the respective function itself:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+      < d' fis' a' d''>1  
+  }
+  \addlyrics {
+    \markup \setRfHas 
+        "FL"
+        "FR" 
+    #'( 
+        ("fl" . "fl: LL  ")
+        ("T"."x")
+        ("B"."B: BL")
+        ("S"."S: SL")
+        ("a" . "a: L1")
+        ("b" . "b: L2")
+        ("c" . "c: L3")
+        ("d" . "d: L4")
+        ("e" . "e: L5")
+        ("C" . "C: LC")
+        ("fr" . "  fr: LR")
+        
+        ("nfl" . " nfl: RL ")
+        ("nT"."d")
+        ("nB"."nB: BR")
+        ("nS"."nS: SR")
+        ("na" . "na: R1")
+        ("nb" . "nb: R2")
+        ("nc" . "nc: R3")
+        ("nd" . "nd: R4")
+        ("ne" . "ne: R5")
+        ("nC" . "nC: RC")
+        ("nfr" . "  nfr: RR")
+    )
+    
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+This artifical symbol is created by the respective code:
+
+\begin{scriptsize}
+\begin{verbatim}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+      < d' fis' a' d''>1  
+  }
+  \addlyrics {
+    \markup \setRfHas 
+        "F/L"
+        "F/R" 
+    #'( 
+        ("fl" . "fl: LL  ")
+        ("T"."x")
+        ("B"."B: BL")
+        ("S"."S: SL")
+        ("a" . "a: L1")
+        ("b" . "b: L2")
+        ("c" . "c: L3")
+        ("d" . "d: L4")
+        ("e" . "e: L5")
+        ("C" . "C: LC")
+        ("fr" . "  fr: LR")
+        
+        ("nfl" . " nfl: RL ")
+        ("nT"."d")
+        ("nB"."nB: BR")
+        ("nS"."nS: SR")
+        ("na" . "na: R1")
+        ("nb" . "nb: R2")
+        ("nc" . "nc: R3")
+        ("nd" . "nd: R4")
+        ("ne" . "ne: R5")
+        ("nC" . "nC: RC")
+        ("nfr" . "  nfr: RR")
+    )
+    
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
+
+
+That it is helpful to have such a complex expressivity may be emphasized by the
+next example:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    }
+  \addlyrics { 
+    \markup \setHas "T" #'((""."")) 
+    \markup \setRfHas "D" "D" 
+    #'( ("T"."x")("B"."♭9")("a"."7")("C" . "D")
+        ("nT"."x")("nB"."7")("na"."♭9")("nC" . "C")
+    )    
+    \markup \setHas "s" #'(("B"."♭3")("a"."5")("b"."6")) 
+    \markup \setHas "T" #'(("B"."5"))
+    \markup \setHas "D" #'(("B"."3")("a"."7"))
+    \markup \setHas "T" #'((""."")) 
+
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\section{Just for Fun: A Last Example}
 
 \section{Package Content}
 
+\section{FAQ}
+\label{FAQ}
+\subsection{What's the purpose of the prefix / suffix?}
+
+\hlyn\ offers the opportunity, to 'expand' a \has{}\ by a prefix and/or a
+suffix. You can insert such prefixes or suffixes by adding the attributes
+\texttt{("fl" . "prefix")} resp. \texttt{("fr" . "suffix")} into the list of
+attributes. In this way, you can insert verbal hints or influence \lily.
+
+\subsection{Can a I increase the distance between the parentheses and the symbol of intermediary chords?}
+
+Yes you can. Type \texttt{imInfix = " "} just before your section \texttt{score}
+
+\subsection{How can I prevent that a zoom row line starts too early?}
+
+Increase the number of blanks handed over as value of the parameter by using the
+function \texttt{\textbackslash initTextSpan "      "}
+
+\subsection{Does \hlyn\ offer some abbreviations?}
+
+Yes. There are some often used \has{s}, which \hlyn\ offers as special symbols.
+But note, they only accept a very reduced subset of parameters:
+
+\begin{description}
+  \item[\textbackslash FHAS \$HAS] ::- inserts the respective \has{}.
+  \item[\textbackslash FHASth \$HAS] ::- inserts the first inversion of the respective \has{}.
+  \item[\textbackslash Dsept \$HAS] ::- inserts a dominant plus seven.
+  \item[\textbackslash Dseptnone \$HAS] ::- inserts a dominant plus seventh and nineth.
+\end{description}
+
+\subsection{can you offer a synopsis of concepts, translations, and symbols?}
+
+Yes, we\footnote{In this context, I have first of all to thank Leo Correia de
+Verdier (who delivered the basic version of the following table to me) and
+Gregory Hollands (who led me to some respective sites)} can:
+
+\begin{tabular}{|l|l|l|}
+\hline
+Symbol & German & English \tabularnewline
+\hline
+\hline
+T      & Tonika                 & tonic \\
+\hline
+Tp     & Tonika-Parallele       & relative of the tonic \\
+\hline
+Tg     & Tonika-Gegenklang      & counter-relative of the tonic \\
+\hline
+S      & Subdominante           & subdominant \\
+\hline
+Sp     & Subdominant-Parallele  & relative of the subdominant \\
+\hline
+Sg     & Subdominant-Gegenklang & counter-relative of the subdominant \\
+\hline
+SS     & Doppelsubdominante     & subdominant of the subdominant \\
+\hline
+D      & Dominante              & dominant \\
+\hline
+Dp     & Dominant-Parallele     & relative of the dominant \\
+\hline
+Dg     & Dominant-Gegenklang    & counter-relative of the dominant \\
+\hline
+DD     & Doppeldominante        & dominant of the dominant \\
+\hline
+\hline
+
+\end{tabular}
+
+If you need translations of musical concepts, please take a look at
+sengpielaudio\footcite[cf.][\nopage wp]{sengpielaudio2019a}.
 
 
 

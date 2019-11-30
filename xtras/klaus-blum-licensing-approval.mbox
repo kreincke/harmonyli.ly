@@ -1,0 +1,137 @@
+From BenBigNoise@gmx.de Mon Nov  4 18:40:45 2019
+X-Envelope-From: <BenBigNoise@gmx.de>
+X-Envelope-To: <k.reincke@fodina.de>
+X-Delivery-Time: 1572889245
+X-UID: 59127
+Return-Path: <BenBigNoise@gmx.de>
+Authentication-Results: strato.com; dmarc=none header.from=gmx.de
+Authentication-Results: strato.com; arc=none
+Authentication-Results: strato.com; dkim=pass header.d=gmx.net
+Authentication-Results: strato.com; dkim-adsp=pass
+ header.from="BenBigNoise@gmx.de"
+Authentication-Results: strato.com; spf=pass
+ smtp.mailfrom="BenBigNoise@gmx.de"
+X-RZG-Expurgate: clean/normal
+X-RZG-Expurgate-ID: 149500::1572889245-00004380-7D28434D/0/0
+X-Strato-MessageType: email
+X-RZG-CLASS-ID: mi00
+Received-SPF: pass
+	(strato.com: domain gmx.net designates 212.227.17.22 as permitted sender)
+	mechanism=ip4;
+	client-ip=212.227.17.22;
+	helo="mout.gmx.net";
+	envelope-from="BenBigNoise@gmx.de";
+	receiver=smtpin.rzone.de;
+	identity=mailfrom;
+Received: from mout.gmx.net ([212.227.17.22]) by smtpin.rzone.de (RZmta
+ 44.29.0 OK) with ESMTPS id i03094vA4Hej3Ti (using TLSv1.2 with cipher
+ ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360
+ bits RSA)) (Client CN "mout.gmx.net", Issuer "TeleSec ServerPass Class 2
+ CA" (verified OK (+EmiG))) (Client hostname verified OK) for
+ <k.reincke@fodina.de>; Mon, 4 Nov 2019 18:40:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1572889245;
+	bh=HfVGmz35id75jb+zNFGAq53lvI2Jwpn1LtsnV8oIyEY=;
+	h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+	b=Y19Ynk40jUjgCGhYLmE4ezGw+LJ34N5AminIH3UzKVZSQ2Zwmi1qtWUBq89geH9a5
+	 yjgs9BDidqVBPtUKErB3ng8b8pgTD1rj8fNT7D1Ql5lS0YEX+aJK9a9jMnnFTurerM
+	 hdWG3kRmyEcpmlNVlhX73LEvSsSq/aP4pCj/4Iq8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.178.22] ([92.74.229.164]) by mail.gmx.com (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N2Dx8-1hnZzP13rK-013bXL; Mon,
+ 04 Nov 2019 18:40:45 +0100
+Subject: Re: a little ask for confirmation
+To: Karsten Reincke <k.reincke@fodina.de>, "K. Blum" <benbignoise@gmx.de>
+References: <beb4f966a1a8c98c7d57470bb81d095a3c52306f.camel@fodina.de>
+From: Klaus Blum <BenBigNoise@gmx.de>
+Message-ID: <1420fbd1-0a8b-ea14-0816-8f9d85ebe924@gmx.de>
+Date: Mon, 4 Nov 2019 18:40:45 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
+MIME-Version: 1.0
+In-Reply-To: <beb4f966a1a8c98c7d57470bb81d095a3c52306f.camel@fodina.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de
+X-Provags-ID: V03:K1:4MXb+HRULDPb7F9ptTGUOWFK4dB6v6y18jUIjQpoxzJ3l2gi5xu
+ NpJdR6xlNXxu5tnaZxVhGXAryzoXAW0Z/TykLFUPJfYxjOgepsRxRCnBbZbd/1ciAXBawt6
+ EHW9yFaox1FSJGLkiiLxUHPlVzn1bwVloP2EKPvXpmq0K9gDPZZKJN7rRBOiE75DFOoL+AQ
+ Ww+77W/OrXxNIpA05G9vw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults:
+ notjunk:1;V03:K0:JDDHKMGZcy8=:RKNonnzqjQujt5db0JRrnR
+ I4plryLtGkjrOJTPQokLIjtIVMaE8ytxXiETf9cJsTg6Wb40gK6dTYVXIryYZfpmPOKMW8Onq
+ EHcNFs3Op8TUbY2PG9xesz6y2+djklboS1FLSNNnlSwcL01Nhy4+u7AiNCXQNnBRY5wTv2Fjg
+ Lgp0R+60f0MBbJqqjaOz6BB8+Q0A9JbwzrLvaUpM+ClXij99s0Xw9HNabTW976mi+2A+f5oXN
+ BjZoUgXihM8qUUxGxaW69ZRncL7+m8IOKURUKXQaHRmPdJIY1Fo09FgywShLxiGK6pfBCHBFI
+ erW4c0y8geFmPIw41PVLBZeh1VlhHTa4ijWC4NaXVtztOgMR35jVpZOPHA5Uy/y+JqQJ666/s
+ /8+4TdTst8B8KPE6WLtrZeDW2ZESPaYXYE+VEr2pOO6R935CBBaKdeiquJm8hsSZU5F/84yKa
+ Saa0AKk+Vps6j40FSOZwsIzSZZu8in+s7H2P36GStZosJyeAvn8Oy9hjSc2wrl20tztpV9Ad9
+ GgzNHqd8uxf4zL1NdwYhO4PrkmeVzldC9WBxxa4O7pxBlUh1eptBpBx8hU+1B0YIa8CdEwhhA
+ h1wtR+2TtPxEver5jclkM1xWVA/B9mXW8iFLCwaETQQbvsTamnlnuDO3OtZ3VuvIkLKu9Nrnl
+ dmXCFKU1diAXHDRcEqq5Rc9HtzcafWSaQhySDnufecRxlc/UbBxehNBZgdVVV1RYrc3BoI4/r
+ bdeEQsIHaiM4PpKKMhI3nvghMpBL7WhGAS3BAYFGNXSSfOrrekyhco1xHKa6B9N+V0ci9anmx
+ N91Zi5SOdlbHsEmyTlkI10kuveiLYWEPF0gdKm576huZ+PxeQB3EoaVRPDNgjGnrBhiOOKJrM
+ EwWGLjiV6y+aBUPCmYKRaNU1YRvs7cJxUv/WfBYz6x9b4OWYA/myxcYJiWKQKBLY/izctpwqb
+ GwNbHsVKHV7QmZYXS+sYIIbB6Re+UverPFYEWeq27Xk+BFkJebnH2JcZywVEb66CKXu3naT+v
+ oYbxzJutLN3qV/rsXNmgy2kHennd01Z8pAibIU5zIaUaAnqUM5yfQXnqmd2BH1rAdXickYVOl
+ DkuIin3n6sg2PWYhrpB3Rhp8PVA2MGxO9xvUUZy4B151IAHbLxfCPs63ZGitPUvvu/ngVItSq
+ 6X0W1+2Le8mgZk7vflmCCLZv0NDWqjKGHTD+CA88bdWtcMyCCHevYWAzavjRGXrEp1zyzwyaD
+ PdYKsHHzSA/gmOSrpUMflkxrbkPVH4BBp0V6B2YdMBF2dKwID8PtUmCxIHmw=
+X-Evolution-POP3-UID: e6c93cfadc3e472e714c54c58e8e5639
+X-Evolution-Source: 1213541370.14366.0@parcival
+Content-Transfer-Encoding: 8bit
+
+Hallo Karsten,
+
+ja, ich bin ebenfalls Deutscher, der nicht perfekt englisch spricht.  ;-)
+
+Ja, ich bestätige, dass ich mit dem Upload ins LSR beabsichtigt habe,
+dass mein Code damit in Public Domain übergeht.
+Ich bin damit einverstanden, dass der Code in einer Library unter der
+genannten dualen Lizenz (MIT und GPL) verwendet wird.
+
+Ich hoffe, dass das auch möglich ist für die Funktion "fExtend", also
+den Teil, der nicht von mir stammt, sondern aus angegebenen Quellen
+(oben im Snippet) stammt.
+Ob dieser Teil als nicht-trivial gilt und von mir so nicht hätte
+veröffentlicht werden dürfen, kann ich leider nicht beurteilen.
+
+Viele Grüße,
+Klaus
+
+
+-------------------------
+
+Klaus Blum
+Brahmsstr. 6
+76676 Graben-Neudorf
+
+
+
+
+Am 04.11.2019 um 18:15 schrieb Karsten Reincke:
+> Dear Klaus;
+>
+> I assume that you are a German guy, but up to the time I know that explicitly, I
+> prefer to use my unperfect English:
+>
+> I would like to ask you whether you could confirm, that you published your
+> RiemannFunctionSymbol-Snippet (accessible under
+> http://lsr.di.unimi.it/LSR/Item?id=967 (result) resp. under
+> http://lsr.di.unimi.it/LSR/Snippet?id=967 (code)) indeed under the terms of the
+> American Public Domain - as the LSR says. In other words I ask you to confirm that
+> you indeed grant all rights to use your code to any other person without
+> restricting that person in any sense or to oblige him to do anything (like open
+> source license do).
+>
+> The reason why I ask this is that we in Europe / Germany do not know the concept
+> of a Public Domain. Hence I prefer to have an explicit permission to use your code
+> as part of a library which shall be dual-licensed  (MIT and GPL).
+>
+> Many thanks for your answer
+> with best regards
+> Karsten
+>
+>
+
+

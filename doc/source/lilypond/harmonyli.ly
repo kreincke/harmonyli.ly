@@ -914,7 +914,8 @@ initTextSpan =
 #(define-markup-command (expZoomRow layout props AL)
   (list?)
   (let*
-    ( (laN (assign aNoteKey AL aNoteDValue))
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
       (lbN (assign bNoteKey AL bNoteDValue))
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
@@ -923,7 +924,7 @@ initTextSpan =
   
     (interpret-markup layout props
      #{
-         \markup \has "" "" "" #laN #lbN #lcN #ldN #leN "" "" ""
+         \markup \has " " "" #lBN #laN #lbN #lcN #ldN #leN "" "" ""
      #}
     )
    )
@@ -933,7 +934,8 @@ initTextSpan =
 #(define-markup-command (closeImZoomRow layout props AL)
   (list?)
   (let*
-    ( (laN (assign aNoteKey AL aNoteDValue))
+    ( (lBN (assign BNoteKey AL BNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
       (lbN (assign bNoteKey AL bNoteDValue))
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
@@ -942,7 +944,7 @@ initTextSpan =
     )
     (set! lFSr (string-append imInfix ")" lFSr) )
     (interpret-markup layout props
-      #{ \markup \has "" "" ""  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
+      #{ \markup \has " " "" #lBN  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
     )
    )
  )

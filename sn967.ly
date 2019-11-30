@@ -161,7 +161,7 @@ lyr = \lyricmode {
   \markup \openImZoomRow "D" #'(("B"."3")("a" . "7")("C"."Tp")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
-  \markup \closeIMZoomRow #'(("a"."7")) 
+  \markup \closeImZoomRow #'(("a"."7")) 
   \stopTextSpan
   
 
