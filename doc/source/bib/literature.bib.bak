@@ -340,4 +340,48 @@
   urldate  = {2019-12-01},
 }
 
+@Misc{Reincke2019b,
+  author     = {Karsten Reincke},
+  title      = {harmonyli.ly . Harmonical Analysis Symbols in LilyPond Scores. Tutorial},
+  year       = {2019},
+  note       = {FreeWeb / PDF},
+  annote     = {Umfangreiche Einführung in die Nutzung der LilyPond BIbliothek 'harmonyli.ly' für Musikwissenschaftler},
+  language   = {english},
+  shorttitle = {Harmonyli.ly Tutorial, 2019},
+  url        = {https://kreincke.github.io/harmonyli.ly/tutorial.pdf},
+  urldate    = {2019-11-22},
+}
+
+@Misc{ReinckeBlum2019a,
+  author     = {Karsten Reincke; Hans Blum},
+  title      = {harmonyli,ly},
+  year       = {2019},
+  note       = {FreeWeb / HTML},
+  annote     = {Die freie LilyPond BIbliothek 'harmonyli.ly' für Musikwissenschaftler samt Beispielen und umfangreichem Tutorial},
+  language   = {english},
+  shorttitle = {Harmonyli.ly, 2019},
+  url        = {https://github.com/kreincke/harmonyli.ly},
+  urldate    = {2019-11-22},
+}
+
+@Misc{wpTristan2019a,
+  author   = {anonymous},
+  title    = {Tristan-Akkord},
+  year     = {n.Y. (2019)},
+  note     = {FreeWeb / HTML},
+  language = {german},
+  url      = {https://de.wikipedia.org/wiki/Tristan-Akkord},
+  urldate  = {2019-12-02},
+}
+
+@Misc{wpTristan2019b,
+  author   = {anonymous},
+  title    = {Tristan-Chord (Score)},
+  year     = {n.Y. (2019)},
+  note     = {FreeWeb / JPG},
+  language = {german},
+  url      = {https://de.wikipedia.org/wiki/Tristan-Akkord#/media/Datei:TA-NB1.jpg},
+  urldate  = {2019-12-02},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

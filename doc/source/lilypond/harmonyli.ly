@@ -99,140 +99,10 @@
 
 \version "2.18.2"
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definition using the EBNF to formally describe the structure of a
-% Functional Harmony Analysis Symbol ( = part of the functional harmony theory)
-% 
-% FHAS ::= {x},(cRS|RS),{DV} { BN }, { SN }, {AN, {AN, {AN, {AN, {AN}}}}}, {CT} {FS}
-%
-% cRS ::= RS,DV /* not separated by a blank */
-%
-%  RS ::= 'T' | 't' | 'S' | 's' | 'SS' | 'D' | 'd' | 'DD' 
-%
-%  DV ::= 'p' | 'P' | 'g' | 'G' | 
-%
-%   x ::= 'x' /* cross thought the RS */ 
-%
-%  BN ::= '1', ... ,'7'
-%  SN ::= AN
-%  AN ::= '1', ... ,'12'
-%  CT ::= 'c', 'cis', ... 'h' | cRS
-%
-% Note: this is a syntactical definition. There is a semantical restriction
-% which cannot easily be expressed by a context free grammar. The condition
-% is 'AN1 < AN2 < AN3 < AN4 < AN5'. Therefore we only use the symbol AN
-%
-% Note: This definition also allows to express some a bit esoteric analyze 
-% results like (Double Dominant or Double Sub dominant or Tonika,... relative
-% counter relative) without no root tone / note. It depends on the context
-% (and the viewpoint of the analyzer), which of them are semantically adequate.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Some implementation details:
-% We refer to the parts of a RFS by the following identifiers:
-%
-%                                                        5 added note number = e | e5
-%                                                        4 added note number = d | d4
-%                                                        3 added note number = c | c3
-%                           Sopran-Note-Number = S | SN  2 added note number = b | b2
-%  fillstring = fsr | FSr   Riemann-Symbol = RS          1 added note number = a | a1  fillstring = fsr | FSr
-%                           Bass-Note-Number = B | BN
-% 
-%
-% This harmonyli.ly offers 3 interfaces:
-%
-% A) The basic method of harmonyli.ly is 'rfs' (riemann functional symbol). It 
-% expects all elements of an RFS at a specific position and none of them may be 
-% forgotten. If any of elements shall not be used, then the respective argument 
-% must contain a "".
-%
-% Advantage: The analyzer gets the complete freedom to create his own version.
-% Disadvantage: He must respect all details for not getting surprising results
-% 
-% B) The core method of harmonyli.ly is the method 'RFS'. It takes the naked 
-% Riemann Symbol (like T, Tp, S, D, ...) and a list of pairs using the values of 
-% BNoteKey, SNoteKey, ... as keys and as value any string / markup the user 
-% wants to insert into the Riemann Function Symbol
-%
-% On this level, there exist 4 variants:
-%   a) the method RFS - as described above
-%   b) the method dRFS :- doubling the root RS symbol
-%   c) the method xRFS :- crossing out the root RS symbol
-%   d) the method xdRFS :- crossing out the doubled root RS symbol 
-%
-% Advantage: The analyzer may ignore the key value pairs he do not need.
-% Disadvantage: He must know / respect the syntax of an association list
-%
-% C) Finally harmonyli.ly offers some often used instantiations of RFS
-% as prepared functions
-%
-% Advantage: It is simple to insert such fixed RFS.
-% Disadvantage: Not all RFS are delivered as fixed RFS
+% For details of the implementation take a look at the tutorial in doc 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% About some special features
-%
-% (1) intermediary dominant and intermediary sections
-% -----------------------------------------------
-% Sometimes, the musicologist wants to express that in an intermediary section
-% all chords function with respect to an intermediary harmonical focus instead
-% being described with respect to the basic tone. 
-% 
-% The most simple example for such an intermediary section is the 'intermediary 
-% dominant' (in German: 'Zwischendominante): It is not the dominant of the (
-% keynote) tonic, but the dominant of the following chord.
-
-% Moreover, sometimes the chord to which an intermediary section is refered
-% does not close the section but is replaced by a functional equivalent. A
-% famous example is the 'deceptive cadence' as closure of such an intermediary
-% section.
-
-% Hence, sometimes the musicologist does not only want to express that he reads
-% a succession of chords as an intermediary section, he also want to explicitly
-% name the assumed harmonical focus.
-
-% For that purpose harmonyli.ly offers rows of intermediary chords:
-%
-% IntermediarySection ::- 'initIntermediaryArea' RFS+ closingRFS
-%                 RFS ::- /* see above */
-%          closingRFS ::- RFS with special parameter 'Context'
-%
-%
-% (2) ZoomAnalyses
-% ----------------
-%
-% In theoretical harmonical analyses often each analysis symbol refers to one 
-% chord. In practical harmoncal analyses the analysis symbols refer to rows of 
-% tones which are treated as passing notes.
-
-% But sometimes, the musicologist does not want to ignore some shorter notes.
-% Instead of this, he wants to increase the granularity of his symbols by
-% integrating such 'detail notes' into his symbol. He wants to zoom into the
-% the score.
-%
-% The most known example is the suspended chord as for example
-%   6>5
-%   4>3
-%  D 
-%
-% For enabling musicologists to express such details, harmonyli.ly offers
-% ZoomAreas. ZoomAreas use one pure Riemann Symbol for all chords, and the
-% differences of the cords are described by numbers referring to the base tone
-% of the chord
-%
-% ZoomArea ::- 
-%     'initZoomArea' 
-%     'setZoomRoot' 
-%     'openZoomArea'
-%     'setZoomSuccessor'+
-%     'closeZoomArea'
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % harmonyli.ly config area
@@ -301,11 +171,14 @@
     (interpret-markup layout props
      #{
         \markup{
-          \box
           \concat {
-            \has #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
-            " ⇨ "
-            \has #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
+            \box
+            \concat {
+              \has #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
+              " ⇨ "
+              \has #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
+            }
+            " "
           }      
         }
      #}
@@ -322,9 +195,6 @@
 #(define cNoteKey "c")
 #(define dNoteKey "d")
 #(define eNoteKey "e")
-% LÖSCHEN DEPRECATED
-% #(define fsKey "f")
-% LÖSCHEN DEPRECATED
 #(define fsKeyL "fl")
 #(define fsKeyR "fr")
 
@@ -981,6 +851,7 @@ initTextSpan =
     #{ \markup \setHas "D" #'(("a"."7")("b"."9")) #}
    )
  )
+ 
 % ---------------------------------------------------------------
 %               Extender lines
 % The text parameter "fText" will be placed at the left end of the extender.
@@ -1047,9 +918,10 @@ fExtend =
        }
      #}))
 
-% This is an improved function 'double' which unfortunately
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a proposal for an improved function 'double' which unfortunately
 % needs LilyPond 2.19.x
-%#(define-markup-command (double layout props letter)
+% #(define-markup-command (double layout props letter)
 %   (markup?)
 %   (interpret-markup layout props
 %     #{
@@ -1061,12 +933,9 @@ fExtend =
 %         }
 %       }
 %     #}))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% ---------------------------------------------------------------
-% opening round bracket before a chord:
-% ---------------------------------------------------------------
 
-openbracket = { \set stanza = \markup {\normal-text \magnify #1.1 " ("} }
 
 
 

@@ -116,9 +116,23 @@
 \newcommand{\lnkb}[2]{\href{#1}{\texttt{#1} (RDL: #2)}}
 \newcommand{\lnkr}[1]{\ra\ \href{#1}{\texttt{#1}}}
 
+\newcommand{\com}[1]{\textit /* #1 */}
 
 \usepackage{harmony}
 \usepackage{musicography}
+
+% Unfortunately musixtex and harmony? still uses outdated commands for
+% establishing its own \bar command. Hence for enabling
+% the use of musixtex we must 'redefine' these outdated commands:
+\makeatletter
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+\makeatother
 
 %\usepackage{bigfoot}
 \usepackage{verbatimbox}
@@ -130,7 +144,7 @@
 
 
 \usepackage{longtable}
-
+\usepackage{dirtree}
 
 \begin{document}
 
@@ -153,9 +167,9 @@
 \begin{abstract}
 \noindent \itshape
 This tutorial describes how to create and embed \has{s}\ into scores. It
-intends to be a handout for musicologist and other enthusiasts of harmony
+intends to be a handout for musicologists and other enthusiasts of harmony
 analyses, who use \lily. It documents the usage of the library \hlyn\ by which
-can develop \acc{Riemann} symbols as well as symbols of the
+it can develop \acc{Riemann} symbols as well as symbols of the
 \acc{scale-step-theory}). Due to the fact, that \hlyn\ as well as this \LaTeX\ 
 based paper is published as open source software and that its sources are part
 of the library \hlyn, it indirectly can also teach how to embed \lily\ snippets
@@ -170,7 +184,7 @@ into \LaTeX\ files.
 
 \section{Introduction}
 
-In the beginning there was the need to write a musicological work.
+In the beginning, there was the need to write a musicological work.
 
 Actually, I should have had a good start: I knew already, that -- at least in
 the humanities -- there is a big difference between the Anglo-American
@@ -189,8 +203,8 @@ scores into a \LaTeX\ file. Trawling through the web delivered a bulk of tools
 and methods, but no manual and no tutorial, how to successfully combine which
 tools for getting a usable working environment. Thus, I had to interrupt my
 musicological work before I had started it. Previously, it was necessary to
-investigate the situation for not backing the wrong horse. At the end, I had
-written a complete analysis about the best way to embed musicological examples
+investigate the situation for not backing the wrong horse. In the end, I had
+written a complete analysis of the best way to embed musicological examples
 into \LaTeX\ texts.\footcite[cf.][\nopage]{reincke2019c} And I had published the
 respective sources als kind of open source
 'software'.\footcite[cf.][\nopage]{reincke2019a}
@@ -199,7 +213,7 @@ A preliminary result of this investigation was, that we have three back-ends for
 using musical notes in \LaTeX: We could use the style of \acc{ABC}-Notation and
 would only be able to integrate very simple harmony analysis symbols into our
 exemplifying score. Or we could use a combination of \acc{\LaTeX, Musix\TeX, and
-harmony} which offered excellent and sophisticated results, but enforced us, to
+harmony} which offered excellent and sophisticated results but enforced us, to
 use the very complex and difficult typesetting language \acc{MusicTeX} without
 being supported by any good (semi-)graphical Editor. Or we could use the well
 established coding environment \acc{LilyPond} and its \LaTeX-integration tool
@@ -215,7 +229,7 @@ And for the final result \cite[cf.][100f]{reincke2019c}. If you need more
 information about the tools mentioned in this paragraph, have a look at the
 respective chapters in \cite[cf.][\nopage et passim]{reincke2019c}}
 
-At that point I knew, what was possible. But I did not want to respect the
+At that point, I knew, what was possible. But I did not want to respect the
 result. Using \acc{\LaTeX, Musix\TeX, and harmony} would decrease my
 productivity in an unacceptable manner. So, I started a re-implementation of
 \acc{harmony} for \acc{LilyPond} by using its LISP based language \acc{GUILE}
@@ -228,7 +242,7 @@ appearance was not on the level I preferred to achieve.
 
 So, I asked the \acc{LilyPond} community for feedback\footnote{\ra\
 \lnka{https://lists.gnu.org/archive/html/lilypond-user/2019-10/msg00411.html}}.
-I knew, that at that time I might have been a good programmer, an expert of
+I knew, that at that time I might have been a good programmar, an expert of
 musical theory, and an adept of Free and Open Source Software and its spirit,
 but I certainly was not familiar with the internals of \acc{LilyPond}, its
 'biotope' of additional tools and its history. But at this point, a typical open
@@ -244,7 +258,7 @@ and added a lot of other code. But nevertheless, my library was a derivative
 work of Klaus Blum's model. So -- and even if it had not been necessary from a
 legal point of view --, I asked him whether he could accept that I was
 re-engineering his work and that I was going to release the result under a
-licensing construct, by which the user could choose the license he prefered,
+licensing construct, by which the user could choose the license he preferred,
 either GPL or MIT. And to my great pleasure, Klaus Blum agreed with this
 concept.\footnote{You will find the approving mail in the directory 'xtras' of
 the harmonyli.ly sources. (\ra\
@@ -612,12 +626,12 @@ hasSymbols = \lyricmode {
 
 \subsubsection{Description}
 
-This example uses four voices in four variables: the right hand voice
-(\texttt{= descant}), the left hand voice (\texttt{= bass)}, the hidden voice
+This example uses four voices in four variables: the right-hand voice
+(\texttt{= descant}), the left-hand voice (\texttt{= bass)}, the hidden voice
 defining the rhythmical granularity of the analysis (\texttt{= hasRhythmHidden})
 and the respective stream of \has{s} (\texttt{= hasSymbols}). Inside of the
 section \texttt{\textbackslash score{\ldots}} the 'sounding' bass and the
-'virtual' voice \acc{AnalysisSubline} are inserted into the left hand staff. And
+'virtual' voice \acc{AnalysisSubline} are inserted into the left-hand staff. And
 the stream of \has{s} \texttt{\textbackslash hasSymbols} is bound to that
 'virtual' voice by using the command \texttt{\textbackslash lyristico} and a
 reference by name.\footnote{Due to fact, that the \has{s} appear under the
@@ -768,7 +782,7 @@ hasSymbols = \lyricmode {
   \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
   \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
-                          ("c" . "+9>-8")("fr" . " "))
+                          ("c" . "-9>+8")("fr" . " "))
   \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
   \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
                           ("fr" . " "))    
@@ -832,7 +846,7 @@ The basic interface of \hlyn\ contains nine functions:
 (01) & \textbf{setHas} & \ra & inserts a \has{}.
 \tabularnewline
 (02) & \textbf{setImHas} & \ra & inserts an \acc{Intermediary \has{}} whose
-function refers to the root of the successing chord instead of being determined
+function refers to the root of the succeding chord instead of being determined
 by the keynote.
 \tabularnewline
 (03) & \textbf{setRfHas} & \ra & inserts a \acc{Reframing \has{}} as it is
@@ -844,7 +858,7 @@ center
 where each chord of the chain refers to the root of chord which follows the chain
 \tabularnewline
 (05) & \textbf{closeImRow} & \ra & closes an intermediary chain of \has{s}\ 
-and indicates, that the root of the directly successing chord is the tonal
+and indicates, that the root of the directly succeding chord is the tonal
 center of that chain
 \tabularnewline
 (06) & \textbf{openZoomRow} & \ra & starts the zoom into a \has{} which shall 
@@ -865,34 +879,34 @@ suspended or passing notes which do not modify the current harmonic function
 
 \subsection{How to combine these \hlyn-functions correctly}
 
-In accordance to the following eBNF
-grammer\footnote{for details \ra\ 
+In accordance with the following eBNF
+grammar\footnote{for details \ra\ 
 \lnka{https://en.wikipedia.org/wiki/Extended\_Backus\%E2\%80\%93Naur\_form}
 and/or \lnka{https://en.wikipedia.org/wiki/Backus-Naur\_form}
-}, you can embed five types of subrows
+}, you can embed five types of sub rows
 into your stream of \has{s}\footnote{Note: \hlyn\ intends to be complete, but
-not correct. This -- maybe surprising -- statement must be explained: In
-computer sciences one discusses the correctness and the completeness of a
+not correct. This -- may be surprising -- statement must be explained: In
+computer sciences, one discusses the correctness and the completeness of a
 process for deriving syntagms by using a semantic interpretation of each
 derivable syntagm. The construct (language and process) is \textbf{complete}, if
-for any intended real world object a syntagm can be derived which refers to that
+for any intended real-world object a syntagm can be derived which refers to that
 real world element. And the construct is \textbf{correct} if each derivable
 syntagm refers to a real world object. For human beings in general and
 musicologist in particular it is more important to use a \textbf{complete} 
 language (of \has{s}) than using a correct language: We want to know that
 we can express whatever we want to express, because our language is complete.
-And we can avoid wrong / meaningless syntagms manually, so that the fact, that
+And we can avoid wrong / meaningless syntagms manually so that the fact, that
 our language is not correct (in the sense of computer languages) does not
 matter. Therefore, we want to say that
 \begin{itemize}
-  \item \textbf{all} 'subrows' of \has{s} which are necessary to describe the
+  \item \textbf{all} 'sub rows' of \has{s} which are necessary to describe the
   harmonic relationships of real world chords must be formable by \hlyn.
-  \item \textbf{not all} 'subrows' of \has{s} which can be generated by \hlyn\
+  \item \textbf{not all} 'sub rows' of \has{s} which can be generated by \hlyn\
   necessarily describe possible chord chains.
 \end{itemize}
 A last remark: If one had a correct and complete language for describing streams
 of harmonic chords, then one would have a complete theory of harmonization
-which no longer needs the help of 'unrepresented human knowledge'.
+that no longer needs the help of 'unrepresented human knowledge'.
 Delivering such a theory is far beyond the target of \hlyn.
 }:
 
@@ -954,7 +968,7 @@ Typical \has{s}\ look like these:
 
 They are created by different \hlyn\ functions, which -- nevertheless -- take
 the same kind of parameters\footnote{except \texttt{setRfHas} and
-\texttt{expZoomRow}}: The function symbol is obligatoric and specified as string
+\texttt{expZoomRow}}: The function symbol is obligatory and specified as a string
 argument. The other parameters are optional and handed over in a list of
 attributes. Let \hlyn\ itself visualize the structure of a \has{}:
 
@@ -1050,7 +1064,7 @@ For modifying this example\footnote{Later, we will explicitly describe the
 purpose of this feature 'explicating the context'. Up to that point we will
 ignore this opportunity in our examples.} into an intermediary chord, you only
 must replace the function \texttt{\textbackslash setHas} by the function
-\texttt{\textbackslash setImHas}. As the result you will get this:
+\texttt{\textbackslash setImHas}. As a result you will get this:
 
 \begin{center}
 \begin{lilypond}
@@ -1081,7 +1095,7 @@ must replace the function \texttt{\textbackslash setHas} by the function
 
 If you want to cross out the functional symbol for indicating that the root is
 not part of the chord or if you want to double the functional symbol for
-indicating that it is a second level function or if you want to indicate both
+indicating that it is a second-level function or if you want to indicate both
 aspects, simply add the attribute \verb|("T"."x")| respectively
 \verb|("T"."d")| respectively \verb|("T"."dx")| or \verb|("T"."xd")|:
 
@@ -1112,6 +1126,45 @@ aspects, simply add the attribute \verb|("T"."x")| respectively
 \end{lilypond}
 \end{center}
 
+\subsection{Using \hlyn\ for scale step symbols}
+
+For demoing that you can use \hlyn\ also, if you want to describe the music by
+the elements of scale step theory, let us shortly convert the given example into
+that format:
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < d' fis' a' d''>1 
+    < b g' d'' e''>1 
+    < cis' e' a' e''>1 
+    < cis' g' b' e''>1 
+    < d' gis' b' e''>1 
+    < d' gis' b' e''>1 
+    < cis' g' a' e''>1 
+    < d' fis' a' d''>1 
+  }
+  \addlyrics { 
+    \markup \setHas "I" #'()
+    \markup \setHas "VI" #'(("a"."3")("b"."4")("c"."6"))
+    \markup \setHas "VII" #'(("a"."6"))
+    \markup \setHas "VII" #'(("a"."5")("b"."7"))
+    \markup \setHas "I" #'(("a"."2")("b"."♯4")("c"."6"))
+    \markup \setHas "I" #'(("a"."2")("b"."♯4")("c"."6"))
+    \markup \setHas "VII" #'(("a"."7")("b"."8"))
+    \markup \setHas "I" #'()
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
 \section{\has{s}: Simple and Complex Examples}
 
 After having explained the general methods to create a \has{}, we can now show
@@ -1120,12 +1173,12 @@ how one can fulfill specific musical needs by these techniques:
 \subsection{Inserting a Function Symbol}
 
 The majority of Anglo-American musicologists use something like the
-'scale-step-theory' by which each tone of scale and the respective chord is
+'scale-step-theory' by which each tone of the scale and the respective chord is
 referred by the respective number (represented by a Roman numeral).
 Alternatively one can use the functional (harmony) theory by which the chords of
 a scale are referred by their harmonious functions (represented by
 characters).\footcite[for dedails cf.][\nopage wp]{wpFunctionTheory2019a} Both
-methods can be expressed by \hlyn: Insert the respective symbol as first
+methods can be expressed by \hlyn: Insert the respective symbol as the first
 argument of the \hlyn\ basic functions. If you don't need any additional
 specifier, add at least an empty attribution list \texttt{\#'()}:
 
@@ -1218,8 +1271,8 @@ In the context of the scale-step-theory, the bass note is referred by the Roman
 numeral which is inserted as a functional symbol. Hence, the  scale-step-theory
 does not have the need to additionally indicate the bass note.
 
-In the context of the functional harmony theory the chord is referred by its
-function. By default the respective symbol implies that the root is the bass
+In the context of the functional harmony theory, the chord is referred by its
+function. By default, the respective symbol implies that the root is the bass
 note and that the chord uses the third and the fifth. Therefore, the bass note
 of a described chord is only revealed if it is not the root of the chord. For
 indicating the bass note expand the attribute list by the
@@ -1302,7 +1355,7 @@ chord. For indicating the 'soprano' note expand the attribute list by the string
 
 \subsection{Indicating Descant Tones}
 
-In accordance to the method for writing a basso continuo, both theories
+In accordance with the method for writing a basso continuo, both theories
 explicitly display the numbers of those chord tones which shall be used, but
 which are not covered by the default rule 'take 1+3+5+8'. And with respect to
 the other composition rule 'by default combine thirds' each number implictly
@@ -1312,7 +1365,7 @@ the two respective adjacent numbers must be revealed.
 \hlyn\ allows you to add up to five deviating tones by inserting the strings
 \texttt{("a"."YOUR\_NUMBER")}, \ldots, \texttt{("e"."YOUR\_NUMBER")} into the
 attribute list. Additionally, these numbers can be altered by using the standard
-UTF8 / unicode signs \{\musDoubleFlat , \musFlat , \musNatural , \musSharp ,
+UTF8 / Unicode signs \{\musDoubleFlat , \musFlat , \musNatural , \musSharp ,
 \musDoubleSharp \}\footnote{We use the \LaTeX\ command
  \texttt{\textbackslash verbatim} for showing the \lily\ code which creates the
  example. Unfortunately, we can not use special Unicode signs in these sections.
@@ -1362,7 +1415,7 @@ As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and
 Note, the 'scale-step-theory' and the 'functional harmony analysis' use
 different types of numberings: In a \has{}, all numbers refer to the root of the
 chord. In a description based on the scale-step-theory, all added numbers refer
-the bass tone represented by the Roman numeral. Therefore, if we describe an
+to the bass tone represented by the Roman numeral. Therefore, if we describe an
 inversion of a chord, we have to use different numberings:
 
 \begin{center}
@@ -1390,7 +1443,7 @@ inversion of a chord, we have to use different numberings:
 to adequately describe the chords with respect to the chosen theory.
 
 Sometimes it is helpful, to expand your representation by a reinterpretation in
-accordance to an enharmonic change. The parameters 'a', \ldots,'e' can be bound
+accordance with an enharmonic change. The parameters 'a', \ldots,'e' can be bound
 to strings, not only to (altered) numbers. So, you are able also to create
 constructs like this:
 
@@ -1421,9 +1474,9 @@ described by the distance to that bass tone (= by the number of the respective
 interval). Hence, the scale-step-theory does not have the need to indicate the
 suppression of the root tone.
 
-In the context of the functional harmony theory the chord is referred by its
-function. By default the respective symbol implies that the root is the bass
-note and that the chord uses the third and the fifth. But in some cases you want
+In the context of the functional harmony theory, the chord is referred by its
+function. By default, the respective symbol implies that the root is the bass
+note and that the chord uses the third and the fifth. But in some cases, you want
 to indicate, that the chord does not use its root, but only the other
 explicitly or implicitly specified tones.
 
@@ -1465,17 +1518,17 @@ For indicating that the chord does not contain its root, insert the string
 \end{verbatim}
 \end{scriptsize}
 
-Note: Suppressing the root tone can be combined with the indication of a second
-level function by adding the attribute \texttt{("T"."dx")} or
+Note: Suppressing the root tone can be combined with the indication of a
+second-level function by adding the attribute \texttt{("T"."dx")} or
 \texttt{("T"."xd")} into the attribute list.
 
 \subsection{Indicating a Second Level Functions}
 
-The functional harmony analysis also knows the second level function \acc{double
+The functional harmony analysis also knows the second-level function \acc{double
 dominant}. \hlyn\ offers the opportunity to double all functional symbols for
-creating any second level function symbol.
+creating any second-level function symbol.
 
-For indicating that the chord fulfills a second level function, insert the string
+For indicating that the chord fulfills a second-level function, insert the string
 \texttt{("T"."d")} into the attribute list:
 
 \begin{center}
@@ -1513,8 +1566,8 @@ For indicating that the chord fulfills a second level function, insert the strin
 \end{verbatim}
 \end{scriptsize}
 
-Note: Suppressing the root tone can be combined with the indication of a second
-level function by using the attribute \texttt{("T"."dx")} or
+Note: Suppressing the root tone can be combined with the indication of a
+second-level function by using the attribute \texttt{("T"."dx")} or
 \texttt{("T"."xd")}.
 
 \subsection{Indicating Intermediary Chords}
@@ -1524,7 +1577,7 @@ keynote: In a \acc{D Major} piece, \acc{A Major} is taken as dominant. In an
 \acc{E Major} piece, \acc{A Major} is taken as subdominant. But sometimes, the
 musicologist must indicate that a chord has a function with respect to the root
 of the succeeding chord instead of being determined by the keynote. Such chords
-are know as intermediary chords.
+are known as intermediary chords.
 
 For indicating that a single chord is an intermediary chord and that its function
 refers to the root of its successors, use the function \texttt{\textbackslash
@@ -1574,8 +1627,8 @@ setImHas} instead of \texttt{\textbackslash setHas}:
 
 The common use of intermediary chords leads attentive musicologists to the
 conclusion, that the syntax of the functional harmony theory is still not
-sufficiently designed. They know that their analyses sometimes unfortunately
-depend on an underlying 'good will' understanding of their readers. Let us prove
+sufficiently designed. They know that their analyses sometimes, unfortunately,
+depend on an underlying 'goodwill' understanding of their readers. Let us prove
 this statement by a look at the following traditionally represented deceptive
 cadence:
 
@@ -1599,7 +1652,7 @@ cadence:
 
 The disadvantage of such a notation is, that the reader has to know, that A
 major is the dominant of D major and the b minor is the relative key of D major
-and that in this case therefore the row \texttt{(D) Tp} represents a deceptive
+and that in this case, therefore, the row \texttt{(D) Tp} represents a deceptive
 cadence. The representation of the harmonic analysis itself does not give him
 any hint. But if we found the string \texttt{(D[T]) Tp} indicating the context
 of the frist chord, we would have a clear syntactically based representation:
@@ -1633,7 +1686,7 @@ is -- by definition -- a deceptive cadence:
 
 For indicating the context of a specific function you must expand the attribute
 list by the string \texttt{("C"."YOUR\_CONTEXT")}. The context can either be
-another function or the root of a key.\footnote{Using the square brackets as
+another function or the root of a key.\footnote{Using the square brackets as an 
 indicator for the context follows de la Motte who also saw the need to exemplify
 a local tonal center as something like the context of the interpretation.
 (\cite[cf.][144 et passim]{Delamotte2011a})}
@@ -1672,7 +1725,7 @@ straight forward analysis:
 \end{lilypond}
 \end{center}
 
-Beyond any doubt, this analysis is correct. But it is not appropriate because it
+Beyond any doubt, this analysis is correct. But it is not appropriate because of it
 does not consider the leading quality of the decreased seventh in bar \texttt{2}
 and bar \texttt{5}. An analysis which better covers our auditive understandings
 could look like this:
@@ -1805,7 +1858,7 @@ example should only prove that \hlyn\ can grasp such complex relationships.
 
 But we must still tighten up the screw a bit more: If \hlyn\ shall be able to
 represent deceptive cadences by indicating the expected function of an
-intermediary chord and the real disappointing function of the subsequent chord
+intermediary chord and the really disappointing function of the subsequent chord
 -- as it is shown here --
 
 \begin{center}
@@ -1857,7 +1910,7 @@ chord:
 \end{center}
 
 For indicating the context of an intermediary chain of chords you can use nearly
-the same method used for creating intermediary chain of chords without
+the same method used for creating an intermediary chain of chords without
 indicating the content. But you have to add the attribute string
 \texttt{("fr"."[YOUR\_CONTEXT]")} into the attribute list of the chord which
 closes the intermediary row:
@@ -1893,7 +1946,7 @@ The idea behind this method is that you here use the attribute
 
 \subsection{Indicating Suspended and Passing Notes}
 
-In other harmonic analyses the musicologist wants to represent suspended or
+In other harmonic analyses, the musicologist wants to represent suspended or
 passing notes although they do not modify the underlying harmonic function. It
 is like he zooms in on the details of the chord. Here is an example of such a
 'chordal movement':
@@ -1938,7 +1991,7 @@ is like he zooms in on the details of the chord. Here is an example of such a
 
 For constructing this kind of descriptions you must open a zoom row before you
 can expand it (\texttt{bar 2-3} and \texttt{bar 4-5}). Or you open an
-intermediary zoom row, expand it, and close it explicitly (\texttt{bar 6-9}). If
+intermediary zoom row, expand it and close it explicitly (\texttt{bar 6-9}). If
 you want to create a line for indicating the zoom row graphically (\texttt{bar
 4-5} and \texttt{bar 6-9} ), you must call the function \texttt{\textbackslash
 initTextSpan} before the function \texttt{\textbackslash open[Im]ZoomRow}, the
@@ -2007,7 +2060,7 @@ Please note:
   \item In case of a normal zoom row as well as in case of an intermediary zoom
   row, you may insert the function \texttt{\textbackslash expZoomRow} as often as
   it is required by your chord stream.
-  \item In accordance to the nature of a zoom row, the functions
+  \item In accordance with the nature of a zoom row, the functions
   \texttt{\textbackslash expZoomRow} and \texttt{\textbackslash closeImZoomRow}
   do not accept the parameter 'function symbol'. And they do not evaluate the
   attribute \texttt{"S"}.
@@ -2019,22 +2072,29 @@ zoom row sometimes can become a bit ugly (\texttt{bar 6-9}). Let us shortly
 give reasons for that before we present a 'workaround':
 
 \hlyn\ uses the method \acc{addlyrics} for binding the stream of symbols to the
-stream of chords. Hence, each markup-command -- and each single word not being
+stream of chords. Hence, each markup-command -- and every single word not being
 embedded into a markup-command -- is mapped to the next chord of the voice to
-which the analysis has been bound. On the other hand, an intermediary row is
-indicated by a left parenthesis as prefix and a right parenthesis as suffix.
+which the analysis has been bound.\footnote{This seems to be the place for
+indicating to a little trap: The method \acc{addlyrics} automatically maps two
+or more notes - linked by a slur or a tie - to one word (or, in our case, to one
+\has{}). This behaviour is disirable, if one deals with the text of songs. In
+case of harmonic analyses it disturbs. There are two solutions: First, one can
+resolve the slurs resp. ties where it is necessary. Or one can use the method
+\acc{Binding \has{s} to a Hidden Voice} to decouple music and analysis. (\ra \
+p. \pageref{HiddenVoice})} On the other hand, an intermediary row is indicated
+by a left parenthesis as a prefix and a right parenthesis as a suffix.
 From the viewpoint of \lily, the connection of the symbol and its prefix resp.
-its suffix is that unit which is bound to a chord. But in a lyric stream, \lily\
-only allows us to underscore such a unit as whole, not only the 'half' of a unit
-or a third or -- as it actually is required here -- the part before the right
-parenthesis. That's the reason, why in this case the line in \texttt{bar 9}
-crosses the bracket an is drawn through to the right border of the chord.
+its suffix is that unit that is bound to a chord. But in a lyric stream, \lily\
+only allows us to underscore such a unit as a whole, not only the 'half' of a
+unit or a third or -- as it actually is required here -- the part before the
+right parenthesis. That's the reason, why in this case the line in \texttt{bar
+9} crosses the bracket an is drawn through to the right border of the chord.
 
 The good message is, that you will rarely run into this visual deficiency:
 it only arises in case of very long notes as we used here. Hence you mostly can
 use this technique without any modifications. 
 
-But if your nevertheless have run into this trap, you can use a good
+But if you have nevertheless run into this trap, you can use a good
 'workaround' to put yourself out of this misery:
 
 \begin{itemize}
@@ -2206,16 +2266,16 @@ relationships is the feature to represent harmonic modulations. In a modulation
 the current function of a chord is re-interpreted with respect to a new tonal
 center: In the context of \texttt{D-Major}, \texttt{e-minor} is the
 \acc{relative of the subdominant}, but in the context of \texttt{C-Major}, it is
-the \acc{counterrelative of the tonic}. Using this ambiguity, \texttt{e-minor}
+the \acc{counter relative of the tonic}. Using this ambiguity, \texttt{e-minor}
 can act as linking chord which connects a section written in \texttt{D-Major}
 with a section written in \texttt{C-Major}.
 
 As far as we know, there still does not exist a coherently and commonly used
 method to indicate such harmonic reframings.\footnote{One of the apologist of the
-functional harmonic theory, Hugo de la Motte, prefers to use a line based
+functional harmonic theory, Hugo de la Motte, prefers to use a line-based
 concept with an overlapping section at the point of reframing: The first line
-starts with the \has{s} related to the first tonal center up inclusevily to the
-chord, which is reinterpreted, and is continuated by blanks. The second line
+starts with the \has{s} related to the first tonal center up inclusively to the
+chord, which is reinterpreted, and is continued by blanks. The second line
 starts with blanks up to the beginning of the reinterpreted chord and is
 continued by the \has{s} related to the second tonal center. (\cite[cf.][144 et
 passim]{Delamotte2011a}) For the use in a score this method is a bit unwieldy.
@@ -2394,7 +2454,308 @@ next example:
 
 \section{Just for Fun: A Last Example}
 
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\header { tagline = "" }
+
+imInfix = " " % don't forget this!
+
+trisSone =  { \stemUp 
+  \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
+}
+
+trisStwo = { \stemDown 
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+}
+
+trisBone = { \stemUp 
+  \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
+}
+
+trisBtwo =  { \stemDown 
+  \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
+}
+
+trisBana =  { \stemDown 
+  \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
+}
+
+trisSymb = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "t" #'(("C" . "a"))
+  \markup \setHas "s" #'(("B"."3")) 
+
+  \markup \setRfHas "D" "T" 
+    #'( ("C" . "a")
+        ("nC" . "E")
+    ) 
+  
+   \markup \setRfHas "Dp" "D" 
+    #'( ("B"."6")("a"."5")("b"."6")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."9")("nC" . "Sp")("nfl" . "(")("nfr" . ")")
+    )   
+ 
+  \markup \setHas "Sp" #'(("B"."3"))
+  \initTextSpan "      "  
+  \markup \openZoomRow "T" #'(("a"."♯4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan   
+}
+
+trisChord = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+  \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+  
+  \markup \setHas "a" #'(("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
+  \markup \setHas "d" #'(("B"."3")("a"." ")("b"." ")("c"." ")) 
+  \markup \setHas "E" #'(("a"." ")("b"." ")("c"." "))   
+  
+     \markup \setRfHas "gis" "Cis" 
+    #'( ("B"."6")("a"."5")("b"."6")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."9")
+    )
+  
+  
+  \markup \setHas "fis" #'(("B"."3")("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
+  \initTextSpan "      "  
+  \markup \openZoomRow "E" #'(("a"."♯4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan 
+
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \time 6/8 
+      \new Staff <<
+        \clef "treble" \key  a\minor 
+        \new Voice = "trisSone" { \trisSone }
+        \new Voice = "trisStwo" { \trisStwo }
+      >>
+      \new Staff <<
+        \clef "bass"\key  a\minor 
+        \new Voice = "trisBone" { \trisBone }
+        \new Voice = "trisBtwo" { \trisBtwo }
+        \new NullVoice = "trisBana" { \trisBana }
+        \new Lyrics \lyricsto "trisBana" { \trisSymb }
+        \new Lyrics \lyricsto "trisBana" { \trisChord }
+      >>    
+    >>
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{lilypond}
+\end{center}
+
+Other than one seems to have thought up to now\footnote{Unfortunately, for the
+moment I do not have any time to write another complete large investigation
+concerning the \acc{Tristan} chord. I can only say, that up to now I did not
+find any analysis mentioned in existing reviews that I prefer and that I now
+present. The most similar understanding could have been delivered by Peter
+Petersen. (\cite[cf.][49ff]{Petersen2019a}) But unfortunately, up to now, I could
+not counter-check his work. Hence, from a scientific viewpoint, my following
+analysis hangs a bit in limbo. And if there is indeed anyone, who has formulated
+the same analysis earlier than I, then -- with a deep bow -- I will say: yes, he
+is right. And we together will probably agree, that having a tool with an
+expressivity that is rich enough to explicitly represent such understandings,
+is very helpful. For the moment I have to focus on developing and documenting
+such a tool.}, this well-known example\footnote{For the score
+\cite[cf.][\nopage]{wpTristan2019b}, for further hints
+\cite[cf.][\nopage]{wpTristan2019a}} -- in toto -- is obviously nothing else
+than a modulation from \acc{a-minor} to \acc{E-Major} using the a partially
+irritating \acc{relative of the dominant} which is directly re-interpreted as
+intermediary dominant to the relative of the subdominant of the new \acc{tonic}.
+
+There are further facts which sustain this 'reading'\footnote{For developing
+adequate harmonic analyses, reading is not enough, one has to focus on the
+auditive impacts.}:
+\begin{itemize}
+  \item If one -- related to the 'old' tonal center \acc{a-minor} -- replaced
+  the relative of the double dominant \acc{gis-minor} (\texttt{bar 2}) by the
+  double dominant \acc{B-Major} itself, one would get the very simple
+  semicadence: \HH.t..... \HH.s..... \HH.D..... \HH.\DD...... Hence, in reality,
+  the opening of \acc{Tristan} contains a \acc{deceptive semicadence} \HH.D.....
+  \HH.{\DD}p...... And this evokes us to hear a modulation
+  from \acc{a-minor} to \acc{E-Major} \HH.t..... \HH.s..... [ \HH.D..... \ra\ 
+  \HH.T..... ] \HH.Dp.6.5.6... (\texttt{bar 1-2})
+  \item In fact, in \acc{Tristan}, the chord \acc{gis-minor} is enriched by its
+  sixth \acc{eis}. Purists would say, that it isn't the sixth, but the
+  diminished seventh. But that's a matter of reading the score, not a matter of
+  the auditive perception. Nevertheless one has to consider, why \acc{eis} has
+  not been written, but its enharmonic 'friend' \acc{f}: This is enforced by the
+  purpose of that tone with respect to the succeeding chord: the \acc{f} shall
+  lead to the next chord \acc{fis-minor} (\texttt{bar 2, last eight}) 
+  \item The Tristan chord \texttt{gis b dis eis=f}  can not only be understood
+  as \HH.{\DD}p.6.5.6... (= \HH.gis.6.5.6...) but also as \HH.\Dohne.3.7.9... (
+  \HH.\Ohne[0,2em]Cis.3.7.9...) This ambiguity enables the chord also to
+  function as an intermediary dominant to the next chord \acc{fis-minor}.
+  \item If one replaced the \acc{a} (\texttt{bar 2, last eight}) by the third
+  \acc{fis a}, one would directly hear, that its predecessor, the \acc{Tristan
+  Chord} now acts as intermediary dominant \HH.\Dohne.3.7.9... to
+  \acc{fis-minor} because it contains the two leading tone \acc{f \ra\ fis} and
+  \acc{gis \ra\ a}.
+  \item Of course -- in fact, \texttt{bar 2, last eight} contains the single tone
+  \acc{a} instead of the third  \acc{fis a}, as well as \texttt{bar 1} contains
+  only single tones instead of chords. And taking a single tone as representant
+  of a complete chord on the first glance seems to be a bit arbitrarily. But one
+  has to keep in mind, that -- in the field -- we are familiar to do so: every
+  carnival again, we all understand a fanfare like \acc{g c} as a row of
+  \HH.D..... \HH.T..... In the same way, we understand the row \acc{a f} as
+  \HH.D..... \HH.T....., which on the other hand evokes us that to take the
+  succeding \acc{e} as \HH.D..... And finally, the same method of \acc{adjuvant
+  hearing} enables us, to link the two leading tones \acc{f} and \acc{gis} from
+  the \acc{Tristan Chord} to the single tone \acc{a} in \texttt{bar 2}.
+\end{itemize}
+
+Thus, we probably may say, that using \hlyn\ makes it easier to understand the
+\acc{Tristan chord} as well as writing the appropriate analysis. That's a nice
+result isn't it? Howsoever, here is the respective code:
+ 
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\header { tagline = "" }
+
+imInfix = " " % don't forget this!
+
+trisSone =  { \stemUp 
+  \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
+}
+
+trisStwo = { \stemDown 
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+}
+
+trisBone = { \stemUp 
+  \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
+}
+
+trisBtwo =  { \stemDown 
+  \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
+}
+
+trisBana =  { \stemDown 
+  \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
+}
+
+trisSymb = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "t" #'(("C" . "a"))
+  \markup \setHas "s" #'(("B"."3")) 
+
+  \markup \setRfHas "D" "T" 
+    #'( ("C" . "a")
+        ("nC" . "E")
+    ) 
+  
+   \markup \setRfHas "Dp" "D" 
+    #'( ("B"."6")("a"."5")("b"."6")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."9")("nC" . "Sp")("nfl" . "(")("nfr" . ")")
+    )   
+ 
+  \markup \setHas "Sp" #'(("B"."3"))
+  \initTextSpan "      "  
+  \markup \openZoomRow "T" #'(("a"."+4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan   
+}
+
+trisChord = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+  \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+  
+  \markup \setHas "a" #'(("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
+  \markup \setHas "d" #'(("B"."3")("a"." ")("b"." ")("c"." ")) 
+  \markup \setHas "E" #'(("a"." ")("b"." ")("c"." "))   
+  
+     \markup \setRfHas "gis" "Cis" 
+    #'( ("B"."6")("a"."5")("b"."6")
+        ("nT"."x")("nB"."3")("na"."7")("nb"."9")
+    )
+  
+  
+  \markup \setHas "fis" #'(("B"."3")("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
+  \initTextSpan "      "  
+  \markup \openZoomRow "E" #'(("a"."+4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan 
+
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \time 6/8 
+      \new Staff <<
+        \clef "treble" \key  a\minor 
+        \new Voice = "trisSone" { \trisSone }
+        \new Voice = "trisStwo" { \trisStwo }
+      >>
+      \new Staff <<
+        \clef "bass"\key  a\minor 
+        \new Voice = "trisBone" { \trisBone }
+        \new Voice = "trisBtwo" { \trisBtwo }
+        \new NullVoice = "trisBana" { \trisBana }
+        \new Lyrics \lyricsto "trisBana" { \trisSymb }
+        \new Lyrics \lyricsto "trisBana" { \trisChord }
+      >>    
+    >>
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{lilypond}
+\end{center}
+\end{verbatim}
+\end{scriptsize}
+
+
 \section{Package Content}
+
+\dirtree{%
+.1 harmonyli.ly \com{}.
+.2 AUTHORS \com{reference to the copyright holder}.
+.2 cadenca-functional-harmony-theory.ly \com{example}.
+.2 cadenca-scale-step-theory.ly \com{example}.
+.2 CHANGES \com{changes of the major releases}.
+.2 doc \com{documentation}.
+.3 Makefile \com{type \texttt{make} to create the tutorial }.
+.3 source $\vartriangleleft$ \com{\LaTeX sources of the tutorial}.
+.3 tutorial.pdf \com{latest stable version}.
+.2 harmonyli.ly \com{\textbf{the library itself}}.
+.2 LICENSE.GPL \com{GPL license txt}.
+.2 LICENSE.MIT \com{MIT license text}.
+.2 LICENSING \com{dual licensing files}.
+.2 Makefile \com{type \texttt{make \$f.pdf} to create \$.pdf}.
+.2 modulation-functional-harmony-theory.ly \com{example}.
+.2 modulation-scale-step-theory.ly \com{example}.
+.2 README.md \com{github markdown readme}.
+.2 release \com{current stable release}.
+.2 sn967.ly \com{refrence example}.
+.2 xtras \com{}.
+.3 blum $\vartriangleleft$ \com{sources of Blum's original version}.
+.3 klaus-blum-licensing-approval.mbox \com{approval mail}.
+}
+
 
 \section{FAQ}
 \label{FAQ}
@@ -2421,11 +2782,65 @@ But note, they only accept a very reduced subset of parameters:
 
 \begin{description}
   \item[\textbackslash FHAS \$HAS] ::- inserts the respective \has{}.
-  \item[\textbackslash FHASth \$HAS] ::- inserts the first inversion of the respective \has{}.
+  \item[\textbackslash FHASth \$HAS] ::- inserts the first inversion of a \has{}.
   \item[\textbackslash Dsept \$HAS] ::- inserts a dominant plus seven.
   \item[\textbackslash Dseptnone \$HAS] ::- inserts a dominant plus seventh and nineth.
 \end{description}
 
+Here is a an example:
+
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    }
+  \addlyrics { 
+    \markup \FHAS "T" 
+    \markup \Dseptnone   
+    \markup \FHASth "s" 
+    \markup \FHAS "T"
+    \markup \Dsept
+    \markup \FHAS "T"
+
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\ldots adn this its code:
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    }
+  \addlyrics { 
+    \markup \FHAS "T" 
+    \markup \Dseptnone   
+    \markup \FHASth "s" 
+    \markup \FHAS "T"
+    \markup \Dsept
+    \markup \FHAS "T"
+
+    }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
 \subsection{can you offer a synopsis of concepts, translations, and symbols?}
 
 Yes, we\footnote{In this context, I have first of all to thank Leo Correia de
