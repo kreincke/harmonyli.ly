@@ -384,4 +384,14 @@
   urldate  = {2019-12-02},
 }
 
+@Book{Petersen2019a,
+  title     = {Isolde und Tristan: Zur musikalischen Identität der Hauptfiguren in Richard Wagners „Handlung“ Tristan und Isolde},
+  publisher = {Königshausen u. Neumann},
+  year      = {2019},
+  author    = {Peter Petersen},
+  series    = {Wagner in der Diskussion Bd. 19},
+  address   = {Würzburg},
+  isbn      = {978-3-8260-6796-9},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
