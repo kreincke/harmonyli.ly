@@ -1,7 +1,7 @@
 harmonyli.ly :- a library for inserting Functional Harmony Analysis Symbols 
-into musical scores encoded in and created by LilyPOnd
+into musical scores encoded in and created by LilyPond
 
-Copyright (c) 2019 Karsten Reincke, Frankfurt, Hans Blum
+Copyright (c) 2019 Karsten Reincke, Hans Blum
 
 The file harmonyli.ly is distributed under the terms of the MIT license or under 
 the terms of the GPLv3 license. As long as harmonyli.ly is distributed under 
