@@ -4,14 +4,15 @@
 
 RES_EXTS=png pdf midi 
 
-TFS=./sn967.pdf \
-    ./cadenca-functional-harmony-theory.pdf \
-    ./cadenca-scale-step-theory.pdf \
-    ./doc/source/lilypond/cadenca-method-three.pdf \
-    ./doc/source/lilypond/cadenca-method-two.pdf \
-    ./doc/source/lilypond/cadenca-method-one.pdf \
+TFS=./sn967 \
+    ./cadenca-functional-harmony-theory \
+    ./cadenca-scale-step-theory \
+    ./doc/source/lilypond/cadenca-method-three \
+    ./doc/source/lilypond/cadenca-method-two \
+    ./doc/source/lilypond/cadenca-method-one \
     ./modulation-scale-step-theory.pdf \
-    ./modulation-functional-harmony-theory.pdf
+    ./modulation-functional-harmony-theory \
+    ./minimal
 
 help:
 	@echo "call 'make XYZ.(pdf|png)' for creating a single file or 'make test' for creating all"
@@ -20,7 +21,10 @@ play:
 	timidity $<
 
 test:
-	$(foreach F, ${TFS}, make  ${F} ;)
+	$(foreach F, ${TFS}, make  ${F}.pdf ;)
+
+pics:
+	$(foreach F, ${TFS}, make  ${F}.png ;)
 
 .SUFFIXES: .ly .pdf .png
 

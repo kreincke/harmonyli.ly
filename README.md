@@ -21,22 +21,48 @@ For details see the file [LICENSING](./LICENSING).
 
 ## Examples:
 
-The package contains 3 examples by which the user can learn how to use
+The package contains 6 examples by which the user can learn how to use
 the library `harmonyli.ly`. Like all other LilyPond files, each example 
-`example.ly`can be compiled by the command line order `make example.pdf` 
+`example.ly` can be compiled by the command line order `make example.pdf` 
 respectively `make example.png`:
 
-* **cadenca.ly** :- the general reference cadence 
-  ( [score](./cadenca.ly) [result](./img/cadenca.png) )
+* **minimal.ly** :- a good starting point
+   [score](./minimal.ly) &rarr; [result](./img/minimal.png) 
+* **cadenca.ly** :- analyses of the general reference cadence 
+  * using the functional harmony theory 
+   [score](./cadenca-func.ly) &rarr; [result](./img/cadenca-func.png) 
+  * using the scale step theory  
+   [score](./cadenca-scale.ly) &rarr; [result](./img/cadenca-scale.png) )
 * **sn967.ly** :- the re-implementation of a former example
-  ( [score](./sn967.ly) [result](./img/sn967.png) )
-* **modulation.ly** :- an example explaining how to deal with modulations
-  ( [score](./modulation.ly) [result](./img/modulation.png) )
+   [score](./sn967.ly) &rarr; [result](./img/sn967.png) 
+* **modulationi.ly** :- an example explaining how to represent modulations
+  * using the functional harmony theory 
+  [score](./modulation-func.ly) &rarr; [result](./img/modulation-func.png) 
+  * using the scale step theory  
+   [score](./modulation-scale.ly) &rarr; [result](./img/modulation-scale.png) 
 
 
 ## Usage:
 
-The next step will be the development of a tutorial which thoroughly
-explains and demonstrates how the requirements of an adequate **Functional
-Harmony Analysis** can be fulfilled by **harmonyli.ly**. Later, you can
-find that tutorial here `doc/harmonylily-tutorial.pdf`
+**harmonyli.ly** offers some information:
+
+1. '5 minutes turorial' (German)
+[https://fodina.de/2019/harmonyli-ly-intro/](https://fodina.de/2019/harmonyli-ly-intro/)
+2. '5 minutes turorial' (English)
+[https://fodina.de/en/2019/harmonyli-ly-intro/](https://fodina.de/en/2019/harmonyli-ly-intro/)
+3. Complete Tutorial (English)
+[https://kreincke.github.io/harmonyli.ly/tutorial.pdf](https://kreincke.github.io/harmonyli.ly/tutorial.pdf)
+4. Project Page (German)
+[https://fodina.de/harmonyli.ly/](https://fodina.de/harmonyli.ly/)
+5. Project Page (English)
+[https://fodina.de/en/harmonyli.ly/](https://fodina.de/ien/harmonyli.ly/)
+
+## Coming Features:
+
+* The deeply embedded icore function \has should be redesigned to use the overlay technique.
+  This will be implemented as soon as LilyPond 2.19 or 2.20 is officially released and
+  integrated into the standard Linux distributions.
+* We need a function / method to indicate that a tone of a chord is NOT used
+
+
+
