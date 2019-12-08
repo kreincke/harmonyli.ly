@@ -3,7 +3,7 @@
 A **library** for inserting **Functional Harmony Analysis Symbols** into musical 
 scores encoded in and created by LilyPond.
 
-![ALT](img/cadenca-by-harmonylily.png "harmonyli.ly example cadenca")
+![harmonyli.ly reference cadence](img/cadenca-func.png)
 
 ## Installation
 * Checkout the repository
@@ -31,13 +31,13 @@ respectively `make example.png`:
 * **cadenca.ly** :- analyses of the general reference cadence 
   * using the functional harmony theory 
    [score](./cadenca-func.ly) &rarr; [result](./img/cadenca-func.png) 
-  * using the scale step theory  
+  * using the scale step theory
    [score](./cadenca-scale.ly) &rarr; [result](./img/cadenca-scale.png) )
 * **sn967.ly** :- the re-implementation of a former example
    [score](./sn967.ly) &rarr; [result](./img/sn967.png) 
 * **modulationi.ly** :- an example explaining how to represent modulations
   * using the functional harmony theory 
-  [score](./modulation-func.ly) &rarr; [result](./img/modulation-func.png) 
+   [score](./modulation-func.ly) &rarr; [result](./img/modulation-func.png) 
   * using the scale step theory  
    [score](./modulation-scale.ly) &rarr; [result](./img/modulation-scale.png) 
 
