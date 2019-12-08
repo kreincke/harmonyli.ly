@@ -32,13 +32,13 @@ respectively `make example.png`:
   * using the functional harmony theory 
    [score](./cadenca-func.ly) &rarr; [result](./img/cadenca-func.png) 
   * using the scale step theory
-   [score](./cadenca-scale.ly) &rarr; [result](./img/cadenca-scale.png) )
+   [score](./cadenca-scale.ly) &rarr; [result](./img/cadenca-scale.png) 
 * **sn967.ly** :- the re-implementation of a former example
    [score](./sn967.ly) &rarr; [result](./img/sn967.png) 
 * **modulationi.ly** :- an example explaining how to represent modulations
   * using the functional harmony theory 
    [score](./modulation-func.ly) &rarr; [result](./img/modulation-func.png) 
-  * using the scale step theory  
+  * using the scale step theory 
    [score](./modulation-scale.ly) &rarr; [result](./img/modulation-scale.png) 
 
 
@@ -59,10 +59,10 @@ respectively `make example.png`:
 
 ## Coming Features:
 
-* The deeply embedded icore function \has should be redesigned to use the overlay technique.
+* The deeply embedded core function should be redesigned to use the overlay technique.
   This will be implemented as soon as LilyPond 2.19 or 2.20 is officially released and
   integrated into the standard Linux distributions.
-* We need a function / method to indicate that a tone of a chord is NOT used
+* harmonyli.ly should offer a function / method to indicate that a tone of a chord is NOT used
 
 
 
