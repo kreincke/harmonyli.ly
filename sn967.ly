@@ -218,6 +218,7 @@ lyr = \lyricmode {
       \consists "Text_spanner_engraver"
     }
   }
+  \midi {}
 } 
  
 \markup \vspace #2

@@ -192,6 +192,7 @@ fhasSubline = \lyricmode {
       \consists "Text_spanner_engraver"
     }
   }
+  \midi {}
 } 
  
 

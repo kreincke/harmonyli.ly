@@ -35,18 +35,20 @@ analysis = \lyricmode {
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
   \stopTextSpan
+  %\markup \nhas "S" "3" "2" "1" "2" "3" "4" "5" "CT" "x" "y" #'("a" "d" "c")
+  \markup \closeImRow "D" #'(("T"."x")("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
 }
 
 \score {
   \new GrandStaff <<
     \new Staff << \clef treble \key c \major  \time 4/4
-      \new Voice = "top" { \stemUp e''4 e'' e''( d'')  }
-      \new Voice = "middle" { \stemDown <g' c''>4 <g' bes'>4 <f' a'>2
+      \new Voice = "top" { \stemUp e''4 e'' e''( d'')  c''1 }
+      \new Voice = "middle" { \stemDown <g' c''>4 <g' bes'>4 <f' a'>2 <g' c'>1
       }
       >> 
     \new Staff << \clef bass  \key c \major  \time 4/4
-      \new Voice = "down" { \stemUp c4 cis4 d2 }
-      \new NullVoice = "rhythm" { \stemDown c,4 c,4 c,4 c,4 }
+      \new Voice = "down" { \stemUp c4 cis4 d2 e1}
+      \new NullVoice = "rhythm" { \stemDown c,4 c,4 c,4 c,4 c,1}
       \new Lyrics \lyricsto "rhythm" {\analysis}
       >>
   >>
@@ -58,4 +60,5 @@ analysis = \lyricmode {
        \Lyrics \consists "Text_spanner_engraver" 
     }
   }
+  \midi {}
 } 

@@ -116,7 +116,70 @@
 % Harmonyli Interface No 1: The basic method for inserting all manually
 % ---------------------------------------------------------------------
 
+#(define-markup-command (ha layout props adc adn ANL)
+  (markup? markup? list?)
+  (interpret-markup layout props
+    (cond 
+      ( (member adc ANL)
+        #{
+           \markup \numx #adn
+        #}
+      )
+      ( else
+        #{
+           \markup  #adn 
+        #}
+      )
+    )
+  )
+)
  
+#(define-markup-command (nhas layout props RS SN BN aN bN cN dN eN CT fstl fstr NUNS)
+  (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? list?)
+  (let* ((lCT (string-append "[" CT "]")))
+    (if (equal? CT "")(set! lCT ""))
+    (interpret-markup layout props
+     #{
+       \markup{
+         \concat {
+           $fstl
+           \override #'(baseline-skip . 1.4)
+           \center-column {
+             \override #`(direction . ,UP)
+             \override #'(baseline-skip . 2.0)
+             \dir-column {
+               \halign #CENTER
+                \concat { $RS \tiny {  $lCT  } }
+               \tiny
+               \halign #CENTER
+               $SN
+             }
+             \tiny
+             $BN
+           }
+           \tiny
+           \override #`(direction . ,UP)
+           \override #'(baseline-skip . 0.8)
+           \dir-column {
+             " "
+             {
+               \override #`(direction . ,UP)
+               \override #'(baseline-skip . 1.3)
+               \dir-column { 
+                 \ha "a" $aN $NUNS  
+                 \ha "b" $bN $NUNS  
+                 \ha "c" $cN $NUNS
+                 \ha "d" $dN $NUNS   
+                 \ha "e" $eN $NUNS  
+               }
+             }
+           }
+           $fstr
+         }
+       }
+     #}
+ )))
+
 #(define-markup-command (has layout props RS SN BN aN bN cN dN eN CT fstl fstr)
   (markup? markup? markup? markup? markup? markup? markup? markup? markup? markup? markup?)
   (let* ((lCT (string-append "[" CT "]")))
@@ -197,6 +260,7 @@
 #(define eNoteKey "e")
 #(define fsKeyL "fl")
 #(define fsKeyR "fr")
+#(define nuKey "n")
 
 #(define RsSpec "T")
 #(define RsCont "C")
@@ -212,6 +276,7 @@
 #(define NRsCont "nC")
 #(define NfsKeyL "nfl")
 #(define NfsKeyR "nfr")
+#(define NnuKey "nn")
 
 #(define BNoteDValue "")
 #(define SNoteDValue "")
@@ -223,6 +288,8 @@
 #(define fsDValue "") 
 #(define RsSpecDValue "")
 #(define RsContDValue "")
+
+#(define nuDValue (list ))
 
 % The RS can be crossed out and or doubled To express the combinations
 % we invent a parameter RS taking the values [ n (normal) | x | d | xd ]
@@ -241,7 +308,7 @@
 
 % INTERFACE 2.A
 % returns the Riemann Function Symbol as markup
-#(define-markup-command (setHas layout props RS AL)
+#(define-markup-command (xsetHas layout props RS AL)
   (markup? list?)
   (let*
     ( 
@@ -289,6 +356,62 @@
     )
    )
  )
+
+% INTERFACE 2.A
+% returns the Riemann Function Symbol as markup
+#(define-markup-command (setHas layout props RS AL)
+  (markup? list?)
+  (let*
+    ( 
+      (lRS (assign RsSpec AL RsSpecDValue ))
+      (lBN (assign BNoteKey AL BNoteDValue))
+      (lSN (assign SNoteKey AL SNoteDValue))
+      (laN (assign aNoteKey AL aNoteDValue))
+      (lbN (assign bNoteKey AL bNoteDValue))
+      (lcN (assign cNoteKey AL cNoteDValue))
+      (ldN (assign dNoteKey AL dNoteDValue))
+      (leN (assign eNoteKey AL eNoteDValue))
+      (lCT (assign RsCont AL RsContDValue))
+      (lFSl (assign fsKeyL AL fsDValue))
+      (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
+    )
+  
+    (interpret-markup layout props
+      (cond
+        ( (equal? lRS "d")
+          #{
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
+          #}
+        )
+        ( (equal? lRS "x")
+          #{
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
+          #}
+        )
+        ( (equal? lRS "xd")
+          #{
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
+          #}
+        )
+        ( (equal? lRS "dx")
+          #{
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
+          #}
+        )
+        ( else
+          #{
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
+          #}
+        )
+      )
+    )
+   )
+ )
+
+
+
+
 
 % INTERFACE 2.A
 % returns the Riemann Function Symbol as markup
@@ -527,6 +650,7 @@
       (lCT (assign RsCont AL RsContDValue))
       (lFSl (assign fsKeyL AL fsDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
     (set! lFSl (string-append lFSl "(" imInfix  ))
     (set! lFSr (string-append imInfix  ")" lFSr ))
@@ -534,27 +658,27 @@
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( else
           #{
-             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
       )
@@ -577,33 +701,34 @@
       (lCT (assign RsCont AL RsContDValue))
       (lFSl (assign fsKeyL AL fsDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
     (set! lFSl (string-append lFSl "(" imInfix ))
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( else
           #{
-             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
       )
@@ -626,33 +751,34 @@
       (lCT (assign RsCont AL RsContDValue))
       (lFSl (assign fsKeyL AL fsDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
     (set! lFSr (string-append imInfix ")" lFSr ))
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( else
           #{
-             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
       )
@@ -893,6 +1019,24 @@ fExtend =
              \translate-scaled #'(-0.3 . 0.3)
              \with-dimensions #'(-0.0 . 0.0) #'(0 . 0)
              \draw-line #'(2.3 . 1.8)
+           }
+         }
+       }
+     #}))
+
+#(define-markup-command (numx layout props num)
+   (markup?)
+   (interpret-markup layout props
+     #{
+       \markup{
+         \concat {
+           \override #'(baseline-skip . 0)
+           \left-column {
+             $num
+             \with-dimensions #'(-0.0 . 0.0) #'(0 . 0)
+             \translate-scaled #'(-0.1 . 0.1)
+             \with-dimensions #'(-0.0 . 0.0) #'(0 . 0)
+             \draw-line #'(1.2 . 1.2)
            }
          }
        }
