@@ -5,13 +5,13 @@
 RES_EXTS=png pdf midi 
 
 TFS=./sn967 \
-    ./cadenca-functional-harmony-theory \
-    ./cadenca-scale-step-theory \
+    ./cadenca-func \
+    ./cadenca-scale \
     ./doc/source/lilypond/cadenca-method-three \
     ./doc/source/lilypond/cadenca-method-two \
     ./doc/source/lilypond/cadenca-method-one \
-    ./modulation-scale-step-theory.pdf \
-    ./modulation-functional-harmony-theory \
+    ./modulation-scale \
+    ./modulation-func \
     ./minimal
 
 help:

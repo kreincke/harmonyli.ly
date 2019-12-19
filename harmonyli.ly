@@ -237,9 +237,9 @@
           \concat {
             \box
             \concat {
-              \has #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl
+              \nhas #RSl #SNl #BNl #aNl #bNl #cNl #dNl #eNl #CTl $fstll $fstrl #'()
               " ⇨ "
-              \has #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr
+              \nhas #RSr #SNr #BNr #aNr #bNr #cNr #dNr #eNr #CTr $fstlr $fstrr #'()
             }
             " "
           }      
@@ -823,33 +823,34 @@ initTextSpan =
       (lCT (assign RsCont AL RsContDValue))
       (lFSl (assign fsKeyL AL fsDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
  
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( else
           #{
-             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
       )
@@ -872,33 +873,34 @@ initTextSpan =
       (lCT (assign RsCont AL RsContDValue))
       (lFSl (assign fsKeyL AL fsDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
     (set! lFSl (string-append lFSl "(" imInfix ))
     (interpret-markup layout props
       (cond
         ( (equal? lRS "d")
           #{
-             \markup \has \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "x")
           #{
-             \markup \has \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "xd")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( (equal? lRS "dx")
           #{
-             \markup \has \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas \crossout \double #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
         ( else
           #{
-             \markup \has #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr
+             \markup \nhas #RS #lSN #lBN  #laN #lbN #lcN #ldN #leN #lCT #lFSl #lFSr #lnu
           #}
         )
       )
@@ -916,11 +918,12 @@ initTextSpan =
       (lcN (assign cNoteKey AL cNoteDValue))
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
   
     (interpret-markup layout props
      #{
-         \markup \has " " "" #lBN #laN #lbN #lcN #ldN #leN "" "" ""
+         \markup \nhas " " "" #lBN #laN #lbN #lcN #ldN #leN "" "" "" #lnu
      #}
     )
    )
@@ -937,10 +940,11 @@ initTextSpan =
       (ldN (assign dNoteKey AL dNoteDValue))
       (leN (assign eNoteKey AL eNoteDValue))
       (lFSr (assign fsKeyR AL fsDValue))
+      (lnu (assign nuKey AL nuDValue ))
     )
     (set! lFSr (string-append imInfix ")" lFSr) )
     (interpret-markup layout props
-      #{ \markup \has " " "" #lBN  #laN #lbN #lcN #ldN #leN "" "" #lFSr #}
+      #{ \markup \nhas " " "" #lBN  #laN #lbN #lcN #ldN #leN "" "" #lFSr #lnu #}
     )
    )
  )

@@ -36,7 +36,8 @@ analysis = \lyricmode {
   \markup \expZoomRow #'(("a"."8")) 
   \stopTextSpan
   %\markup \nhas "S" "3" "2" "1" "2" "3" "4" "5" "CT" "x" "y" #'("a" "d" "c")
-  \markup \closeImRow "D" #'(("T"."x")("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
+  %\markup \openImZoomRow "D" #'(("T"."x")("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
+  \markup \closeImZoomRow  #'(("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
 }
 
 \score {
