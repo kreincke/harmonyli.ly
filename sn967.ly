@@ -136,13 +136,13 @@ lyr = \lyricmode {
 
   \set stanza = #"C-Dur:"
   % encoding on level 1 
-  \markup \has "T" "3" ""  "" "" "" "" ""  "" "" ""
+  \markup \has "T" "3" ""  "" "" "" "" ""  "" "" "" #'()
 
-  \markup \has \crossout "D" "" "3"  "7" "♭9" "" "" ""  "" "(" ")"
-  \initTextSpan "      "
-  \markup \has "Sp" "" ""  "9" "" "" "" "" ""  "(" ""
+  \markup \has \crossout "D" "" "3"  "7" "♭9" "" "" ""  "" "(" ")" #'()
+  \initTextSpan "       "
+  \markup \has "Sp" "" ""  "9" "" "" "" "" ""  "( " "" #'()
   \startTextSpan  
-  \markup \has "" "" ""  "8" "" "" "" "" ""  "" ")"
+  \markup \has "" "" ""  "8" "" "" "" "" ""  "" " )" #'()
   \stopTextSpan
 
   % encoding on level 2  
@@ -228,16 +228,16 @@ lyr = \lyricmode {
   \addlyrics {
     \override LyricText.self-alignment-X = #LEFT
     \set stanza = #"Usage:"
-    \markup \has "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --"
+    \markup \has "F" "2" "3"  "4" "5" "6" "7" "8"  "C" "-- " " --" #'()
     \markup \has "Function" "Soprano" "Bass"  
       "a (1. num)" "b (2. num)" "c (3. num)" 
-        "d (4. num)" "e (5. num)" "Context"  "fillleft " " fillright"
+        "d (4. num)" "e (5. num)" "Context"  "fillleft " " fillright" #'()
     \override LyricText.self-alignment-X = #CENTER
-    \markup \has "S" "Context Tonika" ""  "" "" "" "" ""   "T" "" ""
-    \markup \has "D" "Context es" ""  "" "" "" "" ""  "es" "" ""
-    \markup \has \double "S" "  \double S  " ""  "" "" "" "" ""  "" "" ""
-    \markup \has \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" ""
-    \markup \has \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" ""
+    \markup \has "S" "Context Tonika" ""  "" "" "" "" ""   "T" "" "" #'()
+    \markup \has "D" "Context es" ""  "" "" "" "" ""  "es" "" "" #'()
+    \markup \has \double "S" "  \double S  " ""  "" "" "" "" ""  "" "" "" #'()
+    \markup \has \double "D" "  \double D  " ""  "" "" "" "" ""  "" "" "" #'()
+    \markup \has \crossout "D" "  \crossout D  " ""  "" "" "" "" ""  "" "" "" #'()
 
     \markup \setRfHas "T" "D" 
     #'( ("T"."dx")("S"."1")("B"."2")("a"."3")("b"."4")("c"."5")("d"."6")("e"."7")("C" . "c")("fr".")")("fl"."(")

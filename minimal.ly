@@ -28,16 +28,26 @@
 \include "harmonyli.ly"
 
 analysis = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
   \markup \setHas "T" #'() 
   \markup \setImHas "D" #'(("B"."3")("a" . "7")("b" . "9♭"))
-  \initTextSpan "   "
+  \initTextSpan "     "
   \markup \openZoomRow "Sp" #'(("a"."9")) 
   \startTextSpan
   \markup \expZoomRow #'(("a"."8")) 
   \stopTextSpan
   %\markup \nhas "S" "3" "2" "1" "2" "3" "4" "5" "CT" "x" "y" #'("a" "d" "c")
   %\markup \openImZoomRow "D" #'(("T"."x")("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
-  \markup \closeImZoomRow  #'(("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
+  %\markup \closeImZoomRow  #'(("B"."3")("a"."1")("b"."2")("c"."3")("d"."4")("e"."5") ("n" . ("a" "b")))
+
+    \markup \setRfHas "T" "D" 
+    #'( ("B"."5")("a"."3")("C" . "c")("n".("a"))
+        ("nB"."4")("na"."3")("nb"."7")("C" . "c")("nn".("a"))
+       
+    )  
+  
 }
 
 \score {
@@ -48,7 +58,7 @@ analysis = \lyricmode {
       }
       >> 
     \new Staff << \clef bass  \key c \major  \time 4/4
-      \new Voice = "down" { \stemUp c4 cis4 d2 e1}
+      \new Voice = "down" { \stemUp c4 cis4 d2 g1}
       \new NullVoice = "rhythm" { \stemDown c,4 c,4 c,4 c,4 c,1}
       \new Lyrics \lyricsto "rhythm" {\analysis}
       >>
