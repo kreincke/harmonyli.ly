@@ -62,7 +62,6 @@ respectively `make example.png`:
 * The deeply embedded core function should be redesigned to use the overlay technique.
   This will be implemented as soon as LilyPond 2.19 or 2.20 is officially released and
   integrated into the standard Linux distributions.
-* harmonyli.ly should offer a function / method to indicate that a tone of a chord is NOT used
 
 
 

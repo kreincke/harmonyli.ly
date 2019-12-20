@@ -1353,7 +1353,7 @@ chord. For indicating the 'soprano' note expand the attribute list by the string
 \end{verbatim}
 \end{scriptsize}
 
-\subsection{Indicating Descant Tones}
+\subsection{Indicating Descant Tones}\label{IndicateDescantTones}
 
 In accordance with the method for writing a basso continuo, both theories
 explicitly display the numbers of those chord tones which shall be used, but
@@ -1466,7 +1466,7 @@ constructs like this:
 \end{lilypond}
 \end{center}
 
-\subsection{Indicating the Supression of the Root Tone}
+\subsection{Indicating the Supression of the Root Tone}\label{SupressRootTone}
 
 In the context of the scale-step-theory, the bass note is referred by the Roman
 numeral which is inserted as a functional symbol. And each tone of the chord is
@@ -1521,6 +1521,73 @@ For indicating that the chord does not contain its root, insert the string
 Note: Suppressing the root tone can be combined with the indication of a
 second-level function by adding the attribute \texttt{("T"."dx")} or
 \texttt{("T"."xd")} into the attribute list.
+
+\subsection{Indicating Suppressed Chord Tones}
+
+The \acc{Scale Step Theory} -- as well as the \acc{Functional Harmony Theory} --
+uses some underlying rules for completing the chord: By default a tone of a
+chord suppresses the usage of the tones next to him. So, if one wants to
+indicate that a chord contains adjacent tones -- as for example the third and
+the fourth --, then one has explicitly to mention both tones in the harmonical
+representation. By default - if nothing else is given than the root / bass tone
+-- the third, the fifth and the eight are added to the chord. In case of the
+\acc{Scale Step Theory} these intervals refer to the given bass tone. In case of
+the \acc{Functional Harmony Theory} they refer to the root tone of the chord
+indicated by the functional \has{}.
+
+\hlyn\ allows to separately
+\acc{indicate descant tones}\footnote{\ra\ p.\pageref{IndicateDescantTones}}
+to enable its users to fulfill these rules. But sometimes it is necessary to
+overwrite these rules by stating that a tone which normally would have been to
+added in reality is \acc{NOT} used: For \acc{supressing the root of a chord} we
+have already descibed the resprective \hlyn\ function\footnote{\ra\
+p.\pageref{SupressRootTone}}. So, we still must explain how one can indicate
+that one of the descant tones is {NOT} used:
+
+For this purpose, one inserts a \acc{Not-Used-Number-List} into the list of
+features. It takes the identifier \acc{n} and a list of 'number positions'
+\verb|"a"| \ldots \verb|"e"| . As result, the evaluating function crosses out
+the content of each position mentioned in that list. If one wanted to cross out
+each tone number mentioned in the chord representation, one would have to add
+the syntagm \verb|("n" . ("a" "b" "c" "d" "e"))|. A more practically relevant
+example could be this:
+
+\begin{center}
+\begin{lilypond}
+
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    <a' e'' g'' bes''>1 
+  }
+  \addlyrics { 
+    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9♭") ("n" . ("a" "c"))) 
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{lilypond}
+\end{center}
+
+\begin{scriptsize}
+\begin{verbatim}
+\version "2.18.2"
+\header { tagline = "" }
+\include "lilypond/harmonyli.ly"
+\score {
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+    <a' e'' g'' bes''>1 
+  }
+  \addlyrics { 
+    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9-") ("n" . ("a" "c"))) 
+  }
+  \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
+  \midi {}
+}
+\end{verbatim}
+\end{scriptsize}
 
 \subsection{Indicating a Second Level Functions}
 
