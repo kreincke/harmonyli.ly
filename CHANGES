@@ -1,5 +1,9 @@
 2019-12-20: release 1.2
-* indicating of unsused tones enabled 
+* indicating of unsused tones enabled
+* tutorial adjusted
+* Erroneously, I had taken over a wrong pre version of an interpretation
+  of the Tristan chord into the release 1.0. This mistake had been
+  corrected: the chapter just for fun now contains the intended version.
 2019-12-08: stable version 1.0 released
 2019-11-24: beta version 0.99.1 released
 * added a tutorial

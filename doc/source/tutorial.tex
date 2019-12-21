@@ -22,7 +22,7 @@
   toc=bib,
   xcolor=dvipsnames,
   openany,
-  ngerman,english]{scrartcl}
+  english]{scrartcl}
   
 %%% (1) general configurations %%%
 \usepackage[utf8]{inputenc}
@@ -2553,8 +2553,8 @@ der Dominante} (=
 'modulation? to C major with an imperfect cadence)
 (\cite[cf.][51]{Petersen2019a}) does not consider, that there is a link between
 the 'Tristan-Chord' at the preceeding 'chord' \acc{E major} in phase 1: the
-'Tristan-Chord' can be taken as \acc{gis minor with 'sixt ajoutée'} which is
-nothing else then relative of the \DD{}\ of \acc{a minor}.
+'Tristan-Chord' can be taken as \acc{B major with 'sixt ajoutée'} which is
+nothing else then the \DD{}\ of \acc{a minor}.
 What can we conclude from this? We must define a sufficiently elaborated theory
 of harmony analyses. In the tradition of defining programming languages we must
 define this theory syntactically and semantically. Up to now, this has not been
@@ -2564,8 +2564,17 @@ that of the 'Tristan-Chord'.}, the following, well-known example\footnote{For
 the score \cite[cf.][\nopage]{wpTristan2019b}, for further hints
 \cite[cf.][\nopage]{wpTristan2019a}} -- in toto -- is obviously nothing else
 than a modulation from \acc{a-minor} to \acc{E-Major} using the a partially
-irritating \acc{relative of the dominant} which is directly re-interpreted as
-intermediary dominant to the relative of the subdominant of the new \acc{tonic}.
+irritating \acc{sixt ajoutée} in a major chord which afterwards is taken as a
+suspended note of and leading note to the expected seventh\footnote{\texttt{bar
+1} contains single tones instead of chords. Taking these tones as
+representants of complete chords -- on the first glance  -- seems to be a bit
+arbitrarily. But one has to keep in mind, that -- in the field -- we are
+familiar to do so: every carnival, we understand a fanfare like \texttt{g c} as
+a row of \texttt{D T}. In the same way, we understand the row \texttt{a f} as
+\texttt{t  s}, which on the other hand evokes us that to take the succeding
+\texttt{e} as the representant of the \texttt{D}. That's the way also Petersen
+hears the first bar (phase 1) and describes it as “Halbschluss auf der
+Dominante” (\cite[cf.][51]{Petersen2019a}) }:
 
 \begin{center}
 \begin{lilypond}
@@ -2601,21 +2610,21 @@ trisSymb = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHas "t" #'(("C" . "a"))
-  \markup \setHas "s" #'(("B"."3")) 
+  \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+
 
   \markup \setRfHas "D" "T" 
-    #'( ("C" . "a")
-        ("nC" . "E")
+    #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
+        ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
     ) 
+  \initTextSpan "        "
+  \markup \openZoomRow "D" #'(("C" . "E")("B" . "5")("a" . "5")("b" . "6"))
+  \startTextSpan
+  \markup \expZoomRow #'(("a" . "5")("b" . "7"))
+  \stopTextSpan
   
-   \markup \setRfHas "Dp" "D" 
-    #'( ("B"."6")("a"."5")("b"."6")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."9")("nC" . "Sp")("nfl" . "(")("nfr" . ")")
-    )   
- 
-  \markup \setHas "Sp" #'(("B"."3"))
-  \initTextSpan "      "  
+  \initTextSpan "        "  
   \markup \openZoomRow "T" #'(("a"."♯4"))
   \startTextSpan 
   \markup \expZoomRow  #'(("a"."5"))  
@@ -2628,17 +2637,16 @@ trisChord = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
   \override Score.BarNumber.break-visibility = #'#(#t #t #t)
   
-  \markup \setHas "a" #'(("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
-  \markup \setHas "d" #'(("B"."3")("a"." ")("b"." ")("c"." ")) 
-  \markup \setHas "E" #'(("a"." ")("b"." ")("c"." "))   
+  \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
   
-     \markup \setRfHas "gis" "Cis" 
-    #'( ("B"."6")("a"."5")("b"."6")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."9")
-    )
+  \initTextSpan "     "
+  \markup \openZoomRow "B" #'(("B" . "5")("a" . "5")("b" . "6"))
+  \startTextSpan
+  \markup \expZoomRow #'(("a" . "5")("b" . "7"))
+  \stopTextSpan
   
-  
-  \markup \setHas "fis" #'(("B"."3")("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
   \initTextSpan "      "  
   \markup \openZoomRow "E" #'(("a"."♯4"))
   \startTextSpan 
@@ -2672,55 +2680,119 @@ trisChord = \lyricmode {
 \end{center}
 
 
+Alternatively, we could understand the 'Tristan-Chord' as \acc{gis-minor} with
+an added small seventh (= \HH.gis.7.7...) which  functionally has to be taken as
+\HH.{\DD}p.7.7... in the context of \acc{a-minor}, respectively as
+\HH.{D}p.7.7... in the context of \acc{E-major}. In this case, the alteration of
+the \acc{gis} into an \acc{a} (\ra\ \texttt{bar 2}) while continuing the other
+tones of the chord (in at least some lower voices) let finally become the chord
+a \acc{dominant seventh chord}:
 
-There are further facts which sustain this 'reading'\footnote{For developing
-adequate harmonic analyses, reading is not enough, one has to focus on the
-auditive impacts.}:
-\begin{itemize}
-  \item If one -- related to the 'old' tonal center \acc{a-minor} -- replaced
-  the relative of the double dominant \acc{gis-minor} (\texttt{bar 2}) by the
-  double dominant \acc{B-Major} itself, one would get the very simple
-  semicadence: \HH.t..... \HH.s..... \HH.D..... \HH.\DD...... Hence, in reality,
-  the opening of \acc{Tristan} contains a \acc{deceptive semicadence} \HH.D.....
-  \HH.{\DD}p...... And this evokes us to hear a modulation
-  from \acc{a-minor} to \acc{E-Major} \HH.t..... \HH.s..... [ \HH.D..... \ra\ 
-  \HH.T..... ] \HH.Dp.6.5.6... (\texttt{bar 1-2})
-  \item In fact, in \acc{Tristan}, the chord \acc{gis-minor} is enriched by its
-  sixth \acc{eis}. Purists would say, that it isn't the sixth, but the
-  diminished seventh. But that's a matter of reading the score, not a matter of
-  the auditive perception. Nevertheless one has to consider, why \acc{eis} has
-  not been written, but its enharmonic 'friend' \acc{f}: This is enforced by the
-  purpose of that tone with respect to the succeeding chord: the \acc{f} shall
-  lead to the next chord \acc{fis-minor} (\texttt{bar 2, last eight}) 
-  \item The Tristan chord \texttt{gis b dis eis=f}  can not only be understood
-  as \HH.{\DD}p.6.5.6... (= \HH.gis.6.5.6...) but also as \HH.\Dohne.3.7.9... (
-  \HH.\Ohne[0,2em]Cis.3.7.9...) This ambiguity enables the chord also to
-  function as an intermediary dominant to the next chord \acc{fis-minor}.
-  \item If one replaced the \acc{a} (\texttt{bar 2, last eight}) by the third
-  \acc{fis a}, one would directly hear, that its predecessor, the \acc{Tristan
-  Chord} now acts as intermediary dominant \HH.\Dohne.3.7.9... to
-  \acc{fis-minor} because it contains the two leading tone \acc{f \ra\ fis} and
-  \acc{gis \ra\ a}.
-  \item Of course -- in fact, \texttt{bar 2, last eight} contains the single tone
-  \acc{a} instead of the third  \acc{fis a}, as well as \texttt{bar 1} contains
-  only single tones instead of chords. And taking a single tone as representant
-  of a complete chord on the first glance seems to be a bit arbitrarily. But one
-  has to keep in mind, that -- in the field -- we are familiar to do so: every
-  carnival again, we all understand a fanfare like \acc{g c} as a row of
-  \HH.D..... \HH.T..... In the same way, we understand the row \acc{a f} as
-  \HH.t..... \HH.s....., which on the other hand evokes us that to take the
-  succeding \acc{e} as \HH.D..... Also Petersen understands the first bar (phase
-  1) in this sense and describes it as \enquote{Halbschluss auf der Dominante}
-  (\cite[cf.][51]{Petersen2019a}) .
-  And finally, the same method of \acc{adjuvant hearing} enables us, to link the
-  two leading tones \acc{f} and \acc{gis} from the \acc{Tristan Chord} to the
-  single tone \acc{a} in \texttt{bar 2} (even it is still accompanied by its
-  fading away predecessor.)
-\end{itemize}
 
-Thus, we probably may say, that using \hlyn\ makes it easier to understand the
-\acc{Tristan chord} as well as writing the appropriate analysis. That's a nice
-result isn't it? Howsoever, here is the respective code:
+\begin{center}
+\begin{lilypond}
+\version "2.18.2"
+\include "lilypond/harmonyli.ly"
+
+\header { tagline = "" }
+
+imInfix = " " % don't forget this!
+
+trisSone =  { \stemUp 
+  \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
+}
+
+trisStwo = { \stemDown 
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+}
+
+trisBone = { \stemUp 
+  \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
+}
+
+trisBtwo =  { \stemDown 
+  \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
+}
+
+trisBana =  { \stemDown 
+  \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
+}
+
+trisSymb = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+
+  \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+
+
+  \markup \setRfHas "D" "T" 
+    #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
+        ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
+    ) 
+  
+
+  \markup \setHas "Dp" #'(("C" . "E")("B" . "7")("a" . "7"))
+  \markup \setHas "D" #'(("C" . "E")("B" . "5")("a" . "7"))
+  
+  \initTextSpan "        "  
+  \markup \openZoomRow "T" #'(("a"."♯4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan   
+}
+
+trisChord = \lyricmode {
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+  \override Score.BarNumber.break-visibility = #'#(#t #t #t)
+  
+  \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
+  
+  \markup \setHas "g♯" #'(("C" . "E")("B" . "7")("a" . "7"))
+  \markup \setHas "B" #'(("C" . "E")("B" . "7")("a" . "7"))
+ 
+  
+  \initTextSpan "      "  
+  \markup \openZoomRow "E" #'(("a"."♯4"))
+  \startTextSpan 
+  \markup \expZoomRow  #'(("a"."5"))  
+  \stopTextSpan 
+
+}
+
+\score {
+  <<
+    \new GrandStaff <<
+      \time 6/8 
+      \new Staff <<
+        \clef "treble" \key  a\minor 
+        \new Voice = "trisSone" { \trisSone }
+        \new Voice = "trisStwo" { \trisStwo }
+      >>
+      \new Staff <<
+        \clef "bass"\key  a\minor 
+        \new Voice = "trisBone" { \trisBone }
+        \new Voice = "trisBtwo" { \trisBtwo }
+        \new NullVoice = "trisBana" { \trisBana }
+        \new Lyrics \lyricsto "trisBana" { \trisSymb }
+        \new Lyrics \lyricsto "trisBana" { \trisChord }
+      >>    
+    >>
+  >>
+  \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
+} 
+\end{lilypond}
+\end{center}
+
+
+Thus, we probably may conclude, that using \hlyn\ makes it easier to understand
+the \acc{Tristan chord} as well as writing the appropriate analysis. That's a
+nice result isn't it? Howsoever, here is the respective code:
  
 \begin{scriptsize}
 \begin{verbatim}
@@ -2756,21 +2828,21 @@ trisSymb = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
-  \markup \setHas "t" #'(("C" . "a"))
-  \markup \setHas "s" #'(("B"."3")) 
+  \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+
 
   \markup \setRfHas "D" "T" 
-    #'( ("C" . "a")
-        ("nC" . "E")
+    #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
+        ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
     ) 
+  \initTextSpan "        "
+  \markup \openZoomRow "D" #'(("C" . "E")("B" . "5")("a" . "5")("b" . "6"))
+  \startTextSpan
+  \markup \expZoomRow #'(("a" . "5")("b" . "7"))
+  \stopTextSpan
   
-   \markup \setRfHas "Dp" "D" 
-    #'( ("B"."6")("a"."5")("b"."6")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."9")("nC" . "Sp")("nfl" . "(")("nfr" . ")")
-    )   
- 
-  \markup \setHas "Sp" #'(("B"."3"))
-  \initTextSpan "      "  
+  \initTextSpan "        "  
   \markup \openZoomRow "T" #'(("a"."+4"))
   \startTextSpan 
   \markup \expZoomRow  #'(("a"."5"))  
@@ -2783,17 +2855,16 @@ trisChord = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
   \override Score.BarNumber.break-visibility = #'#(#t #t #t)
   
-  \markup \setHas "a" #'(("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
-  \markup \setHas "d" #'(("B"."3")("a"." ")("b"." ")("c"." ")) 
-  \markup \setHas "E" #'(("a"." ")("b"." ")("c"." "))   
+  \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
   
-     \markup \setRfHas "gis" "Cis" 
-    #'( ("B"."6")("a"."5")("b"."6")
-        ("nT"."x")("nB"."3")("na"."7")("nb"."9")
-    )
+  \initTextSpan "     "
+  \markup \openZoomRow "B" #'(("B" . "5")("a" . "5")("b" . "6"))
+  \startTextSpan
+  \markup \expZoomRow #'(("a" . "5")("b" . "7"))
+  \stopTextSpan
   
-  
-  \markup \setHas "fis" #'(("B"."3")("a"." ")("b"." ")("c"." ")("d"." ")("e"." "))
   \initTextSpan "      "  
   \markup \openZoomRow "E" #'(("a"."+4"))
   \startTextSpan 
@@ -2823,8 +2894,8 @@ trisChord = \lyricmode {
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
 } 
-\end{lilypond}
-\end{center}
+
+
 \end{verbatim}
 \end{scriptsize}
 
