@@ -3,6 +3,8 @@
 %
 % Copyright (c) 2019 Karsten Reincke, Frankfurt, Hans Blum
 %
+% release 1.2
+%
 % This file is distributed either under the terms of the MIT license or under 
 % the terms of the GPLv3 license. Feel free to choose the distribution method 
 % you prefer by deleting the unsuitable licensing statement (Don't delete both): 
