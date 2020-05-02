@@ -17,9 +17,6 @@ TFS=./sn967 \
 help:
 	@echo "call 'make XYZ.(pdf|png)' for creating a single file or 'make test' for creating all"
 
-play:
-	timidity $<
-
 test:
 	$(foreach F, ${TFS}, make  ${F}.pdf ;)
 

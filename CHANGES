@@ -1,3 +1,6 @@
+2020-05-02: release 1.4
+* erased play from the make file
+* added play script which compiles a ly file and plays it via timidity
 2019-12-20: release 1.2
 * indicating of unsused tones enabled
 * tutorial adjusted
