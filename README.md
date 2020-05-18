@@ -62,7 +62,7 @@ respectively `make example.png`:
 * The deeply embedded core function should be redesigned to use the overlay technique.
   This will be implemented as soon as LilyPond 2.19 or 2.20 is officially released and
   integrated into the standard Linux distributions. (Ubuntu 20.04 offers lilypond 2.20.xx, 
-  so we now are able to start with that work. But it still needs a bit time)
+  so we now are able to start with that work. But it still takes some time)
 
 
 
