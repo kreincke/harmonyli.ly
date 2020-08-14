@@ -31,7 +31,7 @@
 \paper {
   indent = 0
   ragged-right = ##f
-  system-system-spacing #'basic-distance = #20
+  system-system-spacing, basic-distance = #20
   score-system-spacing =
     #'((basic-distance . 12)
        (minimum-distance . 6)
