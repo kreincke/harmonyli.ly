@@ -33,6 +33,8 @@ pics:
 	@ echo "### `date +'%Y%m%dT%H%M%S'`: converting $< to $@" 
 	@ lilypond $< 
 
+clear: clean
+
 clean:	
 	$(foreach EXT, ${RES_EXTS}, if [ ! "x`ls *.${EXT} 2>/dev/null`" = "x" ]; then rm *.${EXT}; fi;)
 

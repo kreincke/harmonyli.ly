@@ -4,4 +4,4 @@
 CN=`basename $1 .ly`
 
 make ${CN}.pdf
-timidity ${CN}.midi
+timidity -B2,8 -Os1l -s 44100 ${CN}.midi
