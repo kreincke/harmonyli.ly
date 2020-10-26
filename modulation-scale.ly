@@ -24,7 +24,7 @@
 % FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
 % IN THE SOFTWARE.
 
-\version "2.18.2"
+\version "2.20.0"
 
 \include "harmonyli.ly"
 

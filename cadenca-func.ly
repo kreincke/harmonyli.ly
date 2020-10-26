@@ -7,7 +7,7 @@
 % This file is licensed under CC-BY-SA 4.0 international
 % for details see https://creativecommons.org/licenses/by-sa/4.0/
 
-\version "2.18.2"
+\version "2.20.0"
 
 \header { tagline = "" }
 \include "harmonyli.ly"
