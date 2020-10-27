@@ -34,6 +34,10 @@
           \bar "||"
         }
         \addlyrics {
+	  \override LyricText.self-alignment-X = #LEFT
+	  \override LyricExtender.left-padding = #-0.5
+          \override LyricExtender.extra-offset = #'(0 . 0.5)
+
           \markup \setHas "T" #'(("C"."D")("fr" . " "))
           \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
           \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
@@ -41,7 +45,7 @@
           \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
           \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
                  
-          \initTextSpan "   "
+          \initTextSpan "    "
           \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
           \startTextSpan
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 

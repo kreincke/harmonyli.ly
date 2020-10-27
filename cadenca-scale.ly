@@ -55,6 +55,8 @@
         } 
                 % TODO: fstring nicht ausgewertet1
         \addlyrics {
+	  \override LyricText.self-alignment-X = #LEFT
+
           \markup \setHas "I" #'(("fr" . " "))
           \markup \setHas "VI" #'(("a" . "♯3")("b" . "5")("c" . "6")("fr" . " "))
           \markup \setHas "I" #'(("a" . "2")("fr" . " "))
@@ -62,7 +64,7 @@
           \markup \setHas "I" #'(("a" . "6")("fr" . " ")("fr" . " ")) 
           \markup \setHas "VI" #'(("a" . "3")("b" . "4")("c" . "♯6")("fr" . " ")) 
                  
-          \initTextSpan "  "
+          \initTextSpan "    "
           \markup \openZoomRow "V" #'(("a"."4")("b"."5")("fl" . " ")) 
           \startTextSpan
           \markup \expZoomRow #'(("a"."3")("fr" . " ")) 

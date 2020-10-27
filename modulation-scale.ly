@@ -55,7 +55,7 @@ voiceS = \relative c'' {
   \clef treble
   \stemUp
   \global
-  c4 c c( b) | c2 r4 d4 | e f d d | cis2 r4 d4 |
+  c4 c c( b) | c2 s4 d4 | e f d d | cis2 s4 d4 |
   cis4 cis gis' dis | bes bes bes es | e!2 f4 es |
   es2 des | ces1 \bar "|."
 }
@@ -73,7 +73,7 @@ voiceT = \relative c' {
   \clef treble
   \stemDown
   \global
-  e4 c d2 | e2 r4 f4 | g f f gis | e2 r4 gis4 |
+  e4 c d2 | e2 s4 f4 | g f f gis | e2 s4 gis4 |
   e4 fis gis fis | bes, bes es es | g2 as4 bes |
   as2 g | es1 \bar "|."
 }
@@ -99,7 +99,7 @@ fhaVoiceHidden =
   \global
   \override NoteHead.color = #red
   \override NoteColumn #'ignore-collision = ##t
-  c4 c c c | c2 r4 c | c c c c | c2 r4 c | c c c c | c c c c | c2 c4 c | c2 c | c1 \bar "|."
+  c4 c c c | c2 s4 c | c c c c | c2 s4 c | c c c c | c c c c | c2 c4 c | c2 c | c1 \bar "|."
 }
 
 fhaRhythmVoice =

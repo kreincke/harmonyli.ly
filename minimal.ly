@@ -53,9 +53,8 @@ analysis = \lyricmode {
 \score {
   \new GrandStaff <<
     \new Staff << \clef treble \key c \major  \time 4/4
-      \new Voice = "top" { \stemUp e''4 e'' e''( d'')  c''1 }
-      \new Voice = "middle" { \stemDown <g' c''>4 <g' bes'>4 <f' a'>2 <g' c'>1
-      }
+      \new Voice = "top" { \stemUp <c'' e''>4 <bes' e''> e''( d'')  c''1 }
+      \new Voice = "middle" { \stemDown g'16[ e' g' e'] g'8[ g' ] <f' a'>2 <g' c'>1 }
       >> 
     \new Staff << \clef bass  \key c \major  \time 4/4
       \new Voice = "down" { \stemUp c4 cis4 d2 g1}

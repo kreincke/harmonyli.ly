@@ -1,27 +1,27 @@
 % modulation.ly :- for demonstrating the use of harmonyli.ly in a modulation
-% Copyright (c) 2019 Karsten Reincke, 
+% Copyright (c) 2019 Karsten Reincke,
 %
 
 % This file is distributed under the terms of the MIT license:
 % --------------------------------------
 % Copyright 2019 Karsten Reincke (Frankfurt)
 
-% Permission is hereby granted, free of charge, to any person obtaining a copy 
-% of this software and associated documentation files (the "Software"), to deal 
-% in the Software without restriction, including without limitation the rights 
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-% copies of the Software, and to permit persons to whom the Software is 
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
 % furnished to do so, subject to the following conditions:
 
-% The above copyright notice and this permission notice shall be included in all 
+% The above copyright notice and this permission notice shall be included in all
 % copies or substantial portions of the Software.
 
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 % IN THE SOFTWARE.
 
 \version "2.20.0"
@@ -55,7 +55,7 @@ voiceS = \relative c'' {
   \clef treble
   \stemUp
   \global
-  c4 c c( b) | c2 r4 d4 | e f d d | cis2 r4 d4 |
+  c4 c c( b) | c2 s4 d4 | e f d d | cis2 s4 d4 |
   cis4 cis gis' dis | bes bes bes es | e!2 f4 es |
   es2 des | ces1 \bar "|."
 }
@@ -73,7 +73,7 @@ voiceT = \relative c' {
   \clef treble
   \stemDown
   \global
-  e4 c d2 | e2 r4 f4 | g f f gis | e2 r4 gis4 |
+  e4 c d2 | e2 s4 f4 | g f f gis | e2 s4 gis4 |
   e4 fis gis fis | bes, bes es es | g2 as4 bes |
   as2 g | es1 \bar "|."
 }
@@ -99,7 +99,7 @@ fhaVoiceHidden =
   \global
   \override NoteHead.color = #red
   \override NoteColumn #'ignore-collision = ##t
-  c4 c c c | c2 r4 c | c c c c | c2 r4 c | c c c c | c c c c | c2 c4 c | c2 c | c1 \bar "|."
+  c4 c c c | c2 s4 c | c c c c | c2 s4 c | c c c c | c c c c | c2 c4 c | c2 c | c1 \bar "|."
 }
 
 fhaRhythmVoice =
@@ -120,47 +120,47 @@ fhasSubline = \lyricmode {
 
 
   \set stanza = #"C-Major:"
-  % encoding on level 1 
+  % encoding on level 1
   \markup \setHas  "T" #'(("C"."C"))
   \markup \setHas  "S" #'(("B"."3"))
   \initTextSpan "   "
   \markup \openZoomRow "D" #'(("a"."4")("b"."7"))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")) 
+  \markup \expZoomRow #'(("a"."3"))
   \stopTextSpan
   \markup \FHAS "T"
-  \markup \Dsept 
+  \markup \Dsept
   \markup \FHAS "T"
   \markup \setHas  "S" #'(("B"."3"))
-  \markup \setRfHas "Sp" "s" 
+  \markup \setRfHas "Sp" "s"
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
-  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."A"))
   \markup \setHas  "T" #'(("C"."A"))
-  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."A"))
   \markup \setHas  "T" #'(("C"."A"))
   \markup \setHas  "Tp" #'(("C"."A"))
   \markup \setHas  "Tg" #'(("C"."A"))
 
-    \markup \setRfHas "D" "D" 
+    \markup \setRfHas "D" "D"
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
         ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
-       
+
     )
 
-  \markup \setHas  "Sp" #'(("C"."As")) 
-  \markup \setHas  "D" #'(("B"."3")("C"."as")) 
-  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as")) 
+  \markup \setHas  "Sp" #'(("C"."As"))
+  \markup \setHas  "D" #'(("B"."3")("C"."as"))
+  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as"))
   \markup \setHas  "t" #'(("C"."as"))
 
-  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7")) 
-  
-  
-  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as")) 
-  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as")) 
+  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7"))
+
+
+  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as"))
+  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as"))
   \markup \setHas  "t" #'(("C"."as"))
-  \markup \setHas  "D" #'(("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."as"))
   \set stanza = #"as-minor"
   \markup \setHas  "t" #'(("C"."as"))
 
@@ -173,47 +173,47 @@ fhasLine = \lyricmode {
 
 
   \set stanza = #"C-Major:"
-  % encoding on level 1 
+  % encoding on level 1
   \markup \setHas  "T" #'(("C"."C"))
   \markup \setHas  "S" #'(("B"."3"))
   \initTextSpan "   "
   \markup \openZoomRow "D" #'(("a"."4")("b"."7"))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")) 
+  \markup \expZoomRow #'(("a"."3"))
   \stopTextSpan
   \markup \FHAS "T"
-  \markup \Dsept 
+  \markup \Dsept
   \markup \FHAS "T"
   \markup \setHas  "S" #'(("B"."3"))
-  \markup \setRfHas "Sp" "s" 
+  \markup \setRfHas "Sp" "s"
     #'( ("B"."6")("a"."5")("b"."6")("C" . "C")
         ("nB"."6")("na"."5")("nb"."6")("nC" . "A")
     )
-  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."A"))
   \markup \setHas  "T" #'(("C"."A"))
-  \markup \setHas  "D" #'(("a"."7")("C"."A")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."A"))
   \markup \setHas  "T" #'(("C"."A"))
   \markup \setHas  "Tp" #'(("C"."A"))
   \markup \setHas  "Tg" #'(("C"."A"))
 
-   \markup \setRfHas "D!" "D" 
+   \markup \setRfHas "D!" "D"
     #'( ("T"."dx")("B"."♭9")("a"."7")("b"."♭9")("C" . "A")("fr".")")("fl"."(")
         ("nT"."x")("nB"."3")("na"."7")("nb"."♭9")("nC" . "S (As)")("nfr".")")("nfl"."(")
-       
+
     )
 
-  \markup \setHas  "Sp" #'(("C"."As")) 
-  \markup \setHas  "D" #'(("B"."3")("C"."as")) 
-  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as")) 
+  \markup \setHas  "Sp" #'(("C"."As"))
+  \markup \setHas  "D" #'(("B"."3")("C"."as"))
+  \markup \setHas  "D" #'(("B"."7")("a"."7")("C"."as"))
   \markup \setHas  "t" #'(("C"."as"))
 
-  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7")) 
-  
-  
-  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as")) 
-  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as")) 
+  \markup \setImHas "D" #'(("T"."d")("B"."7")("a" . "7"))
+
+
+  \markup \setHas  "D" #'(("T"."d")("a"."7")("C"."as"))
+  \markup \setHas  "D" #'(("B" . "3")("a"."7")("C"."as"))
   \markup \setHas  "t" #'(("C"."as"))
-  \markup \setHas  "D" #'(("a"."7")("C"."as")) 
+  \markup \setHas  "D" #'(("a"."7")("C"."as"))
   \set stanza = #"as-minor"
   \markup \setHas  "t" #'(("C"."as"))
 
@@ -244,11 +244,11 @@ fhasLine = \lyricmode {
     \new RhythmicStaff = analysis
     \with { printPartCombineTexts = ##f }
     {
-      << 
+      <<
           \new Voice = "AnalysisLine" { \fhaRhythmVoice}
           \new Lyrics \lyricsto "AnalysisLine" \fhasLine
       >>
-      
+
     }
   >>
 
@@ -259,30 +259,28 @@ fhasLine = \lyricmode {
     }
   }
   \midi {}
-} 
- 
+}
+
 
 
 \markup \vspace #2
-\markup { 
+\markup {
   \column {
-    \line { 
+    \line {
       Nevertheless, this file only uses (indicates) a subset of 'harmonyli'.
       For details see the harmonily-tutorial. }
-    \line{ 
-      Additionally it demonstrates the two ways to integrate 
+    \line{
+      Additionally it demonstrates the two ways to integrate
       \italic{ Functional Harmony Analysis Symbols} into a score:
       }
-  
+
     \line {
       1) Create an unvisible voice (red) as part of the
       (deepest) staff and bind the analyzing lyrics to that voice.}
     \line {
-      2) Create a special staff (RhythmicStaff) with a rhythm voice 
+      2) Create a special staff (RhythmicStaff) with a rhythm voice
       and bind the analyzing lyrics to that voice.
     }
-  
+
   }
 }
-
-

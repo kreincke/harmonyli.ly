@@ -2932,6 +2932,24 @@ trisChord = \lyricmode {
 
 \section{FAQ}
 \label{FAQ}
+
+\subsection{How can I align the analysis symbols as I prefer (centered / left) ?}
+Aligning the symbols is not a matter of \textit{harmonyli.ly}, but of \textit{lilypond}:
+\textit{harmonyli.ly} uses \textit{LilyPonds} 'add lyrics' method. By default a
+syllable is output under its tone - with respect to this tone - in a centered mode.
+
+But you might prefer to see your \texttt{Harmony Analysis Symbols} under their tones, 
+but aligned left to the respective tones. To get such a result open your analysis (=lyric) 
+section with the strings
+
+\begin{verbatim}
+  \override LyricText.self-alignment-X = #LEFT
+  \override LyricExtender.left-padding = #-0.5
+  \override LyricExtender.extra-offset = #'(0 . 0.5)
+\end{verbatim}
+
+For details compare the examples and particularly play around with \textit{minimal.ly}
+
 \subsection{What's the purpose of the prefix / suffix?}
 
 \hlyn\ offers the opportunity, to 'expand' a \has{}\ by a prefix and/or a
@@ -3014,7 +3032,7 @@ Here is a an example:
 }
 \end{verbatim}
 \end{scriptsize}
-\subsection{can you offer a synopsis of concepts, translations, and symbols?}
+\subsection{Can you offer a synopsis of concepts, translations, and symbols?}
 
 Yes, we\footnote{In this context, I have first of all to thank Leo Correia de
 Verdier (who delivered the basic version of the following table to me) and
