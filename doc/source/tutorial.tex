@@ -3,7 +3,7 @@
 % (c) Karsten Reincke, Frankfurt a.M. 2010, 2011, ff.
 %
 % This file is licensed under the Creative Commons Attribution 3.0 Germany
-% License (http://creativecommons.org/licenses/by/3.0/de/): 
+% License (http://creativecommons.org/licenses/by/3.0/de/):
 % For details see teh file LICENSE in the top directory
 %
 % select the document class
@@ -23,7 +23,7 @@
   xcolor=dvipsnames,
   openany,
   english]{scrartcl}
-  
+
 %%% (1) general configurations %%%
 \usepackage[utf8]{inputenc}
 
@@ -170,7 +170,7 @@ This tutorial describes how to create and embed \has{s}\ into scores. It
 intends to be a handout for musicologists and other enthusiasts of harmony
 analyses, who use \lily. It documents the usage of the library \hlyn\ by which
 it can develop \acc{Riemann} symbols as well as symbols of the
-\acc{scale-step-theory}). Due to the fact, that \hlyn\ as well as this \LaTeX\ 
+\acc{scale-step-theory}). Due to the fact, that \hlyn\ as well as this \LaTeX\
 based paper is published as open source software and that its sources are part
 of the library \hlyn, it indirectly can also teach how to embed \lily\ snippets
 into \LaTeX\ files.
@@ -265,7 +265,7 @@ the harmonyli.ly sources. (\ra\
 \lnka{https://github.com/kreincke/harmonyli.ly/tree/master/xtras}) Just as Klaus
 Blum did, also \hlyn\ uses some examples offered by Neil Puttock for explaining
 how to use text span engraver ( \ra\
-\lnka{http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html 
+\lnka{http://www.mail-archive.com/lilypond-user%40gnu.org/msg60732.html
 } )
 and which therefore fall under the same license as any other example code which
 is offered by \lily. }
@@ -297,7 +297,7 @@ And the way of learning how to use \hlyn\ starts now:
   archive by using the respective (github)
   commands.\footnote{\lnkr{https://github.com/kreincke/harmonyli.ly}}
   \item Copy the file \hlyf\ somewhere into your file system.
-  \item Insert the command \texttt{\textbackslash include 
+  \item Insert the command \texttt{\textbackslash include
   "YOUR\_PATH\_TO/harmonyli.ly"} into
   your \lily\ file above the first \texttt{score\{\ldots\}} section.
   \item Expand your \texttt{layout\{\ldots\}} section by the line
@@ -318,7 +318,7 @@ you have three opportunities to fulfill this condition:
 
 \subsection{Binding \has{s} to a Real Voice}
 
-Linking \has{s} to a really used staff is straight forward: 
+Linking \has{s} to a really used staff is straight forward:
 
 \subsubsection{Example}
 \begin{center}
@@ -328,7 +328,7 @@ Linking \has{s} to a really used staff is straight forward:
 
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
-  
+
 \score {
   \new StaffGroup {
     \time 4/4
@@ -336,35 +336,35 @@ Linking \has{s} to a really used staff is straight forward:
       \new Staff {
         \relative d' {
           \clef "treble"
-          \key d \major  
+          \key d \major
           \stemUp
-          < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+          < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
           < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
-        }   
+        }
       }
       \new Staff {
-        \relative d { 
+        \relative d {
           \clef "bass"
-          \key d \major  
+          \key d \major
           \stemDown
           d2 b d cis  |
           d b d4 cis4 d2 \bar "||"
-        }   
+        }
       }
       \addlyrics {
           \markup \setHas "T" #'(("C"."D")("fr" . " "))
           \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
           \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
           \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")("c" . "♭9>♯8")("fr" . " "))
-          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
-          \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " ")) 
-                 
+          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
+          \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")("fr" . " "))
+
           \initTextSpan "  "
           \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
           \startTextSpan
-          \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+          \markup \expZoomRow #'(("a"."3")("fr" . " "))
           \stopTextSpan
-  
+
           \markup \setHas "T" #'(("fr" . " "))
         }
     >>
@@ -394,29 +394,29 @@ Linking \has{s} to a really used staff is straight forward:
       \new Staff {
         \relative d' {
           \clef "treble" \key d \major \stemUp
-          < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+          < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
           < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
-      } }   
+      } }
 
       \new Staff {
-        \relative d { 
+        \relative d {
           \clef "bass" \key d \major \stemDown
           d2 b d cis  | d b d4 cis4 d2 \bar "||"
-      } }   
-      
+      } }
+
       \addlyrics {
           \markup \setHas "T" #'(("C"."D")("fr" . " "))
           \markup \setImHas "D" #'(("B"."1")("a" . "7")("fr" . " "))
           \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
           \markup \setHas "D" #'(("T"."x")("B"."3")
                                 ("a" . "5")("b" . "7")("c" . "-9>+8")("fr" . " "))
-          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+          \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
           \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
-                                ("fr" . " "))    
+                                ("fr" . " "))
           \initTextSpan "   "
           \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
           \startTextSpan
-          \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+          \markup \expZoomRow #'(("a"."3")("fr" . " "))
           \stopTextSpan
           \markup \setHas "T" #'(("fr" . " "))
         }
@@ -459,7 +459,7 @@ distance between the used notes and the \has{s}.
 \paper {
   indent = 0
   ragged-right = ##f
-  system-system-spacing #'basic-distance = #20
+  system-system-spacing, basic-distance = #20
   score-system-spacing =
     #'((basic-distance . 12)
        (minimum-distance . 6)
@@ -473,7 +473,7 @@ global  = { \key d \major  \time 4/4}
 
 descant = \relative c' {
   \clef treble \stemUp \global
-  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
   < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
 }
 
@@ -500,13 +500,13 @@ hasSymbols = \lyricmode {
   \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "♭9>♯8")("fr" . " "))
-  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
-                          ("fr" . " "))    
+                          ("fr" . " "))
   \initTextSpan "    "
   \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \markup \expZoomRow #'(("a"."3")("fr" . " "))
   \stopTextSpan
   \markup \setHas "T" #'(("fr" . " "))
 }
@@ -517,7 +517,7 @@ hasSymbols = \lyricmode {
       \new Staff = upper
       \with { printPartCombineTexts = ##f }
       { <<
-          \descant 
+          \descant
         >>
       }
       \new Staff = lower
@@ -533,7 +533,7 @@ hasSymbols = \lyricmode {
     >>
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{lilypond}
 \end{center}
 
@@ -546,7 +546,7 @@ hasSymbols = \lyricmode {
 \paper {
   indent = 0
   ragged-right = ##f
-  system-system-spacing #'basic-distance = #20
+  system-system-spacing, basic-distance = #20
   score-system-spacing =
     #'((basic-distance . 12)
        (minimum-distance . 6)
@@ -560,7 +560,7 @@ global  = { \key d \major  \time 4/4}
 
 descant = \relative c' {
   \clef treble \stemUp \global
-  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
   < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
 }
 
@@ -587,13 +587,13 @@ hasSymbols = \lyricmode {
   \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "-9>+8")("fr" . " "))
-  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
-                          ("fr" . " "))    
+                          ("fr" . " "))
   \initTextSpan "    "
   \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \markup \expZoomRow #'(("a"."3")("fr" . " "))
   \stopTextSpan
   \markup \setHas "T" #'(("fr" . " "))
 }
@@ -604,7 +604,7 @@ hasSymbols = \lyricmode {
       \new Staff = upper
       \with { printPartCombineTexts = ##f }
       { <<
-          \descant 
+          \descant
         >>
       }
       \new Staff = lower
@@ -620,7 +620,7 @@ hasSymbols = \lyricmode {
     >>
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{verbatim}
 \end{scriptsize}
 
@@ -647,7 +647,7 @@ inserted into the section \texttt{\textbackslash page\{\ldots\}}}
 
 Binding the \has{s} to a specific \acc{analysis} staff is straight forward
 again: you must create a voice in a special staff which only represents the
-rhythm. 
+rhythm.
 
 This method is good for scores with many staves (like those of symphonies etc.):
 it simplifies to ignore the harmonically irrelevant passing notes.
@@ -662,7 +662,7 @@ it simplifies to ignore the harmonically irrelevant passing notes.
 \paper {
   indent = 0
   ragged-right = ##f
-  system-system-spacing #'basic-distance = #20
+  system-system-spacing, basic-distance = #20
   score-system-spacing =
     #'((basic-distance . 12)
        (minimum-distance . 6)
@@ -676,7 +676,7 @@ global  = { \key d \major  \time 4/4}
 
 descant = \relative c' {
   \clef treble \stemUp \global
-  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
   < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
 }
 
@@ -700,13 +700,13 @@ hasSymbols = \lyricmode {
   \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "♭9>♯8")("fr" . " "))
-  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
-                          ("fr" . " "))    
+                          ("fr" . " "))
   \initTextSpan "    "
   \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \markup \expZoomRow #'(("a"."3")("fr" . " "))
   \stopTextSpan
   \markup \setHas "T" #'(("fr" . " "))
 }
@@ -722,7 +722,7 @@ hasSymbols = \lyricmode {
     \new RhythmicStaff = analysis
     \with { printPartCombineTexts = ##f }
     {
-      << 
+      <<
       \new Voice = "AnalysisLine" { \hasRhythm}
       \new Lyrics \lyricsto "AnalysisLine" \hasSymbols
       >>
@@ -730,7 +730,7 @@ hasSymbols = \lyricmode {
   >>
 
   \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
-} 
+}
 
 \end{lilypond}
 \end{center}
@@ -745,7 +745,7 @@ hasSymbols = \lyricmode {
 \paper {
   indent = 0
   ragged-right = ##f
-  system-system-spacing #'basic-distance = #20
+  system-system-spacing, basic-distance = #20
   score-system-spacing =
     #'((basic-distance . 12)
        (minimum-distance . 6)
@@ -759,7 +759,7 @@ global  = { \key d \major  \time 4/4}
 
 descant = \relative c' {
   \clef treble \stemUp \global
-  < fis a d>2 < fis a dis> < g b e> < g b eis>2 | 
+  < fis a d>2 < fis a dis> < g b e> < g b eis>2 |
   < fis b fis'>2 < b e gis> < a e' g!> < a d fis>2 \bar "||"
 }
 
@@ -783,13 +783,13 @@ hasSymbols = \lyricmode {
   \markup \setHas "Sp" #'(("B"."7")("a" . "7")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."x")("B"."3")("a" . "5")("b" . "7")
                           ("c" . "-9>+8")("fr" . " "))
-  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " ")) 
+  \markup \setHas "Tp" #'(("B"."3")("fl" . " ")("fr" . " "))
   \markup \setHas "D" #'(("T"."d")("B"."5")("a" . "7")("b" . "8")
-                          ("fr" . " "))    
+                          ("fr" . " "))
   \initTextSpan "    "
   \markup \openZoomRow "D" #'(("a"."4")("fl" . " "))
   \startTextSpan
-  \markup \expZoomRow #'(("a"."3")("fr" . " ")) 
+  \markup \expZoomRow #'(("a"."3")("fr" . " "))
   \stopTextSpan
   \markup \setHas "T" #'(("fr" . " "))
 }
@@ -805,7 +805,7 @@ hasSymbols = \lyricmode {
     \new RhythmicStaff = analysis
     \with { printPartCombineTexts = ##f }
     {
-      << 
+      <<
       \new Voice = "AnalysisLine" { \hasRhythm}
       \new Lyrics \lyricsto "AnalysisLine" \hasSymbols
       >>
@@ -813,7 +813,7 @@ hasSymbols = \lyricmode {
   >>
 
   \layout{ \context{\Lyrics\consists "Text_spanner_engraver"}}
-} 
+}
 
 \end{verbatim}
 \end{scriptsize}
@@ -831,7 +831,7 @@ Instead of this, each of them gets its own staff. And again, the stream of
 After having generally explained how to integrate and use \hlyn, we can now
 discuss, how particular \has{s}\ are generated by \hlyn\ commands. For that
 purpose, \hlyn\ offers two interfaces: the basic \hlyn\ functions and some
-often used instantiations\footnote{\ra\ FAQ p. \pageref{FAQ}}. This chapter describes the general interface: 
+often used instantiations\footnote{\ra\ FAQ p. \pageref{FAQ}}. This chapter describes the general interface:
 
 \subsection{The basic \hlyn-functions}
 The basic interface of \hlyn\ contains nine functions:
@@ -842,7 +842,7 @@ The basic interface of \hlyn\ contains nine functions:
     c
     >{\raggedright\hspace{0pt}}p{8cm}
    }
- 
+
 (01) & \textbf{setHas} & \ra & inserts a \has{}.
 \tabularnewline
 (02) & \textbf{setImHas} & \ra & inserts an \acc{Intermediary \has{}} whose
@@ -857,11 +857,11 @@ center
 (04) & \textbf{openImRow} & \ra & starts an intermediary chain of \has{s}\
 where each chord of the chain refers to the root of chord which follows the chain
 \tabularnewline
-(05) & \textbf{closeImRow} & \ra & closes an intermediary chain of \has{s}\ 
+(05) & \textbf{closeImRow} & \ra & closes an intermediary chain of \has{s}\
 and indicates, that the root of the directly succeding chord is the tonal
 center of that chain
 \tabularnewline
-(06) & \textbf{openZoomRow} & \ra & starts the zoom into a \has{} which shall 
+(06) & \textbf{openZoomRow} & \ra & starts the zoom into a \has{} which shall
 cover suspended or passing notes
 \tabularnewline
 (07) & \textbf{expZoomRow} & \ra & expands an opened \has{} by a description of
@@ -880,7 +880,7 @@ suspended or passing notes which do not modify the current harmonic function
 \subsection{How to combine these \hlyn-functions correctly}
 
 In accordance with the following eBNF
-grammar\footnote{for details \ra\ 
+grammar\footnote{for details \ra\
 \lnka{https://en.wikipedia.org/wiki/Extended\_Backus\%E2\%80\%93Naur\_form}
 and/or \lnka{https://en.wikipedia.org/wiki/Backus-Naur\_form}
 }, you can embed five types of sub rows
@@ -892,7 +892,7 @@ derivable syntagm. The construct (language and process) is \textbf{complete}, if
 for any intended real-world object a syntagm can be derived which refers to that
 real world element. And the construct is \textbf{correct} if each derivable
 syntagm refers to a real world object. For human beings in general and
-musicologist in particular it is more important to use a \textbf{complete} 
+musicologist in particular it is more important to use a \textbf{complete}
 language (of \has{s}) than using a correct language: We want to know that
 we can express whatever we want to express, because our language is complete.
 And we can avoid wrong / meaningless syntagms manually so that the fact, that
@@ -917,7 +917,7 @@ HasStream ::- ( setHas | setImHas | setRfHas |
                 openImZoomRow, expZoomRow*, closeImZoomRow )+
 \end{verbatim}
 
-These production rules inidicate, that 
+These production rules inidicate, that
 \begin{itemize}
   \item you may use the 'normal' \has{s}\ -- may it be a simple \has, an
   intermediary \has, or a reframing \has\ -- without having to consider its
@@ -941,16 +941,16 @@ Typical \has{s}\ look like these:
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
-    < d' fis' a' d''>1 
-    < b g' d'' e''>1 
-    < cis' e' a' e''>1 
-    < cis' g' b' e''>1 
-    < d' gis' b' e''>1 
-    < d' gis' b' e''>1 
-    < cis' g' a' e''>1 
-    < d' fis' a' d''>1 
+    < d' fis' a' d''>1
+    < b g' d'' e''>1
+    < cis' e' a' e''>1
+    < cis' g' b' e''>1
+    < d' gis' b' e''>1
+    < d' gis' b' e''>1
+    < cis' g' a' e''>1
+    < d' fis' a' d''>1
   }
-  \addlyrics { 
+  \addlyrics {
     \markup \setHas "T" #'()
     \markup \setHas "S" #'(("B"."3")("a"."5")("b"."6"))
     \markup \setHas "D" #'(("B"."3"))
@@ -978,11 +978,11 @@ attributes. Let \hlyn\ itself visualize the structure of a \has{}:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
    < fis' a' b' d'' e''>1 }
-  \addlyrics { 
-    \markup 
-      \setHas "Functionsymbol" 
+  \addlyrics {
+    \markup
+      \setHas "Functionsymbol"
         #'( ("B"."B ::- Bassnote")
             ("S"."S ::- Soprannote")
             ("C"."C ::- Context")
@@ -1005,7 +1005,7 @@ The general syntax to specify such a \has{}\ is this:
 \begin{scriptsize}
 \begin{verbatim}
 ...
-  \addlyrics { 
+  \addlyrics {
     ...
     \setHas
       "T"             ; the function symbol
@@ -1038,21 +1038,21 @@ Howsoever, the presented example would create the following output:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
   < fis' a' b' d'' e''>1 }
-  \addlyrics { 
-    \markup 
-      \setHas "T" 
-        #'( ("B" . "3")   
+  \addlyrics {
+    \markup
+      \setHas "T"
+        #'( ("B" . "3")
             ("S" . "9")
-            ("C" ."D Major")  
-            ("a" . "3")   
-            ("b" . "5")   
-            ("c" . "6")  
-            ("d" . "8")  
-            ("e" . "9")  
-            ("fl" ."any-prefix ") 
-            ("fr" ." any-suffix") 
+            ("C" ."D Major")
+            ("a" . "3")
+            ("b" . "5")
+            ("c" . "6")
+            ("d" . "8")
+            ("e" . "9")
+            ("fl" ."any-prefix ")
+            ("fr" ." any-suffix")
         ) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1072,20 +1072,20 @@ must replace the function \texttt{\textbackslash setHas} by the function
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
   < fis' a' b' d'' e''>1 }
-  \addlyrics { 
-    \markup 
-      \setImHas "T" 
-        #'( ("B" . "3")   
-            ("S" . "9")   
-            ("a" . "3")   
-            ("b" . "5")   
-            ("c" . "6")  
-            ("d" . "8")  
-            ("e" . "9")  
-            ("fl" ."any-prefix ") 
-            ("fr" ." any-suffix") 
+  \addlyrics {
+    \markup
+      \setImHas "T"
+        #'( ("B" . "3")
+            ("S" . "9")
+            ("a" . "3")
+            ("b" . "5")
+            ("c" . "6")
+            ("d" . "8")
+            ("e" . "9")
+            ("fl" ."any-prefix ")
+            ("fr" ." any-suffix")
         ) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1105,20 +1105,20 @@ aspects, simply add the attribute \verb|("T"."x")| respectively
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key c \major \time 4/4 \stemUp 
-  < fis' a' b' c'' e''>1 
-  < fis' a' b' c'' e''>1 
+  \new Staff { \clef "treble" \key c \major \time 4/4 \stemUp
+  < fis' a' b' c'' e''>1
+  < fis' a' b' c'' e''>1
   < fis' a' b' c'' e''>1 }
-  \addlyrics { 
-    \markup \setHas "D" 
-        #'( ("T" . "x")("B" . "3")("S" . "9")   
-            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9")) 
-    \markup \setHas "D" 
-        #'( ("T" . "d")("B" . "3")("S" . "9")   
-            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9"))         
-    \markup \setHas "D" 
-        #'( ("T" . "xd")("B" . "3")("S" . "9")   
-            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9"))        
+  \addlyrics {
+    \markup \setHas "D"
+        #'( ("T" . "x")("B" . "3")("S" . "9")
+            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9"))
+    \markup \setHas "D"
+        #'( ("T" . "d")("B" . "3")("S" . "9")
+            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9"))
+    \markup \setHas "D"
+        #'( ("T" . "xd")("B" . "3")("S" . "9")
+            ("a" . "3")("b" . "5")("c" . "6")("d" . "7")("e" . "9"))
         }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1140,16 +1140,16 @@ that format:
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
-    < d' fis' a' d''>1 
-    < b g' d'' e''>1 
-    < cis' e' a' e''>1 
-    < cis' g' b' e''>1 
-    < d' gis' b' e''>1 
-    < d' gis' b' e''>1 
-    < cis' g' a' e''>1 
-    < d' fis' a' d''>1 
+    < d' fis' a' d''>1
+    < b g' d'' e''>1
+    < cis' e' a' e''>1
+    < cis' g' b' e''>1
+    < d' gis' b' e''>1
+    < d' gis' b' e''>1
+    < cis' g' a' e''>1
+    < d' fis' a' d''>1
   }
-  \addlyrics { 
+  \addlyrics {
     \markup \setHas "I" #'()
     \markup \setHas "VI" #'(("a"."3")("b"."4")("c"."6"))
     \markup \setHas "VII" #'(("a"."6"))
@@ -1189,15 +1189,15 @@ specifier, add at least an empty attribution list \texttt{\#'()}:
 
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
-  
+
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
-    < d' fis' a'>1 
-    < e' g' b' >1  
+    < d' fis' a'>1
+    < e' g' b' >1
     < fis' a' cis'' >1
-    < g' b' d'' >1  
-    < a' cis'' e'' >1 
-    < b' d'' fis'' >1  
+    < g' b' d'' >1
+    < a' cis'' e'' >1
+    < b' d'' fis'' >1
     < cis'' e'' g'' >1
   }
   \addlyrics {
@@ -1230,15 +1230,15 @@ specifier, add at least an empty attribution list \texttt{\#'()}:
 
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
-  
+
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
-    < d' fis' a'>1 
-    < e' g' b' >1  
+    < d' fis' a'>1
+    < e' g' b' >1
     < fis' a' cis'' >1
-    < g' b' d'' >1  
-    < a' cis'' e'' >1 
-    < b' d'' fis'' >1  
+    < g' b' d'' >1
+    < a' cis'' e'' >1
+    < b' d'' fis'' >1
     < cis'' e'' g'' >1
   }
   \addlyrics {
@@ -1300,10 +1300,10 @@ string \texttt{("B"."YOUR\_NUMBER")}:
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d'' a''>1 }
-  \addlyrics { 
+  \addlyrics {
 \end{verbatim}
 { \color{red} \verb|    \markup \setHas "T" #'(("B"."3"))| }
-\begin{verbatim}    
+\begin{verbatim}
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1340,10 +1340,10 @@ chord. For indicating the 'soprano' note expand the attribute list by the string
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' d'' a''>1 }
-  \addlyrics { 
+  \addlyrics {
 \end{verbatim}
 { \color{red} \verb|    \markup \setHas "T" #'(("S"."3"))| }
-\begin{verbatim}    
+\begin{verbatim}
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1369,7 +1369,7 @@ UTF8 / Unicode signs \{\musDoubleFlat , \musFlat , \musNatural , \musSharp ,
 \musDoubleSharp \}\footnote{We use the \LaTeX\ command
  \texttt{\textbackslash verbatim} for showing the \lily\ code which creates the
  example. Unfortunately, we can not use special Unicode signs in these sections.
-As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and 
+As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and
  \texttt{*} for \musNatural. }:
 
 \begin{center}
@@ -1379,11 +1379,11 @@ As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    < a' c'' es'' f'' g'' bis''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < a' c'' es'' f'' g'' bis''>1
   }
-  \addlyrics { 
-    \markup \setHas "D" #'(("a"."3♮")("b"."5♭")("c"."6♮")("d"."7")("e"."9♯")) 
+  \addlyrics {
+    \markup \setHas "D" #'(("a"."3♮")("b"."5♭")("c"."6♮")("d"."7")("e"."9♯"))
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1397,14 +1397,14 @@ As a substitute we use \texttt{+} for \musSharp, \texttt{-} for \musFlat\ and
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    < a' c'' es'' f'' g'' bis''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < a' c'' es'' f'' g'' bis''>1
   }
   \addlyrics {
   \end{verbatim}
   { \color{red} \verb|    \markup \setHas "D" #'(("a"."3*")("b"."5-")("c"."6*")("d"."7")("e"."9+")) |
   }
-\begin{verbatim}    
+\begin{verbatim}
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1425,13 +1425,13 @@ inversion of a chord, we have to use different numberings:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    < fis' a' d'' e''>1 
-    < fis' a' d'' e''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < fis' a' d'' e''>1
+    < fis' a' d'' e''>1
  }
-  \addlyrics { 
-    \markup \setHas "T" #'(("B"."3")("a"."8")("b"."9")) 
-    \markup \setHas "III" #'(("a"."6")("b"."7")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("B"."3")("a"."8")("b"."9"))
+    \markup \setHas "III" #'(("a"."6")("b"."7"))
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1454,11 +1454,11 @@ constructs like this:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    < fis' a' c'' es''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    < fis' a' c'' es''>1
  }
-  \addlyrics { 
-    \markup \setHas "T" #'(("B"."3")("a"."7♮")("b"."9♭⇒8♯")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("B"."3")("a"."7♮")("b"."9♭⇒8♯"))
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1505,10 +1505,10 @@ For indicating that the chord does not contain its root, insert the string
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < fis' a' fis'' a''>1 }
-  \addlyrics { 
+  \addlyrics {
 \end{verbatim}
 { \color{red} \verb|    \markup \setHas "T" #'(("T"."x"))| }
-\begin{verbatim}    
+\begin{verbatim}
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1559,11 +1559,11 @@ example could be this:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    <a' e'' g'' bes''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    <a' e'' g'' bes''>1
   }
-  \addlyrics { 
-    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9♭") ("n" . ("a" "c"))) 
+  \addlyrics {
+    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9♭") ("n" . ("a" "c")))
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1577,11 +1577,11 @@ example could be this:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-    <a' e'' g'' bes''>1 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+    <a' e'' g'' bes''>1
   }
-  \addlyrics { 
-    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9-") ("n" . ("a" "c"))) 
+  \addlyrics {
+    \markup \setHas "D" #'(("a"."3")("b"."7")("c"."8")("d"."9-") ("n" . ("a" "c")))
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1620,10 +1620,10 @@ For indicating that the chord fulfills a second-level function, insert the strin
 \include "lilypond/harmonyli.ly"
 \score {
   \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp < e' gis' h'' e''>1 }
-  \addlyrics { 
+  \addlyrics {
 \end{verbatim}
 { \color{red} \verb|    \markup \setHas "D" #'(("T"."d"))| }
-\begin{verbatim}    
+\begin{verbatim}
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1657,10 +1657,10 @@ setImHas} instead of \texttt{\textbackslash setHas}:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     < e' gis' b' e''>1 < cis' a' e'' a''>1 }
-  \addlyrics { 
-    \markup \setImHas "D" #'() 
+  \addlyrics {
+    \markup \setImHas "D" #'()
     \markup \setHas "D" #'(("B"."3")) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1674,13 +1674,13 @@ setImHas} instead of \texttt{\textbackslash setHas}:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
   < e' gis' b' e''>1 < cis' a' e'' a''>1  }
-  \addlyrics { 
+  \addlyrics {
 \end{verbatim}
 { \color{red} \verb|    \setImHas "D" #'() | }
-\begin{verbatim}  
-    \markup \setHas "D" #'(("B"."3")) }  
+\begin{verbatim}
+    \markup \setHas "D" #'(("B"."3")) }
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1688,8 +1688,8 @@ setImHas} instead of \texttt{\textbackslash setHas}:
 \end{lilypond}
 \end{center}
 \end{verbatim}
-\end{scriptsize} 
- 
+\end{scriptsize}
+
 \subsection{Indicating the Chord Context}
 
 The common use of intermediary chords leads attentive musicologists to the
@@ -1706,10 +1706,10 @@ cadence:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     < a' cis' e''>1 < fis' b' d'' >1 }
-  \addlyrics { 
-    \markup \setImHas "D" #'() 
+  \addlyrics {
+    \markup \setImHas "D" #'()
     \markup \setHas "Tp" #'(("B"."5")) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1733,10 +1733,10 @@ is -- by definition -- a deceptive cadence:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     < a' cis' e''>1 < fis' b' d'' >1 }
-  \addlyrics { 
-    \markup \setImHas "D" #'(("C"."T")) 
+  \addlyrics {
+    \markup \setImHas "D" #'(("C"."T"))
     \markup \setHas "Tp" #'(("B"."5")) }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1753,7 +1753,7 @@ is -- by definition -- a deceptive cadence:
 
 For indicating the context of a specific function you must expand the attribute
 list by the string \texttt{("C"."YOUR\_CONTEXT")}. The context can either be
-another function or the root of a key.\footnote{Using the square brackets as an 
+another function or the root of a key.\footnote{Using the square brackets as an
 indicator for the context follows de la Motte who also saw the need to exemplify
 a local tonal center as something like the context of the interpretation.
 (\cite[cf.][144 et passim]{Delamotte2011a})}
@@ -1763,7 +1763,7 @@ a local tonal center as something like the context of the interpretation.
 
 Sometimes, the musicologist has not only to indicate a single intermediary
 chord, but an intermediary chain of chords where each chord of this chain
-refers to the successor of the chain. 
+refers to the successor of the chain.
 
 For deriving this need, let us first present an example and its traditional
 straight forward analysis:
@@ -1774,15 +1774,15 @@ straight forward analysis:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'>
     < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setHas "T" #'(("a"."♮7")) 
-    \markup \setHas "Sp" #'() 
-    \markup \setHas "S" #'(("T"."d")("B"."3"))     
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setHas "T" #'(("a"."♮7"))
+    \markup \setHas "Sp" #'()
+    \markup \setHas "S" #'(("T"."d")("B"."3"))
     \markup \setHas "T" #'(("a"."♮7"))
     \markup \setHas "S" #'(("B"."3"))
     }
@@ -1803,16 +1803,16 @@ could look like this:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'>
     < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setImHas "D[S]" #'(("a"."♮7")) 
-    \markup \setHas "Sp" #'() 
-    \markup \setHas "S" #'(("T"."d")("B"."3"))     
-    \markup \setImHas "D" #'(("a"."♮7")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setImHas "D[S]" #'(("a"."♮7"))
+    \markup \setHas "Sp" #'()
+    \markup \setHas "S" #'(("T"."d")("B"."3"))
+    \markup \setImHas "D" #'(("a"."♮7"))
     \markup \setHas "S" #'(("B"."3"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -1833,16 +1833,16 @@ tones. So, a better interpretation would also represent the chords in bar
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'> 
+    < d' fis' a' d''>1 <  d' fis' a' c''>1  < e' g' b'>
     < e' g' c'' g''>1 < d' a' c'' fis''>1 < b g' d'' g''>1 }
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setImHas "D[S]" #'(("a"."♮7")) 
-    \markup \setImHas "Sp[S]" #'() 
-    \markup \setImHas "S[S]" #'(("B"."3"))     
-    \markup \setImHas "D[S]" #'(("a"."♮7")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setImHas "D[S]" #'(("a"."♮7"))
+    \markup \setImHas "Sp[S]" #'()
+    \markup \setImHas "S[S]" #'(("B"."3"))
+    \markup \setImHas "D[S]" #'(("a"."♮7"))
     \markup \setHas "S" #'(("B"."3"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -1862,16 +1862,16 @@ is shown by the next interpretation:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
     < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' d'' g''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \openImRow "D" #'(("a"."♮7")) 
-    \markup \setHas "Tp" #'() 
-    \markup \setHas "S" #'(("B"."3"))     
-    \markup \closeImRow "D" #'(("a"."♮7")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \openImRow "D" #'(("a"."♮7"))
+    \markup \setHas "Tp" #'()
+    \markup \setHas "S" #'(("B"."3"))
+    \markup \closeImRow "D" #'(("a"."♮7"))
     \markup \setHas "S" #'(("B"."3"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -1894,20 +1894,20 @@ the intermediary row as it is shown here:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
     < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' d'' g''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
 \end{verbatim}
 { \color{red} \verb|    \markup \openImRow "D" #'(("a"."-7"))| }
-\begin{verbatim} 
-    \markup \setHas "Tp" #'() 
-    \markup \setHas "S" #'(("B"."3"))     
+\begin{verbatim}
+    \markup \setHas "Tp" #'()
+    \markup \setHas "S" #'(("B"."3"))
 \end{verbatim}
 { \color{red} \verb|    \markup closeImRow "D" #'(("a"."-7"))| }
-\begin{verbatim}  
+\begin{verbatim}
     \markup \setHas "S" #'(("B"."3"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -1934,13 +1934,13 @@ intermediary chord and the really disappointing function of the subsequent chord
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setImHas "D" #'(("a"."♮7")("C"."S")) 
-    \markup \setHas "Sp" #'() 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setImHas "D" #'(("a"."♮7")("C"."S"))
+    \markup \setHas "Sp" #'()
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -1958,16 +1958,16 @@ chord:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
     < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' e'' g''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \openImRow "D" #'(("a"."♮7")) 
-    \markup \setHas "Tp" #'() 
-    \markup \setHas "S" #'(("B"."3"))     
-    \markup \closeImRow "D" #'(("a"."♮7")("fr"."[S]")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \openImRow "D" #'(("a"."♮7"))
+    \markup \setHas "Tp" #'()
+    \markup \setHas "S" #'(("B"."3"))
+    \markup \closeImRow "D" #'(("a"."♮7")("fr"."[S]"))
     \markup \setHas "Sp" #'(("B"."5"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -1988,18 +1988,18 @@ closes the intermediary row:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  d' fis' a' c''>1 | < e' g' b'> |
     < e' g' c'' g''>1 | < d' a' c'' fis''>1 | < b g' e'' g''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \openImRow "D" #'(("a"."-7")) 
-    \markup \setHas "Tp" #'() 
-    \markup \setHas "S" #'(("B"."3"))     
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \openImRow "D" #'(("a"."-7"))
+    \markup \setHas "Tp" #'()
+    \markup \setHas "S" #'(("B"."3"))
 \end{verbatim}
 { \color{red} \verb|    \markup \closeImRow "D" #'(("a"."-7")("fr"."[S]"))| }
-\begin{verbatim} 
+\begin{verbatim}
     \markup \setHas "Sp" #'(("B"."5"))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -2009,7 +2009,7 @@ closes the intermediary row:
 \end{scriptsize}
 
 The idea behind this method is that you here use the attribute
-\acc{f(illstring)r(ight)} to append an the string \texttt{"[YOUR\_CONTEXT]"} 
+\acc{f(illstring)r(ight)} to append an the string \texttt{"[YOUR\_CONTEXT]"}
 
 \subsection{Indicating Suspended and Passing Notes}
 
@@ -2024,31 +2024,31 @@ is like he zooms in on the details of the chord. Here is an example of such a
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  e' g' a' d''>1 | < e' g' a' cis''> |
-    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 |
     < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
     % bar 2 - 3
     \markup \openZoomRow "D" #'(("B"."5")("a"."4")("b"."7"))
-    \markup \expZoomRow #'(("a"."3")("b"."7")) 
+    \markup \expZoomRow #'(("a"."3")("b"."7"))
     % bar 4 - 5
     \initTextSpan "   "
     \markup \openZoomRow "S" #'(("B"."3")("a"."4"))
     \startTextSpan
-    \markup \expZoomRow #'(("a"."5")) 
+    \markup \expZoomRow #'(("a"."5"))
     \stopTextSpan
     % bar 6 - 9
     \initTextSpan "   "
     \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
     \startTextSpan
-    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-    \stopTextSpan 
-        
-    \markup \setHas "Tp" #'() 
+    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7"))
+    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6"))
+    \stopTextSpan
+
+    \markup \setHas "Tp" #'()
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -2074,43 +2074,43 @@ closeImZoomRow} -- as it is shown in the code of the given example:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  e' g' a' d''>1 | < e' g' a' cis''> |
-    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+    < b  g' cis'' g''>1 | < b  g' d'' g''>1 | < b fis' d'' e''>1 |
     < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |}
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
 \end{verbatim}
 \color{red}
-\begin{verbatim} 
+\begin{verbatim}
     % bar 2 - 3
     \markup \openZoomRow "D" #'(("B"."5")("a"."4")("b"."7"))
-    \markup \expZoomRow #'(("a"."3")("b"."7")) 
+    \markup \expZoomRow #'(("a"."3")("b"."7"))
 \end{verbatim}
 \color{blue}
-\begin{verbatim} 
+\begin{verbatim}
     % bar 4 - 5
     \initTextSpan "   "
     \markup \openZoomRow "S" #'(("B"."3")("a"."4"))
     \startTextSpan
-    \markup \expZoomRow #'(("a"."5")) 
+    \markup \expZoomRow #'(("a"."5"))
     \stopTextSpan
 \end{verbatim}
 \color{magenta}
-\begin{verbatim} 
+\begin{verbatim}
     % bar 6 - 9
     \initTextSpan "   "
     \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
     \startTextSpan
-    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-    \stopTextSpan 
+    \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7"))
+    \markup \closeImZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6"))
+    \stopTextSpan
 \end{verbatim}
 \color{black}
-\begin{verbatim} 
-        
-    \markup \setHas "Tp" #'() 
+\begin{verbatim}
+
+    \markup \setHas "Tp" #'()
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -2159,7 +2159,7 @@ right parenthesis. That's the reason, why in this case the line in \texttt{bar
 
 The good message is, that you will rarely run into this visual deficiency:
 it only arises in case of very long notes as we used here. Hence you mostly can
-use this technique without any modifications. 
+use this technique without any modifications.
 
 But if you have nevertheless run into this trap, you can use a good
 'workaround' to put yourself out of this misery:
@@ -2183,12 +2183,12 @@ As your result you will get this:
 
 imInfix = " "
 
-isVisible = { \stemUp 
-  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+isVisible = { \stemUp
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 |
   < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
 }
 
-isHidden = \relative d { \stemDown 
+isHidden = \relative d { \stemDown
   \override NoteHead.color = #red
   \override NoteColumn #'ignore-collision = ##t
   d1 | d1 | d1 | d2. d4 | d1
@@ -2203,11 +2203,11 @@ hasSymbols = \lyricmode {
   \initTextSpan "      "
   \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
   \startTextSpan
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-  \stopTextSpan 
-  \markup \closeImZoomRow #'()    
-  \markup \setHas "Tp" #'() 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7"))
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6"))
+  \stopTextSpan
+  \markup \closeImZoomRow #'()
+  \markup \setHas "Tp" #'()
 }
 
 \score {
@@ -2219,7 +2219,7 @@ hasSymbols = \lyricmode {
     \new Lyrics \lyricsto "inVisible" { \hasSymbols }
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{lilypond}
 \end{center}
 
@@ -2234,12 +2234,12 @@ The trick becomes understandable if we unhide the hidden voice:
 
 imInfix = " " % don't forget this!
 
-isVisible = { \stemUp 
-  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+isVisible = { \stemUp
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 |
   < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
 }
 
-isHidden = \relative d { \stemDown 
+isHidden = \relative d { \stemDown
   \override NoteHead.color = #red
   \override NoteColumn #'ignore-collision = ##t
   d1 | d1 | d1 | d2. d4 | d1
@@ -2254,11 +2254,11 @@ hasSymbols = \lyricmode {
   \initTextSpan "      "
   \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
   \startTextSpan
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-  \stopTextSpan 
-  \markup \closeImZoomRow #'()    
-  \markup \setHas "Tp" #'() 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7"))
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6"))
+  \stopTextSpan
+  \markup \closeImZoomRow #'()
+  \markup \setHas "Tp" #'()
 }
 
 \score {
@@ -2270,7 +2270,7 @@ hasSymbols = \lyricmode {
     \new Lyrics \lyricsto "inVisible" { \hasSymbols }
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{lilypond}
 \end{center}
 
@@ -2285,12 +2285,12 @@ Here is the respective code:
 
 imInfix = " " % don't forget this!
 
-isVisible = { \stemUp 
-  < b  g' d'' g''>1 | < b fis' d'' e''>1 | 
+isVisible = { \stemUp
+  < b  g' d'' g''>1 | < b fis' d'' e''>1 |
   < ais fis' cis'' e''>1 | < ais fis' cis'' d''>1 | < b fis' b' d''>1 |
 }
 
-isHidden = \relative d { \stemDown 
+isHidden = \relative d { \stemDown
   \override NoteHead.color = #red
   \override NoteColumn #'ignore-collision = ##t
   d1 | d1 | d1 | d2. d4 | d1
@@ -2305,11 +2305,11 @@ hasSymbols = \lyricmode {
   \initTextSpan "      "
   \markup \openImZoomRow "D" #'(("B"."4")("a"."4")("b"."6")("c"."7"))
   \startTextSpan
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7")) 
-  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6")) 
-  \stopTextSpan 
-  \markup \closeImZoomRow #'()    
-  \markup \setHas "Tp" #'() 
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."7"))
+  \markup \expZoomRow #'(("B"."3")("a"."3")("b"."5")("c"."6"))
+  \stopTextSpan
+  \markup \closeImZoomRow #'()
+  \markup \setHas "Tp" #'()
 }
 
 \score {
@@ -2321,7 +2321,7 @@ hasSymbols = \lyricmode {
     \new Lyrics \lyricsto "inVisible" { \hasSymbols }
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 
 \end{verbatim}
 \end{scriptsize}
@@ -2358,28 +2358,28 @@ linked by an arrow and the complete complex is outlined by a rectangle:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
     < d' fis' a' d''>1 | <  b g' d'' g''>1 | < cis' g' a' e''> | < d' fis' a' d''>1 |
     <  b g' e'' g''> | <  c' a' d'' f''> |
-    <  d' f' g' b' > | < c' e' g' c''> | 
+    <  d' f' g' b' > | < c' e' g' c''> |
     }
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setHas "S" #'(("B"."3")) 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setHas "S" #'(("B"."3"))
     \markup \setHas "D" #'(("B"."3")("a"."7"))
-    \markup \setHas "T" #'((""."")) 
+    \markup \setHas "T" #'(("".""))
     % bar 5 - 6
-    
-    \markup \setRfHas "Sp" "Tg" 
+
+    \markup \setRfHas "Sp" "Tg"
     #'( ("B"."5")("C" . "D")
         ("nB"."5")("nC" . "C")
     )
-    
+
     \markup \setHas "S" #'(("B"."5")("a"."5")("b"."6"))
     \markup \setHas "D" #'(("B"."5")("a"."7"))
     % bar 4 - 5
-    \markup \setHas "T" #'((""."")) 
+    \markup \setHas "T" #'(("".""))
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -2397,14 +2397,14 @@ the respective function itself:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-      < d' fis' a' d''>1  
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+      < d' fis' a' d''>1
   }
   \addlyrics {
-    \markup \setRfHas 
+    \markup \setRfHas
         "FL"
-        "FR" 
-    #'( 
+        "FR"
+    #'(
         ("fl" . "fl: LL  ")
         ("T"."x")
         ("B"."B: BL")
@@ -2416,7 +2416,7 @@ the respective function itself:
         ("e" . "e: L5")
         ("C" . "C: LC")
         ("fr" . "  fr: LR")
-        
+
         ("nfl" . " nfl: RL ")
         ("nT"."d")
         ("nB"."nB: BR")
@@ -2429,7 +2429,7 @@ the respective function itself:
         ("nC" . "nC: RC")
         ("nfr" . "  nfr: RR")
     )
-    
+
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -2446,14 +2446,14 @@ This artifical symbol is created by the respective code:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
-      < d' fis' a' d''>1  
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
+      < d' fis' a' d''>1
   }
   \addlyrics {
-    \markup \setRfHas 
+    \markup \setRfHas
         "F/L"
-        "F/R" 
-    #'( 
+        "F/R"
+    #'(
         ("fl" . "fl: LL  ")
         ("T"."x")
         ("B"."B: BL")
@@ -2465,7 +2465,7 @@ This artifical symbol is created by the respective code:
         ("e" . "e: L5")
         ("C" . "C: LC")
         ("fr" . "  fr: LR")
-        
+
         ("nfl" . " nfl: RL ")
         ("nT"."d")
         ("nB"."nB: BR")
@@ -2478,7 +2478,7 @@ This artifical symbol is created by the respective code:
         ("nC" . "nC: RC")
         ("nfr" . "  nfr: RR")
     )
-    
+
   }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
   \midi {}
@@ -2496,21 +2496,21 @@ next example:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
-    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> |
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> |
     }
-  \addlyrics { 
-    \markup \setHas "T" #'((""."")) 
-    \markup \setRfHas "D" "D" 
+  \addlyrics {
+    \markup \setHas "T" #'(("".""))
+    \markup \setRfHas "D" "D"
     #'( ("T"."x")("B"."♭9")("a"."7")("C" . "D")
         ("nT"."x")("nB"."7")("na"."♭9")("nC" . "C")
-    )    
-    \markup \setHas "s" #'(("B"."♭3")("a"."5")("b"."6")) 
+    )
+    \markup \setHas "s" #'(("B"."♭3")("a"."5")("b"."6"))
     \markup \setHas "T" #'(("B"."5"))
     \markup \setHas "D" #'(("B"."3")("a"."7"))
-    \markup \setHas "T" #'((""."")) 
+    \markup \setHas "T" #'(("".""))
 
     }
   \layout { \context { \Lyrics \consists "Text_spanner_engraver" } }
@@ -2585,23 +2585,23 @@ Dominante” (\cite[cf.][51]{Petersen2019a}) }:
 
 imInfix = " " % don't forget this!
 
-trisSone =  { \stemUp 
+trisSone =  { \stemUp
   \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
 }
 
-trisStwo = { \stemDown 
-  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+trisStwo = { \stemDown
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 |
 }
 
-trisBone = { \stemUp 
+trisBone = { \stemUp
   \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
 }
 
-trisBtwo =  { \stemDown 
+trisBtwo =  { \stemDown
   \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
 }
 
-trisBana =  { \stemDown 
+trisBana =  { \stemDown
   \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
 }
 
@@ -2611,24 +2611,24 @@ trisSymb = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
   \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
 
 
-  \markup \setRfHas "D" "T" 
+  \markup \setRfHas "D" "T"
     #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
         ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
-    ) 
+    )
   \initTextSpan "        "
   \markup \openZoomRow "D" #'(("C" . "E")("B" . "5")("a" . "5")("b" . "6"))
   \startTextSpan
   \markup \expZoomRow #'(("a" . "5")("b" . "7"))
   \stopTextSpan
-  
-  \initTextSpan "        "  
+
+  \initTextSpan "        "
   \markup \openZoomRow "T" #'(("a"."♯4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan   
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 }
 
 trisChord = \lyricmode {
@@ -2636,46 +2636,46 @@ trisChord = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
   \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-  
+
   \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
-  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
-  
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )
+
   \initTextSpan "     "
   \markup \openZoomRow "B" #'(("B" . "5")("a" . "5")("b" . "6"))
   \startTextSpan
   \markup \expZoomRow #'(("a" . "5")("b" . "7"))
   \stopTextSpan
-  
-  \initTextSpan "      "  
+
+  \initTextSpan "      "
   \markup \openZoomRow "E" #'(("a"."♯4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan 
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 
 }
 
 \score {
   <<
     \new GrandStaff <<
-      \time 6/8 
+      \time 6/8
       \new Staff <<
-        \clef "treble" \key  a\minor 
+        \clef "treble" \key  a\minor
         \new Voice = "trisSone" { \trisSone }
         \new Voice = "trisStwo" { \trisStwo }
       >>
       \new Staff <<
-        \clef "bass"\key  a\minor 
+        \clef "bass"\key  a\minor
         \new Voice = "trisBone" { \trisBone }
         \new Voice = "trisBtwo" { \trisBtwo }
         \new NullVoice = "trisBana" { \trisBana }
         \new Lyrics \lyricsto "trisBana" { \trisSymb }
         \new Lyrics \lyricsto "trisBana" { \trisChord }
-      >>    
+      >>
     >>
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{lilypond}
 \end{center}
 
@@ -2698,23 +2698,23 @@ a \acc{dominant seventh chord}:
 
 imInfix = " " % don't forget this!
 
-trisSone =  { \stemUp 
+trisSone =  { \stemUp
   \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
 }
 
-trisStwo = { \stemDown 
-  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+trisStwo = { \stemDown
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 |
 }
 
-trisBone = { \stemUp 
+trisBone = { \stemUp
   \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
 }
 
-trisBtwo =  { \stemDown 
+trisBtwo =  { \stemDown
   \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
 }
 
-trisBana =  { \stemDown 
+trisBana =  { \stemDown
   \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
 }
 
@@ -2724,23 +2724,23 @@ trisSymb = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
   \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
 
 
-  \markup \setRfHas "D" "T" 
+  \markup \setRfHas "D" "T"
     #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
         ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
-    ) 
-  
+    )
+
 
   \markup \setHas "Dp" #'(("C" . "E")("B" . "7")("a" . "7"))
   \markup \setHas "D" #'(("C" . "E")("B" . "5")("a" . "7"))
-  
-  \initTextSpan "        "  
+
+  \initTextSpan "        "
   \markup \openZoomRow "T" #'(("a"."♯4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan   
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 }
 
 trisChord = \lyricmode {
@@ -2748,44 +2748,44 @@ trisChord = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
   \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-  
+
   \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
-  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
-  
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )
+
   \markup \setHas "g♯" #'(("C" . "E")("B" . "7")("a" . "7"))
   \markup \setHas "B" #'(("C" . "E")("B" . "7")("a" . "7"))
- 
-  
-  \initTextSpan "      "  
+
+
+  \initTextSpan "      "
   \markup \openZoomRow "E" #'(("a"."♯4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan 
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 
 }
 
 \score {
   <<
     \new GrandStaff <<
-      \time 6/8 
+      \time 6/8
       \new Staff <<
-        \clef "treble" \key  a\minor 
+        \clef "treble" \key  a\minor
         \new Voice = "trisSone" { \trisSone }
         \new Voice = "trisStwo" { \trisStwo }
       >>
       \new Staff <<
-        \clef "bass"\key  a\minor 
+        \clef "bass"\key  a\minor
         \new Voice = "trisBone" { \trisBone }
         \new Voice = "trisBtwo" { \trisBtwo }
         \new NullVoice = "trisBana" { \trisBana }
         \new Lyrics \lyricsto "trisBana" { \trisSymb }
         \new Lyrics \lyricsto "trisBana" { \trisChord }
-      >>    
+      >>
     >>
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 \end{lilypond}
 \end{center}
 
@@ -2793,7 +2793,7 @@ trisChord = \lyricmode {
 Thus, we probably may conclude, that using \hlyn\ makes it easier to understand
 the \acc{Tristan chord} as well as writing the appropriate analysis. That's a
 nice result isn't it? Howsoever, here is the respective code:
- 
+
 \begin{scriptsize}
 \begin{verbatim}
 \version "2.18.2"
@@ -2803,23 +2803,23 @@ nice result isn't it? Howsoever, here is the respective code:
 
 imInfix = " " % don't forget this!
 
-trisSone =  { \stemUp 
+trisSone =  { \stemUp
   \partial 8 \skip8 | \skip2. | gis'4.~ gis'4 a'8 | ais'8 b'4~ b'8 \skip8 \skip8 |
 }
 
-trisStwo = { \stemDown 
-  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 | 
+trisStwo = { \stemDown
+  \partial 8 r8 | R2. | <f b dis'>2. | <e gis d'!>4.~ <e gis d'>8 r8 r8 |
 }
 
-trisBone = { \stemUp 
+trisBone = { \stemUp
   \partial 8 \skip8 | \skip2. | <f b gis'>4.~ <f b gis'>8 \skip8 \skip8 | \skip2. |
 }
 
-trisBtwo =  { \stemDown 
+trisBtwo =  { \stemDown
   \partial 8 a8 | f'4.~ f'4 e'8 | dis'4.~ dis'8 b8\rest b8\rest | R2. |
 }
 
-trisBana =  { \stemDown 
+trisBana =  { \stemDown
   \partial 8 c,8 | c4.~ c4 c,8 | c4.~ c4 c,8 | c,8 c,4~ c,4 r8 |
 }
 
@@ -2829,24 +2829,24 @@ trisSymb = \lyricmode {
   \override LyricExtender.extra-offset = #'(0 . 0.5)
 
   \markup \setHas "t" #'(("C" . "a")("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
+  \markup \setHas "s" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
 
 
-  \markup \setRfHas "D" "T" 
+  \markup \setRfHas "D" "T"
     #'( ("C" . "a") ("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )
         ("nC" . "E") ("na" . "3")("nb" . "5")("nc" . "8")("nn" . ("a" "b" "c") )
-    ) 
+    )
   \initTextSpan "        "
   \markup \openZoomRow "D" #'(("C" . "E")("B" . "5")("a" . "5")("b" . "6"))
   \startTextSpan
   \markup \expZoomRow #'(("a" . "5")("b" . "7"))
   \stopTextSpan
-  
-  \initTextSpan "        "  
+
+  \initTextSpan "        "
   \markup \openZoomRow "T" #'(("a"."+4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan   
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 }
 
 trisChord = \lyricmode {
@@ -2854,46 +2854,46 @@ trisChord = \lyricmode {
   \override LyricExtender.left-padding = #-0.5
   \override LyricExtender.extra-offset = #'(0 . 0.5)
   \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-  
+
   \markup \setHas "a" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
-  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") )) 
-  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )  
-  
+  \markup \setHas "d" #'(("B"."3")("a" . "1")("b" . "5")("c" . "8")("n" . ("a" "b" "c") ))
+  \markup \setHas "E" #'(("a" . "3")("b" . "5")("c" . "8")("n" . ("a" "b" "c")) )
+
   \initTextSpan "     "
   \markup \openZoomRow "B" #'(("B" . "5")("a" . "5")("b" . "6"))
   \startTextSpan
   \markup \expZoomRow #'(("a" . "5")("b" . "7"))
   \stopTextSpan
-  
-  \initTextSpan "      "  
+
+  \initTextSpan "      "
   \markup \openZoomRow "E" #'(("a"."+4"))
-  \startTextSpan 
-  \markup \expZoomRow  #'(("a"."5"))  
-  \stopTextSpan 
+  \startTextSpan
+  \markup \expZoomRow  #'(("a"."5"))
+  \stopTextSpan
 
 }
 
 \score {
   <<
     \new GrandStaff <<
-      \time 6/8 
+      \time 6/8
       \new Staff <<
-        \clef "treble" \key  a\minor 
+        \clef "treble" \key  a\minor
         \new Voice = "trisSone" { \trisSone }
         \new Voice = "trisStwo" { \trisStwo }
       >>
       \new Staff <<
-        \clef "bass"\key  a\minor 
+        \clef "bass"\key  a\minor
         \new Voice = "trisBone" { \trisBone }
         \new Voice = "trisBtwo" { \trisBtwo }
         \new NullVoice = "trisBana" { \trisBana }
         \new Lyrics \lyricsto "trisBana" { \trisSymb }
         \new Lyrics \lyricsto "trisBana" { \trisChord }
-      >>    
+      >>
     >>
   >>
   \layout{ \context { \Lyrics \consists "Text_spanner_engraver" } }
-} 
+}
 
 
 \end{verbatim}
@@ -2968,15 +2968,15 @@ Here is a an example:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
-    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> |
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> |
     }
-  \addlyrics { 
-    \markup \FHAS "T" 
-    \markup \Dseptnone   
-    \markup \FHASth "s" 
+  \addlyrics {
+    \markup \FHAS "T"
+    \markup \Dseptnone
+    \markup \FHASth "s"
     \markup \FHAS "T"
     \markup \Dsept
     \markup \FHAS "T"
@@ -2995,15 +2995,15 @@ Here is a an example:
 \header { tagline = "" }
 \include "lilypond/harmonyli.ly"
 \score {
-  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp 
+  \new Staff { \clef "treble" \key d \major \time 4/4 \stemUp
     \override Score.BarNumber.break-visibility = #'#(#t #t #t)
-    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> | 
-    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> | 
+    < d' fis' a' d''>1 | <  bes g' cis'' e''>1 | < aes c'' d'' f''> |
+    <  g c'' e'' g''> | <  b f' g' d'' > | < c' e' g' c''> |
     }
-  \addlyrics { 
-    \markup \FHAS "T" 
-    \markup \Dseptnone   
-    \markup \FHASth "s" 
+  \addlyrics {
+    \markup \FHAS "T"
+    \markup \Dseptnone
+    \markup \FHASth "s"
     \markup \FHAS "T"
     \markup \Dsept
     \markup \FHAS "T"
