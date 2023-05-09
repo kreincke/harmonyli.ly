@@ -197,7 +197,7 @@ lyr = \lyricmode {
     {
       <<
         \sopranmel \\
-        \partcombine \altmel \tenormel
+        \partCombine \altmel \tenormel
       >>
     }
     \new Staff = lower
