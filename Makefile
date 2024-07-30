@@ -1,4 +1,4 @@
-# (c) Karsten Reincke, Frankfurt am Main, Germany, 2011 ff
+# (c) Karsten Reincke, Hohenahr( fromerly Frankfurt am Main), Germany
 # This file is licensed under the MIT license
 # For details the file LICENSE
 
