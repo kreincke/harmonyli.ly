@@ -1,5 +1,7 @@
 # harmonyli.ly
 
+(C) Karsten Reincke - 2020 Hohenahr, Germany
+
 A **library** for inserting **Functional Harmony Analysis Symbols** into musical 
 scores encoded in and created by LilyPond.
 
