@@ -17,7 +17,7 @@ scores encoded in and created by LilyPond.
 _harmonyli.ly_ is distributed under the terms of the MIT license or under 
 the terms of the GPLv3 license. As long as harmonyli.ly is distributed under 
 both licenses, the recipient has the right to chose the license under which he
-wants to use the work.
+wants to use the work!
 
 For details see the file [LICENSING](./LICENSING).
 
